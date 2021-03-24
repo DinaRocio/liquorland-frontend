@@ -20,7 +20,6 @@ const globalStyles = css`
   body {
     background: grey;
     font-family: ${fontFamily};
-    color: ${colors.dark1};
   }
   #root {
     width: 414px;
