@@ -9,12 +9,14 @@ import Search from './pages/Search';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
 import Account from './pages/Account';
+import Splash from './pages/Splash';
 
 
 function App() {
   return (
     <Router>
       <Route exact path="/" component={Welcome}/>
+      <Route path="/splash" component={Splash} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/home" component={Home} />
