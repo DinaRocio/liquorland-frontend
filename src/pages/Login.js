@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import header from "../assets/main.png";
 import { Icon, InlineIcon } from "@iconify/react";
 import beerIcon from "@iconify/icons-dashicons/beer";
+import Button from "../UI/Button"
 
 export default function Login() {
   return (
@@ -120,7 +121,7 @@ const LoginInput = styled.div`
     }
   }
 `;
-const Button = styled.button`
+/* const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,7 +141,7 @@ const Button = styled.button`
   &:hover {
     background: #2db2db;
   }
-`;
+`; */
 const SignupLink = styled.div`
   display: flex;
   justify-content: center;
