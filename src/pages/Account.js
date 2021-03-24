@@ -1,10 +1,9 @@
-import Navbar from "../UI/Navbar";
 import Template from "./templates/Template";
 
-export default function Home() {
+export default function Account() {
   return (
     <Template>
-      <p>Home</p>
+      <p>Account</p>
     </Template>
   );
 }

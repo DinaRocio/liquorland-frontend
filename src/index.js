@@ -22,7 +22,7 @@ const globalStyles = css`
     font-family: ${fontFamily};
   }
   #root {
-    width: 414px;
+    width: 100vw;
     background: white;
     min-height: 100vh;
     display: flex;
