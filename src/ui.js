@@ -7,6 +7,7 @@ const colors = {
   light3: "#BCE784",
   white: "#FFFFFF",
   black: "#000000",
+  gray: "#7C7C7C",
 };
 
 export { colors };

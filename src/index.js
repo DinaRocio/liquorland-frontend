@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 const fontFamily = "ABeeZee, sans-serif";
 
 const globalStyles = css`
- @import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Abel&display=swap');
   * {
     margin: 0;
     padding: 0;
@@ -23,8 +23,8 @@ const globalStyles = css`
     color: ${colors.dark1};
   }
   #root {
-    width: 360px;
-    background: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
+    width: 414px;
+    background: white;
     min-height: 100vh;
     display: flex;
     justify-content: center;
