@@ -1,11 +1,12 @@
-import Navbar from "../../UI/Navbar";
+
 import styled from "@emotion/styled";
+import Navbar from "../UI/Navbar";
 
 export default function Template({ children }) {
   return (
     <Container>
       <div>{children}</div>
-      <Navbar />
+      <Navbar/>
     </Container>
   );
 }

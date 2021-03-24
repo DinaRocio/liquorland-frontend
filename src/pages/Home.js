@@ -1,5 +1,4 @@
-import Navbar from "../UI/Navbar";
-import Template from "./templates/Template";
+import Template from "../templates/Template";
 
 export default function Home() {
   return (

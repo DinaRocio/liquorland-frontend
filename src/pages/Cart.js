@@ -1,4 +1,4 @@
-import Template from "./templates/Template";
+import Template from "../templates/Template";
 
 export default function Cart() {
   return (

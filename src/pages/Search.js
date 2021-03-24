@@ -1,28 +1,10 @@
-import Navbar from "../UI/Navbar";
+import Template from "../templates/Template";
+
 
 export default function Search (){
   return (
-    <>
-      <p>search</p>
-      <Navbar />
-    </>
+    <Template>
+    <p>Search</p>
+  </Template>
   );
 }
-
-// export function function Template(children){
-//   return(
-//     <Container>
-          // <div>
-          //   {children}
-          // </div>
-//        <Navbar />
-//     </Container>
-   
-//   )
-// }
-
-{/* <Template>
-  bhjnkmñl
-</Template> */}
-
-// container colocaria al navbar abajo display grid / container overflow-y: scroll auto
