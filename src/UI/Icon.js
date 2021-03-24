@@ -8,6 +8,7 @@ import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icon
 import { GrShop, GrCreditCard } from "react-icons/gr";
 
 import { css } from "@emotion/react";
+import { colors } from "../ui";
 
 const iconSet = {
   shop: AiOutlineShop,
@@ -37,6 +38,7 @@ function Icon({ type, fill, size }) {
       css={css`
         color: ${fill};
         font-size: ${size}px;
+      
       `}
     />
   );

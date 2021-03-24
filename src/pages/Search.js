@@ -1,9 +1,10 @@
 import Template from "../templates/Template";
 
-export default function Home() {
+
+export default function Search (){
   return (
     <Template>
-      <p>Home</p>
-    </Template>
+    <p>Search</p>
+  </Template>
   );
 }
