@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
 import { FiHeart, FiUser, FiMinus, FiShoppingCart, FiSearch } from "react-icons/fi";
-import { BiSearch } from "react-icons/bi";
 import { AiOutlineShop, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward, IoIosClose } from "react-icons/io";
 import { RiAddLine } from "react-icons/ri";
@@ -16,7 +15,6 @@ const iconSet = {
   location: HiLocationMarker,
   cart: FiShoppingCart,
   user: FiUser,
-  search: BiSearch,
   fillStar: AiFillStar,
   outLineStar: AiOutlineStar,
   search: FiSearch,
