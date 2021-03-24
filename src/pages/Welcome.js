@@ -1,5 +1,10 @@
+import Card from "../components/Card";
+
 export default function Welcome (){
   return(
-    <p>Welcome</p>
+    <div>
+      <p>Welcome</p>
+      <Card></Card>
+    </div>
   )
 };

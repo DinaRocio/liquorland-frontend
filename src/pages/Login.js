@@ -121,27 +121,6 @@ const LoginInput = styled.div`
     }
   }
 `;
-/* const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 140px;
-  height: 36px;
-  background: ${colors.light2};
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  margin-top: 30px;
-  margin-bottom: 25px;
-  border: none;
-  outline: none;
-  transition: background 200ms;
-  &:hover {
-    background: #2db2db;
-  }
-`; */
 const SignupLink = styled.div`
   display: flex;
   justify-content: center;

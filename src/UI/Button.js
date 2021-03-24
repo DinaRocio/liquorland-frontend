@@ -18,6 +18,11 @@ const StyledButton = styled.button`
     line-height: 18px;
     text-align: center;
     color: #FFFFFF;
+    cursor:pointer;
+    &:hover {
+    background: #2db2db;
+    transition: width 2s, height 4s;;
+  }
 `;
 
 function Button({children}){
