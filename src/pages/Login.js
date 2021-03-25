@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import header from "../assets/main.png";
 import { Icon, InlineIcon } from "@iconify/react";
 import beerIcon from "@iconify/icons-dashicons/beer";
+import Button from "../UI/Button"
 
 export default function Login() {
   return (
@@ -118,27 +119,6 @@ const LoginInput = styled.div`
     &::placeholder {
       color: ${colors.gray};
     }
-  }
-`;
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 140px;
-  height: 36px;
-  background: ${colors.light2};
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  margin-top: 30px;
-  margin-bottom: 25px;
-  border: none;
-  outline: none;
-  transition: background 200ms;
-  &:hover {
-    background: #2db2db;
   }
 `;
 const SignupLink = styled.div`
