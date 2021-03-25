@@ -1,9 +1,9 @@
 import Template from "../templates/Template";
 
-export default function Home() {
+export default function Cart() {
   return (
     <Template>
-      <p>Home</p>
+      <p>Cart</p>
     </Template>
   );
 }
