@@ -1,10 +1,13 @@
-
+import CardCategory from "../components/CardCategory"
 import Template from "../templates/Template"
+import Search from "../components/Search"
 
 export default function Explore() {
   return (
     <Template>
-      <p>Explore</p>
+      <p>Find Products</p>
+      <Search/>
+      <CardCategory>hola</CardCategory>
     </Template>
   );
 }

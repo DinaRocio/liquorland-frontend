@@ -27,9 +27,11 @@ return(
 }
 
 const StyledContainer = styled.div`
+    margin-top: 10px;
+    margin-bottom:10px;
     display:grid;
-    grid-template-columns: repeat(2, 160px);
-    grid-template-rows:repeat(autofill, 200px );
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
 `;
 
 const StyledCard = styled.div`
@@ -84,7 +86,6 @@ const StyledPrice =styled.p`
     line-height: 18px;
     margin-top: 12px;
 `;
-
 function Price ( {children} ){
     return(
     <StyledPrice>{children}</StyledPrice>
