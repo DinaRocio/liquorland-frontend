@@ -7,7 +7,10 @@ export default function Explore() {
     <Template>
       <p>Find Products</p>
       <Search/>
-      <CardCategory>hola</CardCategory>
+      <CardCategory
+        
+      
+      />
     </Template>
   );
 }
