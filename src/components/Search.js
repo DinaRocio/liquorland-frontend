@@ -14,7 +14,7 @@ function Search(){
 export default Search;
 
 const StyledInput = styled.input`
-    width: 270px;
+    width: 315px;
     height: 29px;
     border:none;
     border-radius: 7px;
