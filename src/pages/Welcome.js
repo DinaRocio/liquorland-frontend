@@ -1,6 +1,8 @@
 import welcome from "../assets/welcome.png";
 import { colors } from "../ui";
 import styled from "@emotion/styled";
+import Button from "../UI/Button";
+import { Link } from "react-router-dom";
 
 export default function Welcome() {
   return (
@@ -12,6 +14,9 @@ export default function Welcome() {
         <p>Get your drinks in as fast as half an hour</p>
       </Titles>
       </div>
+       <Link to="/login" >
+        <Button>Get Started</Button>
+       </Link>
     </WelcomeContainer>
   );
 }
@@ -26,7 +31,14 @@ const WelcomeContainer = styled.div`
     width: 100%;
     height: 100%;
   }
- 
+  & button {
+    margin-top:-150px;
+    margin-left:50px;
+    width:300px;
+  }
+  & a {
+    text-decoration:none;
+  }
 `;
 const Titles = styled.div`
   position: absolute;
@@ -49,4 +61,3 @@ const Titles = styled.div`
     color: #ffffff;
   }
 `;
-
