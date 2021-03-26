@@ -1,20 +1,121 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Template from "../templates/Template"
+import { Link } from "react-router-dom";
+import Template from "../templates/Template";
+import { colors } from "../ui";
+import Icon from "../UI/Icon";
 
-export default function Account() {
+export default function Account({
+  name = "Afsar Hossen",
+  email = "lala@lala.com",
+  avatarUrl = "https://www.trickscity.com/wp-content/uploads/2018/06/anonymous-dp-for-boys.jpg",
+}) {
+  const options = ["myDetails", "location", "payment", "help", "about"];
+  const iconsOpt = {
+    myDetails: "details",
+    location: "location",
+    payment: "creditCard",
+    help: "help",
+    about: "about",
+  };
+  const titlesOpt = {
+    myDetails: "My Details",
+    location: "Delivery Address",
+    payment: "Payment Methods",
+    help: "Help",
+    about: "About",
+  };
   return (
     <Template>
-      <Heading>Account</Heading>
+      <AccountHeader>
+        <AvatarContainer avatarUrl={avatarUrl}></AvatarContainer>
+        <AccountTitles>
+          <NameEdition>
+            <p>{name}</p>
+            <Icon type="pencil" fill={colors.light2} size={15} />
+          </NameEdition>
+          <p>{email}</p>
+        </AccountTitles>
+      </AccountHeader>
+      <AccountOptions>
+        {options.map((option) => (
+          <li key={option}>
+            <Option>
+              <Icon type={iconsOpt[option]} fill="black" sice={10} />
+              <div>
+              <p>{titlesOpt[option]}</p>
+              <Link to={`/${option}`}>
+                <Icon type="forwardArrow" fill="black" sice={10} />
+              </Link>
+              </div>
+              
+            </Option>
+          </li>
+        ))}
+      </AccountOptions>
     </Template>
   );
 }
 
-const Heading = styled.h3`
-    font-family: ABeeZee;
+const AccountHeader = styled.div`
+  width: 80vw;
+  padding: 40px 0px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+  border-bottom: 1px solid #e2e2e2;
+`;
+
+const AvatarContainer = styled.div(
+  ({ avatarUrl, cssProp }) => css`
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-image: url(${avatarUrl});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: ${colors.light2};
+    border: none;
+    ${cssProp}
+  `
+);
+const AccountTitles = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  & > p {
     font-style: italic;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 18px;
-    text-align:center;
-    margin-bottom:10px;
+    color: ${colors.gray};
+  }
+`;
+const NameEdition = styled.div`
+  display: flex;
+  gap: 9px;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 18px;
+`;
+const AccountOptions = styled.ul`
+  display: flex;
+  flex-direction: column;
+  
+  font-family: 'Abel', sans-serif;
+`;
+const Option = styled.div`
+  gap: 20px;
+  display: flex;
+  padding: 25px;
+  border-bottom: 1px solid #e2e2e2;
+  & > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 `;
