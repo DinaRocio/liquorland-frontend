@@ -3,11 +3,12 @@ import Template from "../templates/Template";
 import Search from "../components/Search";
 import {Card, Price} from "../components/Card";
 import coke from "../assets/coke.png"
+import Header from "../components/Header"
 
 export default function Home() {
   return (
     <Template>
-      <p>Home</p>
+      <Header/>
       <Search/>
       <ImgB/>
       <Information>
