@@ -1,16 +1,15 @@
 import styled from "@emotion/styled";
-import coke from "../assets/coke.png"
 import Icon from "../UI/Icon";
 
-function FavoriteCard(){
+function FavoriteCard({ drinkUrl , name, presentation, price}){
     return(
         <StyledCard>
-            <img src={coke} />
+            <img  drinkUrl={drinkUrl} />
             <Inf>
-                <Heading>Sprite Can</Heading>
-                <Presentation>325ml, Price</Presentation>
+                <Heading>{name}</Heading>
+                <Presentation>{presentation}</Presentation>
             </Inf>
-            <Price>$1.50</Price>
+            <Price>{price}</Price>
             <div>
                <Icon type="forwardArrow" fill="black" size={18} />
             </div>
