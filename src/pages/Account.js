@@ -41,18 +41,22 @@ export default function Account({
         {options.map((option) => (
           <li key={option}>
             <Option>
-              <Icon type={iconsOpt[option]} fill="black" sice={10} />
+              <Icon type={iconsOpt[option]} fill="black" size={20} />
               <div>
-              <p>{titlesOpt[option]}</p>
-              <Link to={`/${option}`}>
-                <Icon type="forwardArrow" fill="black" sice={10} />
-              </Link>
+                <p>{titlesOpt[option]}</p>
+                <Link to={`/${option}`}>
+                  <Icon type="forwardArrow" fill="black" size={14} />
+                </Link>
               </div>
-              
             </Option>
           </li>
         ))}
       </AccountOptions>
+      <LogoutButton>
+        <Icon type="logout" fill={colors.light2} size={28} />
+        Logout
+        <span></span>
+      </LogoutButton>
     </Template>
   );
 }
@@ -105,8 +109,8 @@ const NameEdition = styled.div`
 const AccountOptions = styled.ul`
   display: flex;
   flex-direction: column;
-  
-  font-family: 'Abel', sans-serif;
+
+  font-family: "Abel", sans-serif;
 `;
 const Option = styled.div`
   gap: 20px;
@@ -118,4 +122,23 @@ const Option = styled.div`
     display: flex;
     justify-content: space-between;
   }
+`;
+
+const LogoutButton = styled.button`
+  display: flex;
+  justify-content: space-around;
+  gap: 70px;
+  background-color: ${colors.gray2};
+  color: ${colors.light2};
+  outline: none;
+  border: none;
+  padding: 24px;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: inherit;
+  border-radius: 15px;
+  align-items:center;
+
+  position: absolute;
+margin-top: 50px;
 `;
