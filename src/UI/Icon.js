@@ -6,7 +6,7 @@ import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward, IoIosClose } from "r
 import { RiAddLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
-import {FaMapMarkerAlt} from  "react-icons/fa";
+
 
 import { css } from "@emotion/react";
 import { colors } from "../ui";
@@ -30,7 +30,6 @@ const iconSet = {
   pencil: HiOutlinePencil,
   bag: GrShop,
   creditCard: GrCreditCard,
-  point: FaMapMarkerAlt,
 };
 
 function Icon({ type, fill, size }) {

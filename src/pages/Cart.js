@@ -7,7 +7,7 @@ export default function Cart() {
   return (
     <Template>
       <Heading>My Cart</Heading>
-      <Overlay></Overlay>
+      <Overlay/>
         <CardCart/>
     </Template>
   );

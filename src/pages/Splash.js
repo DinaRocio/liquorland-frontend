@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Icon, InlineIcon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 import beerIcon from "@iconify/icons-dashicons/beer";
 import { colors } from "../ui";
 
