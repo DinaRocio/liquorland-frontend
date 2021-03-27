@@ -10,6 +10,7 @@ import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
 import Account from './pages/Account';
 import Splash from './pages/Splash';
+import Location from './pages/Location';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/home" component={Home} />
+      <Route path="/location" component={Location} />
       {/* <Route path="/product-detail" component={ProductDetail} /> */}
       <Route path="/explore" component={Explore} />
       {/* <Route path="/show-category" component={ShowCategory} />
