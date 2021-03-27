@@ -1,4 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import React from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { css } from "@emotion/react";
 import Icon from "./Icon";
 import styled from "@emotion/styled";
@@ -74,10 +76,3 @@ export default function Navbar() {
     </ul>
   );
 }
-
-// const IconContainer = styled.div`
-// display: flex;
-// flex-direction: column;
-// align-items: center;
-// justify-content: center;
-// `
