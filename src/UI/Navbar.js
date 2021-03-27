@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { css } from "@emotion/react";
 import Icon from "./Icon";
@@ -7,6 +6,7 @@ import styled from "@emotion/styled";
 import { useLocation } from "react-router";
 import { colors } from "../ui";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
 
 export default function Navbar() {
 
@@ -36,8 +36,12 @@ export default function Navbar() {
 
   return (
     <>
-      {isDesktopOrLaptop && <>
-        <p>hola como estas</p>
+      {isDesktopOrLaptop && 
+      <SyledNavbar>
+        <StyledLogo>
+            <img src={logo} />
+        </StyledLogo>
+        <StyledDiv>
         {sections.map((section) => (
                 <li key={section}>
                   <Link
@@ -47,13 +51,14 @@ export default function Navbar() {
                     <Icon
                       type={icons[section]}
                       fill={isSelected(section) ? colors.light1 : "black"}
-                      size={30}
+                      size={20}
                     />
                     {section}
                   </Link>
                 </li>
               ))}
-      </>}
+        </StyledDiv>
+      </SyledNavbar>}
       {isTabletOrMobileDevice && 
         <>
             <ul
@@ -107,3 +112,48 @@ export default function Navbar() {
     </>
   );
 }
+
+
+const SyledNavbar = styled.div`
+      display:flex;
+      justify-content:space-around;
+      align-items: flex-start;
+      gap:30px;
+      top:0;
+      left:0;
+      & li {
+        display: flex;
+        list-style: none;
+        text-transform: capitalize;
+        & a {
+          display:flex;
+          align-items: center;
+          gap:5px;
+          text-decoration:none;
+          font-family: ABeeZee;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 47px;
+          text-align: center;
+          color: ${colors.dark0};
+          &.selected {
+            color: ${colors.light1};
+          }
+        }
+      }
+`;
+
+const StyledLogo = styled.div`
+        right:0;
+        margin-top:-15px;
+        margin-right:500px;
+        & img {
+          width:220px;
+        }
+`;
+
+const StyledDiv = styled.div`
+        display:flex;
+        gap:50px;
+`;
