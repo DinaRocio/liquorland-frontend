@@ -43,15 +43,16 @@ const iconSet = {
   discount: IoTicketOutline, 
 };
 
-function Icon({ type, fill, size }) {
+function Icon({ type, fill, size, onClick }) {
   const ComponentToRender = iconSet[type];
   return (
     <ComponentToRender
       css={css`
         color: ${fill};
         font-size: ${size}px;
-      
+        
       `}
+      onClick={onClick}
     />
   );
 }
