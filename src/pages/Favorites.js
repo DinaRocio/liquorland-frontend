@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
-import Template from "../templates/Template"
+import Template from "../templates/Template";
+import FavoriteCard from "../components/favoriteCard";
 
 export default function Favorites() {
   return (
     <Template>
       <Heading>Favorites</Heading>
+      <Overlay/>
+      <FavoriteCard />
     </Template>
   );
 }
@@ -17,4 +20,13 @@ const Heading = styled.h3`
     line-height: 18px;
     text-align:center;
     margin-bottom:10px;
+`;
+
+const Overlay =styled.div`
+      color:#E2E2E2;
+      width:940px;
+      height:14px;
+      border-bottom:1px solid;
+      margin-top:32px;
+      margin-bottom:15px;
 `;

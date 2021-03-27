@@ -7,7 +7,7 @@ import { IoTicketOutline } from "react-icons/io5";
 import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
-import {FaMapMarkerAlt} from  "react-icons/fa";
+
 import { BsExclamationCircle } from "react-icons/bs";
 
 import { css } from "@emotion/react";
@@ -32,7 +32,6 @@ const iconSet = {
   pencil: HiOutlinePencil,
   bag: GrShop,
   creditCard: GrCreditCard,
-  point: FaMapMarkerAlt,
   details: RiBookReadLine,
   location: HiLocationMarker,
   help: IoMdHelpCircleOutline,
@@ -41,6 +40,7 @@ const iconSet = {
   notifications: IoMdNotificationsOutline,
   orders: RiShoppingBagLine,
   discount: IoTicketOutline, 
+
 };
 
 function Icon({ type, fill, size, onClick }) {
