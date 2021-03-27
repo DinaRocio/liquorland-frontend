@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import  CardCart from "../components/CardCart";
 import Template from "../templates/Template";
-import Counter from "../UI/Counter"
 
 export default function Cart() {
   return (
