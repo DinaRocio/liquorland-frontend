@@ -23,6 +23,10 @@ export default function Signup() {
           <input placeholder="Write your name" type="text" />
         </LoginInput>
         <LoginInput>
+          <label>Birth date</label>
+          <input min="1900-01-01" max="2010-12-31" type="date" required/>
+        </LoginInput>
+        <LoginInput>
           <label>Email</label>
           <input placeholder="somebody@mail.com" type="email" />
         </LoginInput>
