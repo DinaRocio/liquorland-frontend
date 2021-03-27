@@ -50,7 +50,7 @@ export default function Navbar() {
                   >
                     <Icon
                       type={icons[section]}
-                      fill={isSelected(section) ? colors.light1 : "black"}
+                      fill={isSelected(section) ? colors.light2 : "black"}
                       size={20}
                     />
                     {section}
@@ -138,7 +138,7 @@ const SyledNavbar = styled.div`
           text-align: center;
           color: ${colors.dark0};
           &.selected {
-            color: ${colors.light1};
+            color: #5DD39E;
           }
         }
       }

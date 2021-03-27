@@ -2,9 +2,14 @@ import CardCategory from "../components/CardCategory"
 import Template from "../templates/Template"
 import Search from "../components/Search"
 import styled from "@emotion/styled";
+import Navbar from "../UI/Navbar"
 
 export default function Explore() {
   return (
+    // <div>
+    //   <Navbar/>
+    //   <Search/>
+    // </div>
     <Template>
       <Heading>Find Products</Heading>
       <Search/>
