@@ -1,4 +1,4 @@
-import welcome from "../assets/welcome.png";
+import bar from "../assets/bar.jpg";
 import { colors } from "../ui";
 import styled from "@emotion/styled";
 import Button from "../UI/Button";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function Welcome() {
   return (
     <WelcomeContainer>
-      <img src={welcome} alt="welcome" />
+      <img src={bar} alt="welcome" />
       <div>
       <Titles>
         <h2>Welcome to Liquorland</h2>
@@ -28,8 +28,9 @@ const WelcomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   & > img {
-    width: 100%;
+    width:100%;
     height: 100%;
+    object-fit: cover;
   }
   & button {
     margin-top:-150px;

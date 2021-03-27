@@ -38,10 +38,9 @@ export default function Home() {
 const ImgB = styled.img`
   background-image: url("https://res.cloudinary.com/dtrjltklc/image/upload/v1616683359/branding_1_iliiaj.png");
   background-size:cover;
-  width:280px;
+  width: 100%;
   height:150px;
   margin-top: 10px;
-  margin-left:20px;
   border:transparent;
 `;
 const Information = styled.div`
