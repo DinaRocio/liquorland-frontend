@@ -148,7 +148,6 @@ const LogoutButton = styled.button`
   font-family: inherit;
   border-radius: 15px;
   align-items:center;
-
   position: absolute;
-margin-top: 50px;
+  margin-top: 50px;
 `;
