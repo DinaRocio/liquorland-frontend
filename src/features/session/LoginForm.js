@@ -19,6 +19,7 @@ export default function LoginForm({ id }) {
 
   return (
     <Styledform onSubmit={handleSubmit} id={id}>
+      <SessionError />
       <LoginInput>
         <label>Email Address</label>
         <input
