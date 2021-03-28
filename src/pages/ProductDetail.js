@@ -1,8 +1,15 @@
 import styled from "@emotion/styled";
 import { colors, screenMediaQueries, screenSizes } from "../ui";
 import Button from "../UI/Button";
-import { FaChevronLeft, FaMinus, FaPlus } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronDown,
+  FaChevronUp,
+  FaMinus,
+  FaPlus,
+} from "react-icons/fa";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 export default function ProductDetail() {
   return (
@@ -34,17 +41,22 @@ export default function ProductDetail() {
               ullamco
             </p>
           </ProductDetailStyled>
-          <ProductDetailStyled>
+          <ProductDetailStyled className="one-line">
             <SubTitleStyled>Alcohol Grades</SubTitleStyled>
-            <p>35%</p>
+            <p className="box-light">35%</p>
           </ProductDetailStyled>
-          <ProductDetailStyled>
+          <ProductDetailStyled className="one-line">
             <SubTitleStyled>Review</SubTitleStyled>
-            <p>
-              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
-              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
-              ullamco
-            </p>
+            <IconsContainerStyled>
+              <StarsIcons>
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarHalf />
+                <BsStar />
+              </StarsIcons>
+              {true ? <FaChevronDown /> : <FaChevronUp />}
+            </IconsContainerStyled>
           </ProductDetailStyled>
         </div>
       </ContainerStyled>
@@ -184,7 +196,6 @@ const AmountContainer = styled.div`
       font-size: 18px;
       line-height: 18px;
 
-      /* identical to box height, or 100% */
       display: flex;
       text-align: center;
 
@@ -200,6 +211,11 @@ const ProductDetailStyled = styled.div`
   flex-direction: column;
   gap: 9.5px;
 
+  &.one-line {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   p {
     font-family: ABeeZee;
     font-style: italic;
@@ -207,7 +223,27 @@ const ProductDetailStyled = styled.div`
     font-size: 13px;
     line-height: 21px;
     text-transform: capitalize;
-
     color: ${colors.gray};
+
+    &.box-light {
+      background-color: ${colors.gray3};
+      border-radius: 5px;
+      min-width: 45px;
+      text-align: center;
+      padding: 1px;
+    }
   }
+`;
+
+const IconsContainerStyled = styled.div`
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: ${colors.dark0};
+`;
+
+const StarsIcons = styled.div`
+  display: flex;
+  gap: 4px;
+  color: ${colors.orange};
 `;
