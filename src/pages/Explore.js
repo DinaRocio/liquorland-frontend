@@ -2,14 +2,16 @@ import CardCategory from "../components/CardCategory"
 import Template from "../templates/Template"
 import Search from "../components/Search"
 import styled from "@emotion/styled";
-import Navbar from "../UI/Navbar"
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
 export default function Explore() {
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
   return (
-    // <div>
-    //   <Navbar/>
-    //   <Search/>
-    // </div>
     <Template>
       <Heading>Find Products</Heading>
       <Search/>

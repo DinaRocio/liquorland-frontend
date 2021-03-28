@@ -1,8 +1,15 @@
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import  CardCart from "../components/CardCart";
 import Template from "../templates/Template";
 
 export default function Cart() {
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
   return (
     <Template>
       <Heading>My Cart</Heading>
