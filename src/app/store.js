@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import drinksReducer from "../features/drinks/drinksSlice";
+import sessionReducer from "../features/session/sessionSlice";
 
-const store = configureStore({
+export default configureStore({
   reducer: {
     drinks: drinksReducer,
+    session: sessionReducer,
   },
 });
-
-export default store;

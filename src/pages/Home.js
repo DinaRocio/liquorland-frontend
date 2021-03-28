@@ -4,8 +4,17 @@ import Search from "../components/Search";
 import {Card, Price} from "../components/Card";
 import coke from "../assets/coke.png"
 import Header from "../components/Header"
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
 export default function Home() {
+
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <Template>
       <Header/>
