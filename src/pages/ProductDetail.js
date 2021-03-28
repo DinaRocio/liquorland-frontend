@@ -25,13 +25,28 @@ export default function ProductDetail() {
           </div>
           <TextM>$20.00</TextM>
         </AmountContainer>
-        <ProductDetailStyled>
-          Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet ullamco
-          minim Lorem dolor eiusmod ex nulla. Nisi proident dolor voluptate enim
-          nostrud non ex. Enim do quis officia culpa dolore amet quis. In nisi
-          ex ut aliquip cupidatat ut est magna sunt nisi ex. Ullamco in sint
-          laboris do cillum.
-        </ProductDetailStyled>
+        <div>
+          <ProductDetailStyled>
+            <SubTitleStyled>Product Detail</SubTitleStyled>
+            <p>
+              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
+              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
+              ullamco
+            </p>
+          </ProductDetailStyled>
+          <ProductDetailStyled>
+            <SubTitleStyled>Alcohol Grades</SubTitleStyled>
+            <p>35%</p>
+          </ProductDetailStyled>
+          <ProductDetailStyled>
+            <SubTitleStyled>Review</SubTitleStyled>
+            <p>
+              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
+              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
+              ullamco
+            </p>
+          </ProductDetailStyled>
+        </div>
       </ContainerStyled>
       <FooterStyled>
         <Button>Add to Basquet</Button>
@@ -178,4 +193,21 @@ const AmountContainer = styled.div`
   }
 `;
 
-const ProductDetailStyled = styled.main``;
+const ProductDetailStyled = styled.div`
+  border-top: 1px solid ${colors.gray2};
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9.5px;
+
+  p {
+    font-family: ABeeZee;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 21px;
+    text-transform: capitalize;
+
+    color: ${colors.gray};
+  }
+`;

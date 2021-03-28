@@ -11,6 +11,7 @@ import Favorites from "./pages/Favorites";
 import Account from "./pages/Account";
 import Splash from "./pages/Splash";
 import ProductDetail from "./pages/ProductDetail";
+import Location from "./pages/Location";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/signup" component={Signup} />
       <Route path="/home" component={Home} />
       <Route path="/drinks/:drink_id" component={ProductDetail} />
+      <Route path="/location" component={Location} />
       <Route path="/explore" component={Explore} />
       {/* <Route path="/show-category" component={ShowCategory} />
       <Route path="/filters" component={Filters} /> */}
