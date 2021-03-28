@@ -1,8 +1,15 @@
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
 import FavoriteCard from "../components/favoriteCard";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
 export default function Favorites() {
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
   return (
     <Template>
       <Heading>Favorites</Heading>
