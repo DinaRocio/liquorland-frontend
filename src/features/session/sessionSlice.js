@@ -67,5 +67,5 @@ const sessionSlice = createSlice({
   },
 });
 
-export const {killToken} = sessionSlice.actions;
+export const { killToken } = sessionSlice.actions;
 export default sessionSlice.reducer;

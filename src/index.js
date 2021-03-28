@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { Global, css } from "@emotion/react";
-import { colors } from "./ui";
 
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
@@ -42,6 +41,7 @@ const globalStyles = css`
 
 ReactDOM.render(
   <React.StrictMode>
+    <Global styles={globalStyles} />
     <Provider store={store}>
       <Global styles={globalStyles} />
       <App />
