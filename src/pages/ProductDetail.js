@@ -10,55 +10,75 @@ import {
 } from "react-icons/fa";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { fetchDrink } from "../features/drinks/drinksSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 
 export default function ProductDetail() {
+  const drink = useSelector((state) => state.drinks.drink);
+  const show_drink_state = useSelector((state) => state.drinks.status.show);
+  const { drink_id } = useParams();
+  const dispatch = useDispatch();
+
+  /** Loading Drink */
+  useEffect(() => {
+    if (!show_drink_state) dispatch(fetchDrink(drink_id));
+  }, []);
+
   return (
     <TemplateOne>
       <ContainerStyled>
-        <NavToStyled>
-          <FaChevronLeft className="icon-button" />
-        </NavToStyled>
-        <Image src="https://www.chicagotribune.com/resizer/BIvQ3G9tzipdSyEA6eudrC5poGA=/415x233/top/www.trbimg.com/img-5c8fff83/turbine/ct-1552940928-jrrojmfcdk-snap-image" />
-        <HeadStyled>
-          <TitleStyled>Natural red Apple</TitleStyled>
-          {false ? <BsHeartFill color="red" /> : <BsHeart />}
-          <SubTitleGrayStyled>150 ml.</SubTitleGrayStyled>
-        </HeadStyled>
-        <AmountContainer>
-          <div className="change-quantity">
-            <FaMinus className="icon-button" />
-            <input value="1" onChange={() => {}} />
-            <FaPlus className="icon-button" />
-          </div>
-          <TextM>$20.00</TextM>
-        </AmountContainer>
-        <div>
-          <ProductDetailStyled>
-            <SubTitleStyled>Product Detail</SubTitleStyled>
-            <p>
-              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
-              Priduct Detail Eiusmod enim cupidatat sint cillum quis ut amet
-              ullamco
-            </p>
-          </ProductDetailStyled>
-          <ProductDetailStyled className="one-line">
-            <SubTitleStyled>Alcohol Grades</SubTitleStyled>
-            <p className="box-light">35%</p>
-          </ProductDetailStyled>
-          <ProductDetailStyled className="one-line">
-            <SubTitleStyled>Review</SubTitleStyled>
-            <IconsContainerStyled>
-              <StarsIcons>
-                <BsStarFill />
-                <BsStarFill />
-                <BsStarFill />
-                <BsStarHalf />
-                <BsStar />
-              </StarsIcons>
-              {true ? <FaChevronDown /> : <FaChevronUp />}
-            </IconsContainerStyled>
-          </ProductDetailStyled>
-        </div>
+        {show_drink_state === "LOADING" && "cargando..."}
+        {show_drink_state === "ERROR" && "Something went wrong"}
+        {show_drink_state === "SUCCESS" && (
+          <>
+            <NavToStyled>
+              <FaChevronLeft className="icon-button" />
+            </NavToStyled>
+            <Image src="https://www.chicagotribune.com/resizer/BIvQ3G9tzipdSyEA6eudrC5poGA=/415x233/top/www.trbimg.com/img-5c8fff83/turbine/ct-1552940928-jrrojmfcdk-snap-image" />
+            <HeadStyled>
+              <TitleStyled>{drink.name}</TitleStyled>
+              {false ? (
+                <BsHeartFill color="red" className="icon-button" />
+              ) : (
+                <BsHeart color="red" className="icon-button" />
+              )}
+              <SubTitleGrayStyled>{drink.presentation}</SubTitleGrayStyled>
+            </HeadStyled>
+            <AmountContainer>
+              <div className="change-quantity">
+                <FaMinus className="icon-button" />
+                <input value="1" onChange={() => {}} />
+                <FaPlus className="icon-button" />
+              </div>
+              <TextM>${drink.price}</TextM>
+            </AmountContainer>
+            <div>
+              <ProductDetailStyled>
+                <SubTitleStyled>Product Detail</SubTitleStyled>
+                <p>{drink.description}</p>
+              </ProductDetailStyled>
+              <ProductDetailStyled className="one-line">
+                <SubTitleStyled>Alcohol Grades</SubTitleStyled>
+                <p className="box-light">{drink.alcohol_grades}%</p>
+              </ProductDetailStyled>
+              <ProductDetailStyled className="one-line">
+                <SubTitleStyled>Review</SubTitleStyled>
+                <IconsContainerStyled>
+                  <StarsIcons>
+                    <BsStarFill />
+                    <BsStarFill />
+                    <BsStarFill />
+                    <BsStarHalf />
+                    <BsStar />
+                  </StarsIcons>
+                  {true ? <FaChevronDown /> : <FaChevronUp />}
+                </IconsContainerStyled>
+              </ProductDetailStyled>
+            </div>
+          </>
+        )}
       </ContainerStyled>
       <FooterStyled>
         <Button>Add to Basquet</Button>
@@ -82,13 +102,13 @@ const TemplateOne = styled.div`
     width: 95%;
   }
   ${screenMediaQueries.md} {
-    width: 90%;
+    width: 85%;
   }
   ${screenMediaQueries.lg} {
-    width: 100%;
+    width: 70%;
   }
   ${screenMediaQueries.xl} {
-    max-width: ${screenSizes.xl};
+    max-width: ${screenSizes.lg};
   }
 `;
 
@@ -112,8 +132,12 @@ const FooterStyled = styled.footer`
   justify-content: center;
   align-items: center;
   padding: 0 25px;
-  * {
+  & > * {
     width: 100%;
+
+    ${screenMediaQueries.sm} {
+      width: 240px;
+    }
   }
 `;
 

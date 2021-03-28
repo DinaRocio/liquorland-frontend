@@ -1,8 +1,8 @@
 function DrinkServices() {}
 
-DrinkServices.prototype.show = async function () {
+DrinkServices.prototype.show = async function (drink) {
   const response = await fetch(
-    "https://liquorland-backend.herokuapp.com/api/drinks/1",
+    `https://liquorland-backend.herokuapp.com/api/drinks/${drink}`,
     {
       method: "GET",
     }

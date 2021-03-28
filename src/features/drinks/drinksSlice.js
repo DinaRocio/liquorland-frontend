@@ -24,7 +24,8 @@ const drinksSlice = createSlice({
     [fetchDrink.fulfilled]: (state, { payload }) => {
       return {
         ...state,
-        status: { ...state.status, drink: payload, show: "SUCCESS" },
+        drink: payload,
+        status: { ...state.status, show: "SUCCESS" },
       };
     },
   },
