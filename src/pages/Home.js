@@ -1,37 +1,57 @@
+import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
-import Search from "../components/Search";
+import Search from "../components/Search"
 import {Card, Price} from "../components/Card";
 import coke from "../assets/coke.png"
 import Header from "../components/Header"
+import TemplateDesktop from "../templates/TemplateDesktop";
 
 export default function Home() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+  })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+  })
+
   return (
-    <Template>
-      <Header/>
-      <Search/>
-      <ImgB/>
-      <Information>
-        <p>Exclusive Offers</p>
-        <a href="#" >See all</a>
-      </Information>
-      <Card>
-        <img src={coke}/>
-        <h5>Diet Coke</h5>
-        <p>355ml</p>
-        <Price>$1.99</Price>
-      </Card>
-      <Information>
-        <p>Best selling</p>
-        <a href="#" >See all</a>
-      </Information>
-      <Card>
-        <img src={coke}/>
-        <h5>Diet Coke</h5>
-        <p>355ml</p>
-        <Price>$1.99</Price>
-      </Card>
-    </Template>
+    <>
+        {isDesktopOrLaptop && 
+          <TemplateDesktop>
+            <Search/>
+          </TemplateDesktop>
+        }
+
+        {isTabletOrMobileDevice && 
+          <Template>
+            <Header/>
+            <Search/>
+            <ImgB/>
+            <Information>
+              <p>Exclusive Offers</p>
+              <a href="#" >See all</a>
+            </Information>
+            <Card>
+              <img src={coke}/>
+              <h5>Diet Coke</h5>
+              <p>355ml</p>
+              <Price>$1.99</Price>
+            </Card>
+            <Information>
+              <p>Best selling</p>
+              <a href="#" >See all</a>
+            </Information>
+            <Card>
+              <img src={coke}/>
+              <h5>Diet Coke</h5>
+              <p>355ml</p>
+              <Price>$1.99</Price>
+            </Card>
+          </Template>
+        }
+    </>
+    
   );
 }
 

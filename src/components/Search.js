@@ -15,27 +15,29 @@ function Search(){
 
     return(
        <>
-       {isDesktopOrLaptop && 
-       <StyledDesktop>
-           <Heading>
-               <img src={heading} />
-            </Heading>
-            <img src={search} />
-            <StyledInputD
-                placeholder="Find your drink"
-                type="search"
-            />
-            <Button>Search</Button>
-       </StyledDesktop>}
+        {isDesktopOrLaptop && 
+            <StyledDesktop>
+                <Heading>
+                    <img src={heading} />
+                    </Heading>
+                    <img src={search} />
+                    <StyledInputD
+                        placeholder="Find your drink"
+                        type="search"
+                    />
+                    <Button>Search</Button>
+            </StyledDesktop>
+        }
 
-        {isTabletOrMobileDevice && 
-        <SearchBar>
-            <Icon type="search" fill="black" size={18} />
-            <StyledInput
-                placeholder="Search store"
-                type="search"
-            />
-            </SearchBar>}
+            {isTabletOrMobileDevice && 
+            <SearchBar>
+                <Icon type="search" fill="black" size={18} />
+                <StyledInput
+                    placeholder="Search store"
+                    type="search"
+                />
+            </SearchBar>
+            }
        </>
     );
 }

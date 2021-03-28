@@ -6,13 +6,9 @@ import Navbar from "../UI/Navbar"
 
 export default function Explore() {
   return (
-    // <div>
-    //   <Navbar/>
-    //   <Search/>
-    // </div>
     <Template>
       <Heading>Find Products</Heading>
-      <Search/>
+      <Search />
       <CardCategory/>
     </Template>
   );
