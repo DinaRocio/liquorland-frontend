@@ -6,6 +6,7 @@ import {Card, Price} from "../components/Card";
 import coke from "../assets/coke.png"
 import Header from "../components/Header"
 import TemplateDesktop from "../templates/TemplateDesktop";
+import CardCategory from "../components/CardCategory";
 
 export default function Home() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -20,6 +21,7 @@ export default function Home() {
         {isDesktopOrLaptop && 
           <TemplateDesktop>
             <Search/>
+            <CardCategory/>
           </TemplateDesktop>
         }
 
