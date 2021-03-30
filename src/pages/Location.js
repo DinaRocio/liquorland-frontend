@@ -47,7 +47,8 @@ margin-top: 15px;
 
 const LocationTemplate = styled.div`
   width: 100vw;
-  height:100%;
+  height:100vh;
+  padding: 25px;
 `;
 const LocationHeader = styled.div`
   display: flex;
