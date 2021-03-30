@@ -22,6 +22,10 @@ export default function Home() {
           <TemplateDesktop>
             <Search/>
             <CardCategory/>
+            <Card 
+              name={"Trappistes Rochefort 8"}
+              presentation={"Lata 335 ml."}
+            />
           </TemplateDesktop>
         }
 

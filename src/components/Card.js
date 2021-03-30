@@ -1,31 +1,105 @@
+import { useMediaQuery } from 'react-responsive'
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { colors } from "../ui";
+import Icon from "../UI/Icon"
+import bebida from "../assets/bebida.svg";
 
-function Card({ children, src, cart }){
+function Card({ presentation , name , children, src, cart }){
+   const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+   const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
    const [toggle, setToggle] = useState(false);
-
    const toggler = () => {
     toggle ? setToggle(false) : setToggle(true);
    }
 return(
-    <StyledContainer>
-        <StyledCard>
-            {
-                <img src={src} /> &&
-                
-                <StyledInf>
-                    {children}
-                    <Button onClick={toggler}>
-                        {toggle ? "✓" : "+"}
-                    </Button>
-                </StyledInf>
-            }
-        </StyledCard>
-    </StyledContainer>
+    <>
+        {isDesktopOrLaptop && 
+          <CardDesktop>
+              <img src={bebida} />
+              <p className="name">{name}</p>
+              <p className="presentation">{presentation}</p>
+              <button onClick={toggler}>
+              {toggle ? "Agregar" : "🛒 Agregado" }
+              </button>
+          </CardDesktop>
+        }
+
+        {isTabletOrMobileDevice && 
+        <StyledContainer>
+            <StyledCard>
+                {
+                    <img src={src} /> &&
+                    
+                    <StyledInf>
+                        {children}
+                        <Button onClick={toggler}>
+                            {toggle ? "✓" : "+"}
+                        </Button>
+                    </StyledInf>
+                }
+            </StyledCard>
+        </StyledContainer>}
+    </>
  );
 }
 
+// styles for desktop
+const CardDesktop = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    width:250px;
+    height:300px;
+    border-radius:5px;
+    & img {
+        margin-top:-25px;
+        width:180px;
+        height:180px;
+    }
+    & > .name {
+        margin-top:4px;
+        font-family: ABeeZee;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 19px;
+        line-height: 18px;
+        text-align:justify;
+    }
+    & > .presentation {
+        margin-right:117px;
+        font-family: Abel;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 18px;
+    }
+    & button {
+        margin-top:15px;
+        border-radius:6px;
+        outline:none;
+        border:none;
+        width:120px;
+        height:33px;
+        background-color:#5DD39E;
+        color:white;
+        font-family: ABeeZee;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 18px;
+        cursor: pointer;
+    }
+`;
+
+
+
+// styles for mobile
 const StyledContainer = styled.div`
     margin-top: 10px;
     margin-bottom:10px;
@@ -33,7 +107,6 @@ const StyledContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
 `;
-
 const StyledCard = styled.div`
     display:flex;
     width:160px;
