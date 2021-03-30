@@ -24,7 +24,7 @@ export const fetchSignup = createAsyncThunk(
 export const fetchProfile = createAsyncThunk(
   "session/fetchProfile",
   async (token) => {
-    const response = await fetch(`${BASE_URI}/api/signup`, {
+    const response = await fetch(`${BASE_URI}/api/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -38,7 +38,21 @@ export const fetchProfile = createAsyncThunk(
     return { user: data };
   }
 );
+// export const FetchUpdateProfile = createAsyncThunk(
+//   "session/fetchUpdateProfile",
+//   async (formData) => {
+//     const response = await fetch(`${BASE_URI}/api/profile`, {
+//       method: "PATCH",
+//       body: formData,
+//     });
 
+//     const data = await response.json();
+//     if (!response.ok) {
+//       throw new Error(JSON.stringify(data));
+//     }
+//     return { user: data };
+//   }
+// );
 const usersSlice = createSlice({
   name: "users",
   initialState: {
