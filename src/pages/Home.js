@@ -11,9 +11,11 @@ export default function Home() {
 
   const token = useSelector((state) => state.session.token)
 
-  if (!token) {
+  if (!token ) {
     return <Redirect to="/login" />;
   }
+
+
 
   return (
     <Template>
