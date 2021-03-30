@@ -1,9 +1,9 @@
 import { useMediaQuery } from 'react-responsive'
 import styled from '@emotion/styled';
 import { colors } from "../ui";
-import Icon from "../UI/Icon"
-import search from "../assets/search.svg"
-import heading from "../assets/heading.svg"
+import Icon from "../UI/Icon";
+import search from "../assets/search.svg";
+import heading from "../assets/heading.svg";
 
 function Search(){
     const isDesktopOrLaptop = useMediaQuery({
@@ -97,7 +97,6 @@ const Button = styled.button`
     border-radius: 17px;
     justify-content:center;
     align-items:center;
-    font-family: ABeeZee;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
