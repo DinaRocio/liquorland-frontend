@@ -7,6 +7,7 @@ import coke from "../assets/coke.png"
 import Header from "../components/Header"
 import TemplateDesktop from "../templates/TemplateDesktop";
 import CardCategory from "../components/CardCategory";
+import bebida from "../assets/bebida.svg";
 
 export default function Home() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -22,7 +23,8 @@ export default function Home() {
           <TemplateDesktop>
             <Search/>
             <CardCategory/>
-            <Card 
+            <Card
+              src={bebida}
               name={"Trappistes Rochefort 8"}
               presentation={"Lata 335 ml."}
             />

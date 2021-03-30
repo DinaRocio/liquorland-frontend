@@ -2,10 +2,9 @@ import { useMediaQuery } from 'react-responsive'
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { colors } from "../ui";
-import Icon from "../UI/Icon"
-import bebida from "../assets/bebida.svg";
 
-function Card({ presentation , name , children, src, cart }){
+
+function Card({ src , presentation , name }){
    const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 1224px)'
     })
@@ -20,7 +19,7 @@ return(
     <>
         {isDesktopOrLaptop && 
           <CardDesktop>
-              <img src={bebida} />
+              <img src={src} />
               <p className="name">{name}</p>
               <p className="presentation">{presentation}</p>
               <button onClick={toggler}>
@@ -36,7 +35,7 @@ return(
                     <img src={src} /> &&
                     
                     <StyledInf>
-                        {children}
+                      
                         <Button onClick={toggler}>
                             {toggle ? "✓" : "+"}
                         </Button>
@@ -54,13 +53,13 @@ const CardDesktop = styled.div`
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    width:250px;
-    height:300px;
+    width:350px;
+    height:400px;
     border-radius:5px;
     & img {
         margin-top:-25px;
-        width:180px;
-        height:180px;
+        width:250px;
+        height:250px;
     }
     & > .name {
         margin-top:4px;
@@ -82,22 +81,21 @@ const CardDesktop = styled.div`
     & button {
         margin-top:15px;
         border-radius:6px;
+        padding:4px 8px;
         outline:none;
         border:none;
-        width:120px;
-        height:33px;
+        width:135px;
+        height:45px;
         background-color:#5DD39E;
         color:white;
         font-family: ABeeZee;
         font-style: normal;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 17px;
         line-height: 18px;
         cursor: pointer;
     }
 `;
-
-
 
 // styles for mobile
 const StyledContainer = styled.div`
