@@ -12,12 +12,11 @@ export default function Account({
   email = "lala@lala.com",
   avatarUrl = "https://www.trickscity.com/wp-content/uploads/2018/06/anonymous-dp-for-boys.jpg",
 }) {
-
   const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
-  
-  if (!token){
-    return <Redirect to="/login" />
+
+  if (!token) {
+    return <Redirect to="/login" />;
   }
 
   const options = ["myDetails", "location", "payment", "help", "about"];
@@ -42,7 +41,9 @@ export default function Account({
         <AccountTitles>
           <NameEdition>
             <p>{name}</p>
-            <Icon type="pencil" fill={colors.light2} size={15} />
+            <Link to="/edit-profile">
+              <Icon type="pencil" fill={colors.light2} size={15} />
+            </Link>
           </NameEdition>
           <p>{email}</p>
         </AccountTitles>
@@ -147,7 +148,7 @@ const LogoutButton = styled.button`
   line-height: 18px;
   font-family: inherit;
   border-radius: 15px;
-  align-items:center;
+  align-items: center;
   position: absolute;
   margin-top: 50px;
 `;

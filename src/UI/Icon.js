@@ -7,7 +7,7 @@ import { IoTicketOutline } from "react-icons/io5";
 import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
-
+import { BiCake } from "react-icons/bi";
 import { BsExclamationCircle } from "react-icons/bs";
 
 import { css } from "@emotion/react";
@@ -39,7 +39,8 @@ const iconSet = {
   logout: FiLogOut,
   notifications: IoMdNotificationsOutline,
   orders: RiShoppingBagLine,
-  discount: IoTicketOutline, 
+  discount: IoTicketOutline,
+  cake: BiCake,
 
 };
 
