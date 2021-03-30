@@ -43,6 +43,10 @@ const sessionSlice = createSlice({
     error: null,
   },
   reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload.token
+      sessionStorage.setItem("token", state.token)
+    },
     killToken: (state) => {
       sessionStorage.removeItem("token");
       state.token = null;
@@ -67,5 +71,5 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { killToken } = sessionSlice.actions;
+export const { killToken, setToken } = sessionSlice.actions;
 export default sessionSlice.reducer;

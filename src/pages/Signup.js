@@ -1,12 +1,33 @@
 import { colors } from "../ui";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 import header from "../assets/main.png";
 import { Icon, InlineIcon } from "@iconify/react";
 import beerIcon from "@iconify/icons-dashicons/beer";
-import Button from "../UI/Button"
+import UsersForm from "../features/users/UsersForm";
+import { Redirect, useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setToken } from "../features/session/sessionSlice";
+import { killUsersToken } from "../features/users/usersSlice";
 
 export default function Signup() {
+
+  const token= useSelector((state) => state.users.token);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  // if(token){
+  //   sessionStorage.setItem("token", token);
+  //   return <Redirect to="/home" />
+  // }
+
+  useEffect(() => {
+    if (token){
+      dispatch(setToken({token}))
+      dispatch(killUsersToken())
+      history.push("/home")
+    }
+  }, [token])
   return (
     <SignUpContainer>
       <Header>
@@ -17,36 +38,7 @@ export default function Signup() {
         <h2>Sign Up</h2>
         <p>Enter your credentials to continue</p>
       </Titles>
-      <StyledForm>
-        <LoginInput>
-          <label>Username</label>
-          <input placeholder="Write your name" type="text" />
-        </LoginInput>
-        <LoginInput>
-          <label>Birth date</label>
-          <input min="1900-01-01" max="2010-12-31" type="date" required/>
-        </LoginInput>
-        <LoginInput>
-          <label>Email</label>
-          <input placeholder="somebody@mail.com" type="email" />
-        </LoginInput>
-        <LoginInput>
-          <label>Password</label>
-          <input placeholder="*********" type="password" />
-        </LoginInput>
-        <PolicyLink>
-          <p>
-            By continuing you agree to our&nbsp;
-            <Anchor href="#">Terms of Service</Anchor>&nbsp;and&nbsp;
-            <Anchor href="#">Privacy Policy</Anchor>
-          </p>
-        </PolicyLink>
-
-        <Button>Sign Up</Button>
-        <SignupLink>
-          Already have an account?&nbsp;<Link to="/login">Login</Link>
-        </SignupLink>
-      </StyledForm>
+     <UsersForm id="signup-form"/>
     </SignUpContainer>
   );
 }
@@ -93,75 +85,4 @@ const Titles = styled.div`
     line-height: 15px;
     color: ${colors.gray};
   }
-`;
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 0px 25px;
-  & > a {
-    display: flex;
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 108.1%;
-    letter-spacing: 0.05em;
-    color: ${colors.dark0};
-    justify-content: flex-end;
-  }
-`;
-const LoginInput = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border-bottom: 1px solid ${colors.gray};
-  & > label {
-    font-size: 16px;
-    line-height: 29px;
-    color: ${colors.gray};
-    font-family: "Abel", sans-serif;
-  }
-  & > input {
-    align-items: flex-start;
-    padding: 8px 0px;
-    background: ${colors.white};
-    color: ${colors.dark0};
-    border: none;
-    box-sizing: border-box;
-    border-radius: 8px;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      color: ${colors.gray};
-    }
-  }
-`;
-const SignupLink = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  line-height: 108.1%;
-  letter-spacing: 0.05em;
-  color: ${colors.dark0};
-  & > a {
-    display: flex;
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 108.1%;
-    letter-spacing: 0.05em;
-    color: ${colors.light2};
-  }
-`;
-const PolicyLink = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  color: ${colors.gray};
-`;
-const Anchor = styled.a`
- 
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 108.1%;
-  letter-spacing: 0.05em;
-  color: ${colors.light2};
 `;

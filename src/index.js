@@ -28,7 +28,6 @@ const globalStyles = css`
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 32px;
     margin: auto;
     position: relative;
   }

@@ -1,11 +1,12 @@
 import { colors } from "../ui";
 import styled from "@emotion/styled";
-import  Icon  from "../UI/Icon";
+import { Icon } from "@iconify/react";
 import beerIcon from "@iconify/icons-dashicons/beer";
 
 function Header() {
     return(
         <StyledHeader>
+             <Icon icon={beerIcon} />
              <p>Dhaka, Banassre</p>
         </StyledHeader>
     );
