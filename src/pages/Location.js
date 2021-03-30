@@ -3,16 +3,17 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import map from "../assets/map.svg";
 import { colors } from "../ui";
-import Icon from "../UI/Icon";
+
 import { useHistory } from "react-router";
+import FullBlurTemplate from "../templates/FullBlurTemplate";
 
 
 export default function Location() {
   let history = useHistory();
 
   return (
-    <LocationTemplate>
-      <Icon type="backArrow" fill="black" size={20} onClick={() => history.goBack()} />
+    <FullBlurTemplate>
+    
       <LocationHeader>
         <img src={map} alt="mapIcon" />
         <Titles>
@@ -34,7 +35,7 @@ export default function Location() {
       `}
        id="map"></div>
       <SaveButton>Save</SaveButton>
-    </LocationTemplate>
+    </FullBlurTemplate>
   );
 }
 
@@ -45,15 +46,11 @@ height: 229px;
 margin-top: 15px;
 `
 
-const LocationTemplate = styled.div`
-  width: 100vw;
-  height:100vh;
-  padding: 25px;
-`;
 const LocationHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 25px;
   gap: 20px;
   & > img {
     width: 225px;
