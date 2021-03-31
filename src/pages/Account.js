@@ -1,7 +1,9 @@
 import { useMediaQuery } from 'react-responsive'
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import { fetchLogout } from "../features/session/sessionSlice";
 import Template from "../templates/Template";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
@@ -17,6 +19,13 @@ export default function Account ( {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
     })
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.session.token);
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
+
   const options = ["myDetails", "location", "payment", "help", "about"];
   const iconsOpt = {
     myDetails: "details",
@@ -41,7 +50,9 @@ export default function Account ( {
           <AccountTitles>
             <NameEdition>
               <p>{name}</p>
-              <Icon type="pencil" fill={colors.light2} size={15} />
+              <Link to="/edit-profile">
+                <Icon type="pencil" fill={colors.light2} size={15} />
+              </Link>
             </NameEdition>
             <p>{email}</p>
           </AccountTitles>
@@ -61,7 +72,7 @@ export default function Account ( {
             </li>
           ))}
         </AccountOptions>
-        <LogoutButton>
+        <LogoutButton onClick={() => dispatch(fetchLogout(token))}>
           <Icon type="logout" fill={colors.light2} size={28} />
           Logout
           <span></span>
@@ -148,8 +159,7 @@ const LogoutButton = styled.button`
   line-height: 18px;
   font-family: inherit;
   border-radius: 15px;
-  align-items:center;
-
+  align-items: center;
   position: absolute;
-margin-top: 50px;
+  margin-top: 50px;
 `;

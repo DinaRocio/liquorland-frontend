@@ -10,6 +10,7 @@ import { GrShop, GrCreditCard } from "react-icons/gr";
 import { IoLogoFacebook } from "react-icons/io5";
 import { IoLogoLinkedin, IoLogoGithub, IoMdAt } from "react-icons/io";
 
+import { BiCake } from "react-icons/bi";
 import { BsExclamationCircle } from "react-icons/bs";
 
 import { css } from "@emotion/react";
@@ -46,17 +47,20 @@ const iconSet = {
   likendin: IoLogoLinkedin,
   github: IoLogoGithub,
   arroba: IoMdAt,
+  cake: BiCake,
+
 };
 
-function Icon({ type, fill, size }) {
+function Icon({ type, fill, size, onClick }) {
   const ComponentToRender = iconSet[type];
   return (
     <ComponentToRender
       css={css`
         color: ${fill};
         font-size: ${size}px;
-      
+        
       `}
+      onClick={onClick}
     />
   );
 }

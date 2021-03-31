@@ -2,6 +2,8 @@ import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
 import FavoriteCard from "../components/favoriteCard";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
 export default function Favorites() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -10,6 +12,11 @@ export default function Favorites() {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
     })
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
   return (
     <>
       {isTabletOrMobileDevice && 

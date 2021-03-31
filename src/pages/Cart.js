@@ -1,5 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import  CardCart from "../components/CardCart";
 import Template from "../templates/Template";
 
@@ -10,6 +12,11 @@ export default function Cart() {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
     })
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
   return (
     <>
       {isTabletOrMobileDevice && 

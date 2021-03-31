@@ -4,7 +4,8 @@ import Template from "../templates/Template"
 import TemplateDesktop from "../templates/TemplateDesktop";
 import Search from "../components/Search"
 import styled from "@emotion/styled";
-import Navbar from "../UI/Navbar"
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
 export default function Explore() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -13,6 +14,11 @@ export default function Explore() {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
     })
+  const token = useSelector((state) => state.session.token)
+
+  if (!token) {
+    return <Redirect to="/login" />;
+  }
   return (
     <>
       {isDesktopOrLaptop && 
@@ -28,8 +34,7 @@ export default function Explore() {
       </Template>
       }
     </>
-  );
-}
+)};
 
 const Heading = styled.h3`
     font-family: ABeeZee;

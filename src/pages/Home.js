@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
@@ -16,6 +18,12 @@ export default function Home() {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
   })
+
+  const token = useSelector((state) => state.session.token)
+
+  if (!token ) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <>
@@ -68,7 +76,6 @@ export default function Home() {
 const Heading =styled.p`
 
 `;
-
 // styles for mobile
 const ImgB = styled.img`
   background-image: url("https://res.cloudinary.com/dtrjltklc/image/upload/v1616683359/branding_1_iliiaj.png");
