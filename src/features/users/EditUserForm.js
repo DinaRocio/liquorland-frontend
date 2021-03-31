@@ -19,7 +19,7 @@ export default function EditUserForm({ id }) {
   const [form, setForm] = useState({
     name: profile.name,
     birth_date: profile.birth_date,
-    avatar: profile.avatar_url,
+    // avatar: null,
   });
 
   
@@ -31,9 +31,6 @@ export default function EditUserForm({ id }) {
       fd.append(key, form[key]);
       
     }
-    // const newDate = form.birth_date.split(/-|\/|_/).reverse().join("-")
-    // console.log(form.birth_date)
-    // fd.set("birth_date", newDate)
    dispatch(FetchUpdateProfile({fd, token}));
  
   };
@@ -53,7 +50,7 @@ export default function EditUserForm({ id }) {
             type="file"
             form="profile-form"
             onChange={(e) =>
-              setForm({ ...form, [e.target.name]: e.target.value })
+              setForm({ ...form, [e.target.name]: e.target.files[0] })
             }
           />
        
