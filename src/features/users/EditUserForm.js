@@ -1,6 +1,7 @@
 import { colors } from "../../ui";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import uploadPhotoIcon from "../../assets/Group_78.svg";
+import uploadPhotoIcon from "../../assets/group_78.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
 import { fetchProfile, FetchUpdateProfile } from "./usersSlice";
@@ -19,7 +20,6 @@ export default function EditUserForm({ id }) {
   const [form, setForm] = useState({
     name: profile.name,
     birth_date: profile.birth_date,
-    // avatar: null,
   });
 
   
@@ -39,7 +39,9 @@ export default function EditUserForm({ id }) {
   return (
     <ProfileForm onSubmit={handleProfileSubmit} id={id} >
       <Header>
+      <AvatarContainer avatarUrl={profile.avatar_url}>
         <StyledDiv isFile>
+        
           <label htmlFor="avatar">
             <img alt="upload icon" src={uploadPhotoIcon} />
           </label>
@@ -53,8 +55,10 @@ export default function EditUserForm({ id }) {
               setForm({ ...form, [e.target.name]: e.target.files[0] })
             }
           />
+         
        
         </StyledDiv>
+        </AvatarContainer>
         <Titles>
           <h5>Edit Your Profile</h5>
           <p>You can edit your public name or your image in Your Profile.</p>
@@ -94,6 +98,24 @@ export default function EditUserForm({ id }) {
     </ProfileForm>
   );
 }
+const AvatarContainer = styled.div(
+  ({ avatarUrl, cssProp }) => css`
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-image: url(${avatarUrl});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: ${colors.light2};
+    border: none;
+    ${cssProp}
+    & > img{
+      width: 20px;
+
+    }
+  `
+);
 const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -168,10 +190,10 @@ const StyledDiv = styled.div`
   flex-direction: column;
 
   justify-content: center;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  background-color: palegoldenrod;
+  border-radius: 30%;
+  width: 20px;
+  height: 20px;
+  background-color: white;
   label {
     font-family: Lato;
     font-style: normal;
