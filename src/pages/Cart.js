@@ -47,14 +47,11 @@ const Heading = styled.h3`
   font-size: 20px;
   line-height: 18px;
   text-align: center;
-  margin-bottom: 10px;
 `;
 
 const Overlay = styled.div`
   color: #e2e2e2;
-  width: 940px;
-  height: 14px;
+  width: 100%;
   border-bottom: 1px solid;
   margin-top: 32px;
-  margin-bottom: 15px;
 `;

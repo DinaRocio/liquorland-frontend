@@ -1,50 +1,75 @@
 import { colors } from "../ui";
 import styled from "@emotion/styled";
 import Counter from "../UI/Counter";
-
 function CardCart({ setUrl, name, presentation, price }) {
   return (
     <StyledContainer>
-      <img src={setUrl} alt="drink" />
+      <ImageDrink src={setUrl} alt="drink" />
       <div>
-        <Heading>{name}</Heading>
+        <Heading>
+          <HeadingText>{name}</HeadingText>
+          <span>x</span>
+        </Heading>
         <Description>{presentation}</Description>
+        <QuantityPriceContent>
+          <StyledDiv>
+            <Counter />
+          </StyledDiv>
+          <Price>${price}</Price>
+        </QuantityPriceContent>
       </div>
-      <Price>${price}</Price>
-      <StyledDiv>
-        <Counter />
-      </StyledDiv>
     </StyledContainer>
   );
 }
 export default CardCart;
 
-const StyledDiv = styled.div`
-  display: flex;
-  margin-top: 70px;
-  margin-left: -190px;
-`;
-
 const StyledContainer = styled.div`
   display: flex;
-  height: 120px;
-  width: 500px;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 700px;
   border-bottom: 1px solid #e2e2e2;
-  margin-bottom: 15px;
-  & img {
-    width: 55px;
-    height: 100px;
+  padding: 30px 0;
+
+  & > div {
+    flex-grow: 1;
   }
 `;
 
-const Heading = styled.p`
+const ImageDrink = styled.img`
+  max-width: 75px;
+  min-width: 50px;
+  height: 65px;
+  object-fit: contain;
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+`;
+
+const Heading = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+
+  span {
+    cursor: pointer;
+    color: ${colors.gray4};
+    font-size: 14px;
+    width: 20px;
+    text-align: right;
+  }
+`;
+const HeadingText = styled.p`
   font-family: ABeeZee;
   font-style: italic;
   font-weight: normal;
   font-size: 16px;
   line-height: 18px;
-  color: #181725;
-  margin-left: 20px;
+  color: ${colors.dark0};
 `;
 
 const Description = styled.p`
@@ -53,8 +78,13 @@ const Description = styled.p`
   line-height: 18px;
   display: flex;
   align-items: center;
-  color: #7c7c7c;
-  margin-left: 20px;
+  color: ${colors.gray};
+  margin: 5px 0 12px;
+`;
+
+const QuantityPriceContent = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Price = styled.p`
@@ -64,7 +94,5 @@ const Price = styled.p`
   font-size: 18px;
   line-height: 27px;
   letter-spacing: 0.1px;
-  color: #181725;
-  margin-left: 35px;
-  margin-top: 72px;
+  color: ${colors.dark0};
 `;
