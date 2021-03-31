@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
 import { fetchProfile, FetchUpdateProfile } from "./usersSlice";
 import Button from "../../UI/Button";
+import UsersError from "./UsersError";
 
 export default function EditUserForm({ id }) {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ export default function EditUserForm({ id }) {
   const { name, birth_date, avatar } = form;
   return (
     <ProfileForm onSubmit={handleProfileSubmit} id={id} >
+      <UsersError/>
       <Header>
       <AvatarContainer avatarUrl={profile.avatar_url}>
         <StyledDiv isFile>
