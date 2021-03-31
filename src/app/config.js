@@ -1,1 +1,1 @@
-export const BASE_URI = "http://localhost:3000";
+export const BASE_URI = "https://liquorland-backend.herokuapp.com";
