@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { fetchLogout } from "../features/session/sessionSlice";
+import { fetchProfile } from "../features/users/usersSlice";
 import Template from "../templates/Template";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
@@ -21,6 +22,12 @@ export default function Account ( {
     })
   const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
+  const profile = useSelector((state) => state.users.profile);
+  const status = useSelector((state) => state.users.status);
+
+  if (status === "idle") {
+    dispatch(fetchProfile(token));
+  }
 
   if (!token) {
     return <Redirect to="/login" />;
@@ -45,39 +52,39 @@ export default function Account ( {
     <>
       {isTabletOrMobileDevice &&
       <Template>
-        <AccountHeader>
-          <AvatarContainer avatarUrl={avatarUrl}></AvatarContainer>
-          <AccountTitles>
-            <NameEdition>
-              <p>{name}</p>
-              <Link to="/edit-profile">
-                <Icon type="pencil" fill={colors.light2} size={15} />
-              </Link>
-            </NameEdition>
-            <p>{email}</p>
-          </AccountTitles>
-        </AccountHeader>
-        <AccountOptions>
-          {options.map((option) => (
-            <li key={option}>
-              <Option>
-                <Icon type={iconsOpt[option]} fill="black" size={20} />
-                <div>
-                  <p>{titlesOpt[option]}</p>
-                  <Link to={`/${option}`}>
-                    <Icon type="forwardArrow" fill="black" size={14} />
-                  </Link>
-                </div>
-              </Option>
-            </li>
-          ))}
-        </AccountOptions>
-        <LogoutButton onClick={() => dispatch(fetchLogout(token))}>
-          <Icon type="logout" fill={colors.light2} size={28} />
-          Logout
-          <span></span>
-        </LogoutButton>
-      </Template>
+      <AccountHeader>
+        <AvatarContainer avatarUrl={profile.avatar_url}></AvatarContainer>
+        <AccountTitles>
+          <NameEdition>
+            <p>{profile.name}</p>
+            <Link to="/edit-profile">
+              <Icon type="pencil" fill={colors.light2} size={15} />
+            </Link>
+          </NameEdition>
+          <p>{profile.email}</p>
+        </AccountTitles>
+      </AccountHeader>
+      <AccountOptions>
+        {options.map((option) => (
+          <li key={option}>
+            <Option>
+              <Icon type={iconsOpt[option]} fill="black" size={20} />
+              <div>
+                <p>{titlesOpt[option]}</p>
+                <Link to={`/${option}`}>
+                  <Icon type="forwardArrow" fill="black" size={14} />
+                </Link>
+              </div>
+            </Option>
+          </li>
+        ))}
+      </AccountOptions>
+      <LogoutButton onClick={() => dispatch(fetchLogout(token))}>
+        <Icon type="logout" fill={colors.light2} size={28} />
+        Logout
+        <span></span>
+      </LogoutButton>
+    </Template>
       }
     </>
   );

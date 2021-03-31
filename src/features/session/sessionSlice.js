@@ -44,8 +44,8 @@ const sessionSlice = createSlice({
   },
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload.token
-      sessionStorage.setItem("token", state.token)
+      state.token = action.payload.token;
+      sessionStorage.setItem("token", state.token);
     },
     killToken: (state) => {
       sessionStorage.removeItem("token");
@@ -67,6 +67,7 @@ const sessionSlice = createSlice({
     },
     [fetchLogin.rejected]: (state, action) => {
       state.error = action.error.message;
+      state.token = null;
     },
   },
 });

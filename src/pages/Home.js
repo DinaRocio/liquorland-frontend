@@ -7,9 +7,15 @@ import Search from "../components/Search"
 import {Card, Price} from "../components/Card";
 import coke from "../assets/coke.png"
 import Header from "../components/Header"
+<<<<<<< HEAD
 import TemplateDesktop from "../templates/TemplateDesktop";
 import CardCategory from "../components/CardCategory";
 import bebida from "../assets/bebida.svg";
+=======
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import girls from ".././assets/girls.jpg"
+>>>>>>> e2fdb9f64871ffe0efdf197dfcff153d3e0dcac5
 
 export default function Home() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -78,12 +84,11 @@ const Heading =styled.p`
 `;
 // styles for mobile
 const ImgB = styled.img`
-  background-image: url("https://res.cloudinary.com/dtrjltklc/image/upload/v1616683359/branding_1_iliiaj.png");
-  background-size:cover;
+  /* background-image: url("https://res.cloudinary.com/dtrjltklc/image/upload/v1616683359/branding_1_iliiaj.png"); */
+  object-fit: cover;
   width: 100%;
   height:150px;
   margin-top: 10px;
-  border:transparent;
 `;
 const Information = styled.div`
     display:flex;
