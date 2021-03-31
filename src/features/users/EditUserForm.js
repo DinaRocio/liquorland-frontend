@@ -19,32 +19,27 @@ export default function EditUserForm({ id }) {
   const [form, setForm] = useState({
     name: profile.name,
     birth_date: profile.birth_date,
-    avatar: profile.avatar_url,
   });
-
-  
 
   const handleProfileSubmit = (e) => {
     e.preventDefault();
     let fd = new FormData();
     for (let key in form) {
       fd.append(key, form[key]);
-      
     }
     // const newDate = form.birth_date.split(/-|\/|_/).reverse().join("-")
     // console.log(form.birth_date)
     // fd.set("birth_date", newDate)
-   dispatch(FetchUpdateProfile({fd, token}));
- 
+    dispatch(FetchUpdateProfile({ fd, token }));
   };
 
   const { name, birth_date, avatar } = form;
   return (
-    <ProfileForm onSubmit={handleProfileSubmit} id={id} >
+    <ProfileForm onSubmit={handleProfileSubmit} id={id}>
       <Header>
         <StyledDiv isFile>
           <label htmlFor="avatar">
-            <img alt="upload icon" src={uploadPhotoIcon} />
+            <img alt="upload icon" src={uploadPhotoIcon || avatar} />
           </label>
           <input
             id="avatar"
@@ -53,10 +48,9 @@ export default function EditUserForm({ id }) {
             type="file"
             form="profile-form"
             onChange={(e) =>
-              setForm({ ...form, [e.target.name]: e.target.value })
+              setForm({ ...form, [e.target.name]: e.target.files[0] })
             }
           />
-       
         </StyledDiv>
         <Titles>
           <h5>Edit Your Profile</h5>
@@ -90,7 +84,7 @@ export default function EditUserForm({ id }) {
           />
         </UserInput>
       </div>
-     
+
       <Button type="submit" form="profile-form">
         Save
       </Button>
