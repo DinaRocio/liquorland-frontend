@@ -1,21 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { CartServices } from "../../services/CartServices";
 
+const cartService = new CartServices();
+
 const fetchIndexCart = createAsyncThunk(
-  "session/fetchIndexCart",
-  new CartServices().index
+  "cart/fetchIndexCart",
+  cartService.index
 );
 const fetchCreateCart = createAsyncThunk(
-  "session/fetchCreateCart",
-  new CartServices().create
+  "cart/fetchCreateCart",
+  cartService.create
 );
 const fetchUpdateCart = createAsyncThunk(
-  "session/fetchUpdateCart",
-  new CartServices().update
+  "cart/fetchUpdateCart",
+  cartService.update
 );
 const fetchDeleteCart = createAsyncThunk(
-  "session/fetchDeleteCart",
-  new CartServices().delete
+  "cart/fetchDeleteCart",
+  cartService.delete
 );
 
 const cartSlice = createSlice({
@@ -30,7 +32,11 @@ const cartSlice = createSlice({
     },
     error: null,
   },
-  reducers: {},
+  reducers: {
+    updateCartStatus: (state, { payload: { status, value } }) => {
+      state.status[status] = value;
+    },
+  },
   extraReducers: {
     [fetchIndexCart.pending]: (state) => {
       state.status.index = "LOADING";
@@ -67,9 +73,14 @@ const cartSlice = createSlice({
       state.error = JSON.parse(action.error.message);
     },
 
-    [fetchDeleteCart.fulfilled]: (state, action) => {
+    [fetchDeleteCart.pending]: (state, _) => {
+      state.status.delete = "LOADING";
+      state.error = null;
+    },
+    [fetchDeleteCart.fulfilled]: (state, { payload }) => {
       state.status.delete = "SUCCESS";
       state.error = null;
+      state.list = state.list.filter((item) => item.id !== payload);
     },
     [fetchDeleteCart.rejected]: (state, action) => {
       state.status.delete = "FAILED";
@@ -78,7 +89,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const {} = cartSlice.actions;
+export const { removeCartItem, updateCartStatus } = cartSlice.actions;
 export default cartSlice.reducer;
 
 export { fetchIndexCart, fetchCreateCart, fetchUpdateCart, fetchDeleteCart };

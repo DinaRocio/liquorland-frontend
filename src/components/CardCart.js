@@ -4,7 +4,16 @@ import Counter from "../UI/Counter";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUpdateCart } from "../features/cart/cartSlice";
-function CardCart({ id, setUrl, name, presentation, price, quantity }) {
+
+function CardCart({
+  id,
+  setUrl,
+  name,
+  presentation,
+  price,
+  quantity,
+  handleRemoveItem,
+}) {
   const [count, setCount] = useState(quantity);
   const token = useSelector((state) => state.session.token);
   const dispatch = useDispatch();
@@ -23,7 +32,7 @@ function CardCart({ id, setUrl, name, presentation, price, quantity }) {
       <div>
         <Heading>
           <HeadingText>{name}</HeadingText>
-          <span>x</span>
+          <span onClick={handleRemoveItem}>x</span>
         </Heading>
         <Description>{presentation}</Description>
         <QuantityPriceContent>

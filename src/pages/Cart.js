@@ -3,18 +3,34 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import CardCart from "../components/CardCart";
-import { fetchIndexCart } from "../features/cart/cartSlice";
+import {
+  fetchDeleteCart,
+  fetchIndexCart,
+  updateCartStatus,
+} from "../features/cart/cartSlice";
 import Template from "../templates/Template";
 
 export default function Cart() {
   const token = useSelector((state) => state.session.token);
   const cartList = useSelector((state) => state.cart.list);
   const cartStatus = useSelector((state) => state.cart.status);
+
   const dispatch = useDispatch();
 
   useEffect((_) => {
     if (token && cartStatus.index === "idle") dispatch(fetchIndexCart(token));
   }, []);
+
+  useEffect(() => {
+    if (cartStatus.delete === "SUCCESS") {
+      dispatch(updateCartStatus({ status: "delete", value: "idle" }));
+    }
+  }, [cartStatus.delete]);
+
+  const handleRemoveItem = (id) => {
+    console.log(id);
+    dispatch(fetchDeleteCart({ token, cartId: id }));
+  };
 
   if (!token) {
     return <Redirect to="/login" />;
@@ -36,6 +52,7 @@ export default function Cart() {
             presentation={cartItem.drink.presentation}
             price={cartItem.drink.price}
             quantity={cartItem.quantity}
+            handleRemoveItem={() => handleRemoveItem(cartItem.id)}
           />
         ))}
     </Template>

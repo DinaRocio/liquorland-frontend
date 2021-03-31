@@ -34,13 +34,15 @@ CartServices.prototype.update = async function ({ token, cartId, quantity }) {
   });
 };
 
-CartServices.prototype.detele = async function ({ token, cartId }) {
-  return await APIFetch(`${BASE_URI}/api/carts/${cartId}`, {
+CartServices.prototype.delete = async function ({ token, cartId }) {
+  const result = await APIFetch(`${BASE_URI}/api/carts/${cartId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (result === true) return cartId;
+  return result;
 };
 
 export { CartServices };
