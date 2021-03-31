@@ -38,21 +38,26 @@ export const fetchProfile = createAsyncThunk(
     return { user: data };
   }
 );
-// export const FetchUpdateProfile = createAsyncThunk(
-//   "session/fetchUpdateProfile",
-//   async (formData) => {
-//     const response = await fetch(`${BASE_URI}/api/profile`, {
-//       method: "PATCH",
-//       body: formData,
-//     });
+export const FetchUpdateProfile = createAsyncThunk(
+  "session/fetchUpdateProfile",
+  async ({fd, token}) => {
+    console.log(token)
+    const response = await fetch(`${BASE_URI}/api/profile`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+      body: fd,
+    });
 
-//     const data = await response.json();
-//     if (!response.ok) {
-//       throw new Error(JSON.stringify(data));
-//     }
-//     return { user: data };
-//   }
-// );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(JSON.stringify(data));
+    }
+    
+    return { user: data };
+  }
+);
 const usersSlice = createSlice({
   name: "users",
   initialState: {
@@ -86,6 +91,17 @@ const usersSlice = createSlice({
       state.token = action.payload.token;
     },
     [fetchSignup.rejected]: (state, action) => {
+      state.status = "failed";
+      state.errors = JSON.parse(action.error.message);
+    },
+    [FetchUpdateProfile.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [FetchUpdateProfile.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.profile = action.payload.user;
+    },
+    [FetchUpdateProfile.rejected]: (state, action) => {
       state.status = "failed";
       state.errors = JSON.parse(action.error.message);
     },
