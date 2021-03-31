@@ -13,35 +13,6 @@ function Search() {
     query: "(max-device-width: 1224px)",
   });
 
-<<<<<<< HEAD
-    return(
-       <>
-        {isDesktopOrLaptop && 
-            <StyledDesktop>
-                <Heading>
-                    <img src={heading} />
-                    </Heading>
-                    <img src={search} />
-                    <StyledInputD
-                        placeholder="Find your drink"
-                        type="search"
-                    />
-                    <Button>Search</Button>
-            </StyledDesktop>
-        }
-
-            {isTabletOrMobileDevice && 
-            <SearchBar>
-                <Icon type="search" fill="black" size={18} />
-                <StyledInput
-                    placeholder="Search store"
-                    type="search"
-                />
-            </SearchBar>
-            }
-       </>
-    );
-=======
   return (
     <>
       {isDesktopOrLaptop && (
@@ -63,7 +34,6 @@ function Search() {
       )}
     </>
   );
->>>>>>> d8cde17aceec58d3b1d8c1efa443d5a17bdaf99e
 }
 
 export default Search;

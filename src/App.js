@@ -12,7 +12,6 @@ import Account from "./pages/Account";
 import Splash from "./pages/Splash";
 import ProductDetail from "./pages/ProductDetail";
 import Location from "./pages/Location";
-import EditProfile from "./pages/EditProfile";
 import Profile from "./pages/Profile";
 
 function App() {
@@ -36,10 +35,13 @@ function App() {
       <Route path="/successful-order" component={SuccessfulOrder} />
       <Route path="/failed-order" component={FailedOrder} /> */}
       <Route path="/account" component={Account} />
-      <Route path="/edit-profile" component={EditProfile} />
+      
       <Route path="/myDetails" component={Profile} />
     </Router>
   );
 }
 
 export default App;
+
+//<Route path="/edit-profile" component={EditProfile} />
+//import EditProfile from "./pages/EditProfile";

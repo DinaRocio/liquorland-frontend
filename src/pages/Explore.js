@@ -6,6 +6,7 @@ import Search from "../components/Search"
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
+import  Carousel from "../components/Carousel";
 
 export default function Explore() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -22,9 +23,9 @@ export default function Explore() {
   return (
     <>
       {isDesktopOrLaptop && 
-        <TemplateDesktop>
-          
-        </TemplateDesktop>
+      <TemplateDesktop>
+        <Carousel />
+      </TemplateDesktop>
       }
       {isTabletOrMobileDevice && 
       <Template>

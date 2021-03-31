@@ -1,4 +1,3 @@
-import Carousel from "../components/Carousel";
 import Navbar from "../UI/Navbar";
 import Footer from "../components/Footer";
 
