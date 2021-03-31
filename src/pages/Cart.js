@@ -1,14 +1,25 @@
+import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import  CardCart from "../components/CardCart";
 import Template from "../templates/Template";
 
 export default function Cart() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   return (
-    <Template>
-      <Heading>My Cart</Heading>
-      <Overlay/>
-        <CardCart/>
-    </Template>
+    <>
+      {isTabletOrMobileDevice && 
+        <Template>
+          <Heading>My Cart</Heading>
+          <Overlay/>
+            <CardCart/>
+        </Template>
+      }
+    </>
   );
 }
 

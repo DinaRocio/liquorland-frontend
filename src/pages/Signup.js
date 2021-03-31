@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'react-responsive'
 import { colors } from "../ui";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
@@ -7,47 +8,57 @@ import beerIcon from "@iconify/icons-dashicons/beer";
 import Button from "../UI/Button"
 
 export default function Signup() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   return (
-    <SignUpContainer>
-      <Header>
-        <img src={header} alt="header" />
-        <Icon icon={beerIcon} />
-      </Header>
-      <Titles>
-        <h2>Sign Up</h2>
-        <p>Enter your credentials to continue</p>
-      </Titles>
-      <StyledForm>
-        <LoginInput>
-          <label>Username</label>
-          <input placeholder="Write your name" type="text" />
-        </LoginInput>
-        <LoginInput>
-          <label>Birth date</label>
-          <input min="1900-01-01" max="2010-12-31" type="date" required/>
-        </LoginInput>
-        <LoginInput>
-          <label>Email</label>
-          <input placeholder="somebody@mail.com" type="email" />
-        </LoginInput>
-        <LoginInput>
-          <label>Password</label>
-          <input placeholder="*********" type="password" />
-        </LoginInput>
-        <PolicyLink>
-          <p>
-            By continuing you agree to our&nbsp;
-            <Anchor href="#">Terms of Service</Anchor>&nbsp;and&nbsp;
-            <Anchor href="#">Privacy Policy</Anchor>
-          </p>
-        </PolicyLink>
+    <>
+    {isTabletOrMobileDevice && 
+      <SignUpContainer>
+        <Header>
+          <img src={header} alt="header" />
+          <Icon icon={beerIcon} />
+        </Header>
+        <Titles>
+          <h2>Sign Up</h2>
+          <p>Enter your credentials to continue</p>
+        </Titles>
+        <StyledForm>
+          <LoginInput>
+            <label>Username</label>
+            <input placeholder="Write your name" type="text" />
+          </LoginInput>
+          <LoginInput>
+            <label>Birth date</label>
+            <input min="1900-01-01" max="2010-12-31" type="date" required/>
+          </LoginInput>
+          <LoginInput>
+            <label>Email</label>
+            <input placeholder="somebody@mail.com" type="email" />
+          </LoginInput>
+          <LoginInput>
+            <label>Password</label>
+            <input placeholder="*********" type="password" />
+          </LoginInput>
+          <PolicyLink>
+            <p>
+              By continuing you agree to our&nbsp;
+              <Anchor href="#">Terms of Service</Anchor>&nbsp;and&nbsp;
+              <Anchor href="#">Privacy Policy</Anchor>
+            </p>
+          </PolicyLink>
 
-        <Button>Sign Up</Button>
-        <SignupLink>
-          Already have an account?&nbsp;<Link to="/login">Login</Link>
-        </SignupLink>
-      </StyledForm>
-    </SignUpContainer>
+          <Button>Sign Up</Button>
+          <SignupLink>
+            Already have an account?&nbsp;<Link to="/login">Login</Link>
+          </SignupLink>
+        </StyledForm>
+      </SignUpContainer>
+    }
+    </>
   );
 }
 

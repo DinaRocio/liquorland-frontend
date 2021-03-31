@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'react-responsive'
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
@@ -5,11 +6,17 @@ import Template from "../templates/Template";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
-export default function Account({
+export default function Account ( {
   name = "Afsar Hossen",
   email = "lala@lala.com",
   avatarUrl = "https://www.trickscity.com/wp-content/uploads/2018/06/anonymous-dp-for-boys.jpg",
 }) {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   const options = ["myDetails", "location", "payment", "help", "about"];
   const iconsOpt = {
     myDetails: "details",
@@ -26,38 +33,42 @@ export default function Account({
     about: "About",
   };
   return (
-    <Template>
-      <AccountHeader>
-        <AvatarContainer avatarUrl={avatarUrl}></AvatarContainer>
-        <AccountTitles>
-          <NameEdition>
-            <p>{name}</p>
-            <Icon type="pencil" fill={colors.light2} size={15} />
-          </NameEdition>
-          <p>{email}</p>
-        </AccountTitles>
-      </AccountHeader>
-      <AccountOptions>
-        {options.map((option) => (
-          <li key={option}>
-            <Option>
-              <Icon type={iconsOpt[option]} fill="black" size={20} />
-              <div>
-                <p>{titlesOpt[option]}</p>
-                <Link to={`/${option}`}>
-                  <Icon type="forwardArrow" fill="black" size={14} />
-                </Link>
-              </div>
-            </Option>
-          </li>
-        ))}
-      </AccountOptions>
-      <LogoutButton>
-        <Icon type="logout" fill={colors.light2} size={28} />
-        Logout
-        <span></span>
-      </LogoutButton>
-    </Template>
+    <>
+      {isTabletOrMobileDevice &&
+      <Template>
+        <AccountHeader>
+          <AvatarContainer avatarUrl={avatarUrl}></AvatarContainer>
+          <AccountTitles>
+            <NameEdition>
+              <p>{name}</p>
+              <Icon type="pencil" fill={colors.light2} size={15} />
+            </NameEdition>
+            <p>{email}</p>
+          </AccountTitles>
+        </AccountHeader>
+        <AccountOptions>
+          {options.map((option) => (
+            <li key={option}>
+              <Option>
+                <Icon type={iconsOpt[option]} fill="black" size={20} />
+                <div>
+                  <p>{titlesOpt[option]}</p>
+                  <Link to={`/${option}`}>
+                    <Icon type="forwardArrow" fill="black" size={14} />
+                  </Link>
+                </div>
+              </Option>
+            </li>
+          ))}
+        </AccountOptions>
+        <LogoutButton>
+          <Icon type="logout" fill={colors.light2} size={28} />
+          Logout
+          <span></span>
+        </LogoutButton>
+      </Template>
+      }
+    </>
   );
 }
 

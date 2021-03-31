@@ -1,14 +1,25 @@
+import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
 import FavoriteCard from "../components/favoriteCard";
 
 export default function Favorites() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   return (
-    <Template>
-      <Heading>Favorites</Heading>
-      <Overlay/>
-      <FavoriteCard />
-    </Template>
+    <>
+      {isTabletOrMobileDevice && 
+        <Template>
+          <Heading>Favorites</Heading>
+          <Overlay/>
+          <FavoriteCard />
+        </Template>
+      }
+    </>
   );
 }
 

@@ -23,6 +23,7 @@ export default function Home() {
           <TemplateDesktop>
             <Search/>
             <CardCategory/>
+            <Heading>Popular products</Heading>
             <Card
               src={bebida}
               name={"Trappistes Rochefort 8"}
@@ -63,6 +64,12 @@ export default function Home() {
   );
 }
 
+// styles for desktop
+const Heading =styled.p`
+
+`;
+
+// styles for mobile
 const ImgB = styled.img`
   background-image: url("https://res.cloudinary.com/dtrjltklc/image/upload/v1616683359/branding_1_iliiaj.png");
   background-size:cover;

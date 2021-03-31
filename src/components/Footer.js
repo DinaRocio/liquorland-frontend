@@ -52,6 +52,9 @@ export default function Footer(){
 
 const StyledFooter = styled.div`
     display:flex;
+    position: absolute;
+    margin-left:-300px;
+    bottom: 0;
     flex-direction:row;
     justify-content:center;
     align-items:center;
