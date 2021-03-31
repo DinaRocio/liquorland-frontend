@@ -6,14 +6,40 @@ import { colors } from "../ui";
 
 import { useHistory } from "react-router";
 import FullBlurTemplate from "../templates/FullBlurTemplate";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile, FetchUpdateProfile } from "../features/users/usersSlice";
+import { useState } from "react";
+import Button from "../UI/Button";
 
 export default function Location() {
   let history = useHistory();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.session.token);
+  const profile = useSelector((state) => state.users.profile);
+  const status = useSelector((state) => state.users.status);
+
+  if (status === "idle") {
+    dispatch(fetchProfile(token));
+  }
+
+  const [form, setForm] = useState({
+    direction: profile.direction,
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let fd = new FormData();
+    for (let key in form){
+      fd.append(key, form[key]);
+    }
+    console.log(fd.has("direction"))
+    dispatch(FetchUpdateProfile({fd, token}));
+  };
+
+  const { direction } = form;
 
   return (
     <FullBlurTemplate>
-    
       <LocationHeader>
         <img src={map} alt="mapIcon" />
         <Titles>
@@ -24,27 +50,41 @@ export default function Location() {
           </p>
         </Titles>
       </LocationHeader>
-      <Input>
-        <label>Your address</label>
-        <input placeholder="Jr. Lalaland #432" type="text" />
-      </Input>
+      <LocalForm onSubmit={handleSubmit}  form="locale-form">
+        <Input>
+          <label>Your address</label>
+          <input
+            placeholder="Jr. Lalaland #432"
+            type="text"
+            value={direction}
+            name="direction"
+            onChange={(e) => setForm({...form, [e.target.name]:e.target.value})}
+          />
+        </Input>
 
-      <div
-      css = {css`
-      ${mapStyles};
-      `}
-       id="map"></div>
-      <SaveButton>Save</SaveButton>
+        <div
+          css={css`
+            ${mapStyles};
+          `}
+          id="map"
+        ></div>
+      
+        <Button type="submit" form="locale-form">
+        Save
+      </Button>
+      </LocalForm>
     </FullBlurTemplate>
   );
 }
 
+const LocalForm = styled.form``;
+
 const mapStyles = css`
-border: 1px solid ${colors.gray2};
-width: 100%;
-height: 229px;
-margin-top: 15px;
-`
+  border: 1px solid ${colors.gray2};
+  width: 100%;
+  height: 229px;
+  margin-top: 15px;
+`;
 
 const LocationHeader = styled.div`
   display: flex;
@@ -104,7 +144,7 @@ const Input = styled.div`
   }
 `;
 
-const SaveButton = styled.div`
+const SaveButton = styled.button`
   display: flex;
   justify-content: center;
   width: 100%;
