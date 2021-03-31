@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { fetchLogout } from "../features/session/sessionSlice";
+import { fetchProfile } from "../features/users/usersSlice";
 import Template from "../templates/Template";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
@@ -14,6 +15,12 @@ export default function Account({
 }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
+  const profile = useSelector((state) => state.users.profile);
+  const status = useSelector((state) => state.users.status);
+
+  if (status === "idle") {
+    dispatch(fetchProfile(token));
+  }
 
   if (!token) {
     return <Redirect to="/login" />;
@@ -37,15 +44,15 @@ export default function Account({
   return (
     <Template>
       <AccountHeader>
-        <AvatarContainer avatarUrl={avatarUrl}></AvatarContainer>
+        <AvatarContainer avatarUrl={profile.avatar_url}></AvatarContainer>
         <AccountTitles>
           <NameEdition>
-            <p>{name}</p>
+            <p>{profile.name}</p>
             <Link to="/edit-profile">
               <Icon type="pencil" fill={colors.light2} size={15} />
             </Link>
           </NameEdition>
-          <p>{email}</p>
+          <p>{profile.email}</p>
         </AccountTitles>
       </AccountHeader>
       <AccountOptions>
