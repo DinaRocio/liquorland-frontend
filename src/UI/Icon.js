@@ -8,7 +8,7 @@ import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
 import { BiCake } from "react-icons/bi";
-import { BsExclamationCircle } from "react-icons/bs";
+import { BsExclamationCircle, BsFilterRight } from "react-icons/bs";
 
 import { css } from "@emotion/react";
 import { colors } from "../ui";
@@ -41,6 +41,7 @@ const iconSet = {
   orders: RiShoppingBagLine,
   discount: IoTicketOutline,
   cake: BiCake,
+  filter: BsFilterRight,
 
 };
 
