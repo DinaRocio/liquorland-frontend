@@ -7,15 +7,12 @@ import Search from "../components/Search"
 import {Card, Price} from "../components/Card";
 import coke from "../assets/coke.png"
 import Header from "../components/Header"
-<<<<<<< HEAD
 import TemplateDesktop from "../templates/TemplateDesktop";
 import CardCategory from "../components/CardCategory";
 import bebida from "../assets/bebida.svg";
-=======
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import girls from ".././assets/girls.jpg"
->>>>>>> e2fdb9f64871ffe0efdf197dfcff153d3e0dcac5
 
 export default function Home() {
   const isDesktopOrLaptop = useMediaQuery({
