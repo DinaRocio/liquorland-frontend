@@ -30,10 +30,12 @@ export default function Cart() {
         cartList.map((cartItem) => (
           <CardCart
             key={cartItem.id}
+            id={cartItem.id}
             setUrl={cartItem.drink.image_url}
             name={cartItem.drink.name}
             presentation={cartItem.drink.presentation}
             price={cartItem.drink.price}
+            quantity={cartItem.quantity}
           />
         ))}
     </Template>

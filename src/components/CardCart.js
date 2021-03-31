@@ -1,7 +1,22 @@
 import { colors } from "../ui";
 import styled from "@emotion/styled";
 import Counter from "../UI/Counter";
-function CardCart({ setUrl, name, presentation, price }) {
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUpdateCart } from "../features/cart/cartSlice";
+function CardCart({ id, setUrl, name, presentation, price, quantity }) {
+  const [count, setCount] = useState(quantity);
+  const token = useSelector((state) => state.session.token);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (quantity !== count)
+        dispatch(fetchUpdateCart({ token, cartId: id, quantity: count }));
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [count]);
+
   return (
     <StyledContainer>
       <ImageDrink src={setUrl} alt="drink" />
@@ -13,7 +28,7 @@ function CardCart({ setUrl, name, presentation, price }) {
         <Description>{presentation}</Description>
         <QuantityPriceContent>
           <StyledDiv>
-            <Counter />
+            <Counter setCount={setCount} count={count} />
           </StyledDiv>
           <Price>${price}</Price>
         </QuantityPriceContent>
