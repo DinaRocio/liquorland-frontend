@@ -1,12 +1,11 @@
 import { useMediaQuery } from 'react-responsive'
 import CardCategory from "../components/CardCategory"
 import Template from "../templates/Template"
-import TemplateDesktop from "../templates/TemplateDesktop";
+import TemplatePage from "../templates/TemplatePage";
 import Search from "../components/Search"
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
-import  Carousel from "../components/Carousel";
 
 export default function Explore() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -23,9 +22,9 @@ export default function Explore() {
   return (
     <>
       {isDesktopOrLaptop && 
-      <TemplateDesktop>
-        <Carousel />
-      </TemplateDesktop>
+      <TemplatePage>
+        <Search />
+      </TemplatePage>
       }
       {isTabletOrMobileDevice && 
       <Template>

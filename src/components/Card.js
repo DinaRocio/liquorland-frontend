@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { colors } from "../ui";
 
 
-function Card({ src , presentation , name }){
+export default function Card({ src , presentation , name }){
    const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 1224px)'
     })
@@ -23,7 +23,7 @@ return(
               <p className="name">{name}</p>
               <p className="presentation">{presentation}</p>
               <button onClick={toggler}>
-              {toggle ? "Agregar" : "🛒 Agregado" }
+              {toggle ? "🛒 Agregado" :  "Agregar"}
               </button>
           </CardDesktop>
         }
@@ -157,10 +157,3 @@ const StyledPrice =styled.p`
     line-height: 18px;
     margin-top: 12px;
 `;
-function Price ( {children} ){
-    return(
-    <StyledPrice>{children}</StyledPrice>
-    );
-}
-
-export { Card, Price };

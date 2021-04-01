@@ -117,6 +117,7 @@ export default function Navbar() {
 const SyledNavbar = styled.div`
       display:flex;
       justify-content:space-around;
+      margin-top:20px;
       align-items: flex-start;
       gap:30px;
       top:0;

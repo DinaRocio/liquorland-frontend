@@ -18,8 +18,10 @@ function CardCategory({ drinkUrl, name}) {
       <>
         {isDesktopOrLaptop &&
         <div>
-          <Heading>Categories</Heading>
-          <SContainer>
+          <StyledHeading>
+            <Heading>Our Categories</Heading>
+          </StyledHeading>
+           <SContainer>
             <SCategory>
                   <CategoryCard>
                     <img src={wine} />
@@ -42,7 +44,7 @@ function CardCategory({ drinkUrl, name}) {
                     </div>
                   </CategoryCard>
             </SCategory>
-          </SContainer>
+          </SContainer> 
         </div>
         }
 
@@ -92,7 +94,17 @@ const SContainer = styled.div`
     justify-content:center;
 `;
 
+const StyledHeading= styled.div`
+  margin:25px;
+  width:100%;
+  height:70px;
+  background-color:${colors.gray2};
+`;
+
 const Heading = styled.p`
+    display:flex;
+    justify-content:center;
+    align-items:center;
     margin-top:25px;
     margin-left:85px;
     font-family: ABeeZee;

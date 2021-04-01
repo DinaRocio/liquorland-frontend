@@ -36,6 +36,7 @@ const StyledButton1 = styled.div`
         justify-content:center;
         align-items:center;
         color:${colors.light2};
+        cursor: pointer;
 `;
 
 const StyledButton = styled.div`
@@ -48,6 +49,7 @@ const StyledButton = styled.div`
         justify-content:center;
         align-items:center;
         color:#B3B3B3;
+        cursor: pointer;
 `;
 
 const StyledDiv = styled.div`
