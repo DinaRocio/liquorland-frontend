@@ -39,7 +39,7 @@ export default function Navbar() {
       {isDesktopOrLaptop && 
       <SyledNavbar>
         <StyledLogo>
-            <img src={logo} />
+            <img src={logo} alt="logo"/>
         </StyledLogo>
         <StyledDiv>
         {sections.map((section) => (

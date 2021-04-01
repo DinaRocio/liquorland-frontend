@@ -9,14 +9,11 @@ import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icon
 import { GrShop, GrCreditCard } from "react-icons/gr";
 import { BiCake } from "react-icons/bi";
 import { BsExclamationCircle, BsFilterRight } from "react-icons/bs";
-
 import { css } from "@emotion/react";
-import { colors } from "../ui";
 
 const iconSet = {
   shop: AiOutlineShop,
   heart: FiHeart,
-  location: HiLocationMarker,
   cart: FiShoppingCart,
   user: FiUser,
   fillStar: AiFillStar,

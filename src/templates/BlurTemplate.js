@@ -1,4 +1,3 @@
-import { colors } from "../ui";
 import styled from "@emotion/styled";
 import header from "../assets/main.png";
 import { Icon, InlineIcon } from "@iconify/react";

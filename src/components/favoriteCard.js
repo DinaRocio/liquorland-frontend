@@ -28,7 +28,7 @@ function FavoriteCard({ drinkUrl , name, presentation, price}){
 
     return(
         <StyledCard>
-            <img  src={coke} />
+            <img  src={coke} alt="coke"/>
             <Inf>
                 <Heading>Sprite Can</Heading>
                 <Presentation>325ml, Price</Presentation>

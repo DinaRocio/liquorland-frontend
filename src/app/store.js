@@ -4,6 +4,8 @@ import drinksReducer from "../features/drinks/drinksSlice";
 import sessionReducer from "../features/session/sessionSlice";
 import usersReducer from "../features/users/usersSlice";
 import cartReducer from "../features/cart/cartSlice";
+import brandsReducer from "../features/brands/brandsSlice";
+import stylesReducer from  "../features/styless/stylesSlice"
 
 export default configureStore({
   reducer: {
@@ -12,5 +14,7 @@ export default configureStore({
     users: usersReducer,
     categories: categoriesReducer,
     cart: cartReducer,
+    brands: brandsReducer,
+    styles: stylesReducer,
   },
 });

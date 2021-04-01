@@ -1,7 +1,7 @@
 import { colors } from "../ui";
 import styled from "@emotion/styled";
 import UsersForm from "../features/users/UsersForm";
-import { Redirect, useHistory } from "react-router";
+import {useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setToken } from "../features/session/sessionSlice";
@@ -12,11 +12,6 @@ export default function Signup() {
   const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // if(token){
-  //   sessionStorage.setItem("token", token);
-  //   return <Redirect to="/home" />
-  // }
 
   useEffect(() => {
     if (token) {

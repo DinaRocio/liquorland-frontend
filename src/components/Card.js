@@ -3,48 +3,32 @@ import { useState } from "react";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
-function Card({ children, src, cart }) {
+function Card({ children, src }) {
   const [toggle, setToggle] = useState(false);
 
   const toggler = () => {
     toggle ? setToggle(false) : setToggle(true);
   };
   return (
-  
-      <>
-        {<img src={src} /> && (
-          <StyledInf>
-            {children}
-            <Button onClick={toggler}>
-              {toggle ? (
-                <Icon type="check" fill="white" size={20} />
-              ) : (
-                <Icon type="add" fill="white" size={20} />
-              )}
-            </Button>
-          </StyledInf>
-        )}
-      </>
-    
+    <>
+      {<img src={src} alt="card_pic" /> && (
+        <StyledInf>
+          {children}
+          <Button onClick={toggler}>
+            {toggle ? (
+              <Icon type="check" fill="white" size={20} />
+            ) : (
+              <Icon type="add" fill="white" size={20} />
+            )}
+          </Button>
+        </StyledInf>
+      )}
+    </>
   );
 }
 
-// const StyledContainer = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   grid-gap: 15px;
-// `;
-
-const StyledCard = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 15px;
-  border: 1px solid rgba(226, 226, 226, 0.7);
-  justify-content: center;
-  border-radius: 15px;
-`;
 const StyledInf = styled.div`
-display: flex;
+  display: flex;
   width: 100%;
 
   border: 1px solid rgba(226, 226, 226, 0.7);
@@ -61,17 +45,17 @@ display: flex;
     height: 90px;
   }
   & h4 {
-    color: ${colors.dark0}
+    color: ${colors.dark0};
   }
   & p {
     font-family: Abel;
     font-style: normal;
     font-weight: normal;
     line-height: 18px;
-    color: ${colors.dark0}
+    color: ${colors.dark0};
   }
   & a {
-   text-decoration: none;
+    text-decoration: none;
   }
 `;
 const Button = styled.button`
