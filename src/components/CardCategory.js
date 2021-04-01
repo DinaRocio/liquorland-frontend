@@ -18,7 +18,7 @@ function CardCategory() {
 
   return (
     <StyledCategory>
-      {categories.map((category) => (
+      {categories && categories.map((category) => (
         <Link to={`/categories/${category.id}`}>
           <StyledCard key={category.id} color={category.color}>
             <img src={category.cover_url} />
