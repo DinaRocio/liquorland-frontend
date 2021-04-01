@@ -37,7 +37,6 @@ const StyledContainer = styled.div`
 `;
 
 const Heading = styled.p`
-        font-family: ABeeZee;
         font-style: italic;
         font-weight: normal;
         font-size: 16px;
