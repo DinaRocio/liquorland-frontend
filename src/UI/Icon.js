@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { FiHeart, FiUser, FiMinus, FiShoppingCart, FiSearch, FiLogOut } from "react-icons/fi";
-import { AiOutlineShop, AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineShop, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward, IoIosClose, IoMdHelpCircleOutline, IoMdNotificationsOutline } from "react-icons/io";
 import { IoTicketOutline } from "react-icons/io5";
 import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
@@ -27,6 +27,7 @@ const iconSet = {
   forwardArrow: IoIosArrowForward,
   add: RiAddLine,
   minus: FiMinus,
+  check: AiOutlineCheck,
   close: IoIosClose,
   download: HiOutlineDownload,
   pencil: HiOutlinePencil,
