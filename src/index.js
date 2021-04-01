@@ -36,6 +36,9 @@ const globalStyles = css`
     font-family: inherit;
     color: inherit;
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 ReactDOM.render(
