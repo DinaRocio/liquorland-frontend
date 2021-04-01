@@ -6,10 +6,12 @@ const colors = {
   light2: "#5DD39E",
   light3: "#BCE784",
   white: "#FFFFFF",
+  white2: "#F0F0F0",
   black: "#000000",
   gray: "#7C7C7C",
   gray2: "#F2F3F2",
   gray3: "#EBEBEB",
+  gray4: "#BEBEBE",
   orange: "#F3603F",
 };
 
