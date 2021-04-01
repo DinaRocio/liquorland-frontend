@@ -9,18 +9,18 @@ function CardCategory() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.items);
   const category = useSelector((state) => state.categories.item);
-  const status = useSelector((state) => state.categories.status);
+  const statusIndex = useSelector((state) => state.categories.statusIndex);
   const error = useSelector((state) => state.categories.error);
 
-  if (status === "idle") {
+  if (statusIndex === "idle") {
     dispatch(fetchCategories());
   }
 
   return (
     <StyledCategory>
       {categories && categories.map((category) => (
-        <Link to={`/categories/${category.id}`}>
-          <StyledCard key={category.id} color={category.color}>
+        <Link to={`/categories/${category.id}`} key={category.id}>
+          <StyledCard  color={category.color}>
             <img src={category.cover_url} />
             <p>{category.name}</p>
           </StyledCard>

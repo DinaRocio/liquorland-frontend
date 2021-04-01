@@ -2,27 +2,28 @@ import styled from "@emotion/styled";
 import { Card, Price } from "../components/Card";
 import { useHistory, useParams } from "react-router";
 import Icon from "../UI/Icon";
-import { colors } from "../ui";
+import { colors, screenMediaQueries } from "../ui";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../features/categories/categoriesSlice";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 export default function CategoryDetail() {
   let history = useHistory();
   const dispatch = useDispatch();
   const category = useSelector((state) => state.categories.item);
-  const status = useSelector((state) => state.categories.status);
+  const statusShow = useSelector((state) => state.categories.statusShow);
   const error = useSelector((state) => state.categories.error);
   const { category_id } = useParams();
 
-  if (status === "idle") {
+  useEffect(() => {
     dispatch(fetchCategory(category_id));
-  }
+  }, []);
 
   return (
     <TwoTemplate>
-      {status === "loading" && "loading ..."}
-      {status === "error" && "Something went wrong"}
-      {status === "succeeded" && (
+      {statusShow === "loading" && "loading ..."}
+      {statusShow === "error" && "Something went wrong"}
+      {statusShow === "succeeded" && (
         <>
           <Heading>
             <Icon
@@ -43,15 +44,16 @@ export default function CategoryDetail() {
             <p>{category.description}</p>
           </Description>
           <ProductsContainer>
-            {category.drinks &&
+            {statusShow === "succeeded" &&
               category.drinks.map((drink) => (
                 <Card key={drink.id}>
-                  <Link to={`/drinks/${drink.id}`} >
-                    <img src={drink.image_url} />
+                  <img src={drink.image_url} />
+                  <Link to={`/drinks/${drink.id}`}>
                     <h4>{drink.name}</h4>
-                    <p>{drink.presentation}</p>
-                    <Price>${drink.price}</Price>
                   </Link>
+                  <p>{drink.presentation}</p>
+
+                  <Price>${drink.price}</Price>
                 </Card>
               ))}
           </ProductsContainer>
@@ -95,6 +97,10 @@ const Description = styled.div`
 const ProductsContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, 200px);
+  justify-content: center;
   grid-gap: 15px;
+  ${screenMediaQueries.xs} {
+    grid-template-columns: 1fr;
+  }
 `;

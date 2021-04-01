@@ -18,7 +18,7 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   useEffect((_) => {
-    if (token && cartStatus.index === "idle") dispatch(fetchIndexCart(token));
+    if (token) dispatch(fetchIndexCart(token));
   }, []);
 
   useEffect(() => {
