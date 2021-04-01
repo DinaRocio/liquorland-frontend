@@ -13,13 +13,15 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { fetchDrink } from "../features/drinks/drinksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
+import Icon from "../UI/Icon";
 
 export default function ProductDetail() {
   const drink = useSelector((state) => state.drinks.drink);
   const show_drink_state = useSelector((state) => state.drinks.status.show);
   const { drink_id } = useParams();
   const dispatch = useDispatch();
+  let history = useHistory();
 
   /** Loading Drink */
   useEffect(() => {
@@ -34,7 +36,12 @@ export default function ProductDetail() {
         {show_drink_state === "SUCCESS" && (
           <>
             <NavToStyled>
-              <FaChevronLeft className="icon-button" />
+              <Icon
+                type="backArrow"
+                fill="black"
+                size={20}
+                onClick={() => history.goBack()}
+              />
             </NavToStyled>
             <Image src="https://www.chicagotribune.com/resizer/BIvQ3G9tzipdSyEA6eudrC5poGA=/415x233/top/www.trbimg.com/img-5c8fff83/turbine/ct-1552940928-jrrojmfcdk-snap-image" />
             <HeadStyled>
