@@ -10,8 +10,8 @@ function Card({ children, src, cart }) {
     toggle ? setToggle(false) : setToggle(true);
   };
   return (
-    <StyledContainer>
-      <StyledCard>
+  
+      <>
         {<img src={src} /> && (
           <StyledInf>
             {children}
@@ -24,27 +24,32 @@ function Card({ children, src, cart }) {
             </Button>
           </StyledInf>
         )}
-      </StyledCard>
-    </StyledContainer>
+      </>
+    
   );
 }
 
-const StyledContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 15px;
-`;
+// const StyledContainer = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   grid-gap: 15px;
+// `;
 
 const StyledCard = styled.div`
   display: flex;
-  width: 160px;
+  width: 100%;
   padding: 15px;
   border: 1px solid rgba(226, 226, 226, 0.7);
   justify-content: center;
   border-radius: 15px;
 `;
 const StyledInf = styled.div`
-  display: flex;
+display: flex;
+  width: 100%;
+
+  border: 1px solid rgba(226, 226, 226, 0.7);
+
+  border-radius: 15px;
   flex-direction: column;
   gap: 5px;
   font-style: italic;
