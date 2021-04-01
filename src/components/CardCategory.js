@@ -17,9 +17,9 @@ function CardCategory() {
   return (
     <StyledCategory>
       {categories.map((category) => (
-        <StyledCard color={category.color}>
-          {/* <img drinkUrl={category.} /> */}
-          <p key={category.id}>{category.name}</p>
+        <StyledCard key={category.id} color={category.color}>
+          <img src={category.cover_url} />
+          <p>{category.name}</p>
         </StyledCard>
       ))}
     </StyledCategory>
@@ -44,9 +44,11 @@ const StyledCard = styled.div(
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     & img {
-      margin-left: 19px;
-      margin-top: 19px;
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
     }
     & p {
       font-family: ABeeZee;
