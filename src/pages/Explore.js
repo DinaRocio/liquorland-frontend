@@ -37,7 +37,6 @@ export default function Explore() {
 )};
 
 const Heading = styled.h3`
-    font-family: ABeeZee;
     font-style: italic;
     font-weight: normal;
     font-size: 20px;

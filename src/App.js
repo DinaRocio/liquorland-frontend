@@ -11,8 +11,10 @@ import Favorites from "./pages/Favorites";
 import Account from "./pages/Account";
 import Splash from "./pages/Splash";
 import ProductDetail from "./pages/ProductDetail";
+import CategoryDetail from "./pages/CategoryDetail";
 import Location from "./pages/Location";
 import Profile from "./pages/Profile";
+import Filters from "./pages/Filters";
 
 function App() {
   return (
@@ -25,8 +27,8 @@ function App() {
       <Route path="/drinks/:drink_id" component={ProductDetail} />
       <Route path="/location" component={Location} />
       <Route path="/explore" component={Explore} />
-      {/* <Route path="/show-category" component={ShowCategory} />
-      <Route path="/filters" component={Filters} /> */}
+      <Route path="/categories/:category_id" component={CategoryDetail} />
+      <Route path="/filters" component={Filters} /> 
       <Route path="/search" component={Search} />
       <Route path="/cart" component={Cart} />
       <Route path="/favorites" component={Favorites} />

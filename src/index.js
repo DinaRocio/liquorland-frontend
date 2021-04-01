@@ -27,7 +27,6 @@ const globalStyles = css`
     background: white;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
     margin: auto;
     position: relative;
   }
@@ -35,6 +34,9 @@ const globalStyles = css`
   input {
     font-family: inherit;
     color: inherit;
+  }
+  a {
+    text-decoration: none;
   }
 `;
 
