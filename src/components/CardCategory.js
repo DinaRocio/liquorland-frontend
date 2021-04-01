@@ -3,10 +3,12 @@ import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../features/categories/categoriesSlice";
 import { colors } from "../ui";
+import { Link } from "react-router-dom";
 
 function CardCategory() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.items);
+  const category = useSelector((state) => state.categories.item);
   const status = useSelector((state) => state.categories.status);
   const error = useSelector((state) => state.categories.error);
 
@@ -17,10 +19,12 @@ function CardCategory() {
   return (
     <StyledCategory>
       {categories.map((category) => (
-        <StyledCard key={category.id} color={category.color}>
-          <img src={category.cover_url} />
-          <p>{category.name}</p>
-        </StyledCard>
+        <Link to={`/categories/${category.id}`}>
+          <StyledCard key={category.id} color={category.color}>
+            <img src={category.cover_url} />
+            <p>{category.name}</p>
+          </StyledCard>
+        </Link>
       ))}
     </StyledCategory>
   );
@@ -51,7 +55,7 @@ const StyledCard = styled.div(
       height: 90px;
     }
     & p {
-      font-family: ABeeZee;
+      color: ${colors.dark0};
       font-style: italic;
       font-weight: normal;
       font-size: 16px;
