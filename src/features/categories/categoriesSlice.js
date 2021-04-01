@@ -38,30 +38,31 @@ const categoriesSlice = createSlice({
   initialState: {
     items: [],
     item: {},
-    status: "idle",
+    statusIndex: "idle",
+    statusShow: "idle",
     error: null,
   },
   extraReducers: {
     [fetchCategories.pending]: (state, action) => {
-      state.status = "loading";
+      state.statusIndex = "loading";
     },
     [fetchCategories.fulfilled]: (state, action) => {
-      state.status = "succeeded";
+      state.statusIndex = "succeeded";
       state.items = action.payload.categories;
     },
     [fetchCategories.rejected]: (state, action) => {
-      state.status = "failed";
+      state.statusIndex = "failed";
       state.error = action.error.message;
     },
     [fetchCategory.pending]: (state, _) => {
-      state.status = "loading";
+      state.statusShow = "loading";
     },
     [fetchCategory.fulfilled]: (state, action) => {
-      state.status = "succeeded";
+      state.statusShow = "succeeded";
       state.item = action.payload.category;
     },
     [fetchCategory.rejected]: (state, action) => {
-      state.status = "failed";
+      state.statusShow = "failed";
       state.error = action.error.message;
     },
   },
