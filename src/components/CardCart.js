@@ -119,11 +119,11 @@ const ContainerCart = styled.div`
 
 //styles for mobile
 
-const StyledDiv = styled.div`
-    display:flex;
-    margin-top:70px;
-    margin-left: -190px;
-`;
+//const StyledDiv = styled.div`
+    //display:flex;
+    //margin-top:70px;
+    //margin-left: -190px;
+//`;
 
 const StyledContainer = styled.div`
   display: flex;
