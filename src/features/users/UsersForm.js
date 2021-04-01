@@ -5,7 +5,6 @@ import { colors } from "../../ui";
 import { useState } from "react";
 import { fetchSignup } from "./usersSlice";
 import { useDispatch } from "react-redux";
-import { fetchLogin } from "../session/sessionSlice";
 import UsersError from "./UsersError";
 
 export default function UsersForm({ id }) {

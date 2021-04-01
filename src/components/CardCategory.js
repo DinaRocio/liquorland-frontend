@@ -10,7 +10,6 @@ function CardCategory() {
   const categories = useSelector((state) => state.categories.items);
   const category = useSelector((state) => state.categories.item);
   const statusIndex = useSelector((state) => state.categories.statusIndex);
-  const error = useSelector((state) => state.categories.error);
 
   if (statusIndex === "idle") {
     dispatch(fetchCategories());
@@ -21,7 +20,7 @@ function CardCategory() {
       {categories && categories.map((category) => (
         <Link to={`/categories/${category.id}`} key={category.id}>
           <StyledCard  color={category.color}>
-            <img src={category.cover_url} />
+            <img src={category.cover_url} alt="category_pic" />
             <p>{category.name}</p>
           </StyledCard>
         </Link>

@@ -20,7 +20,6 @@ export default function CategoryDetail() {
   const brands = useSelector((state) => state.brands.items);
   const styles = useSelector((state) => state.styles.items);
   const statusShow = useSelector((state) => state.categories.statusShow);
-  const error = useSelector((state) => state.categories.error);
   const { category_id } = useParams();
 
   const [filterOpen, setFilterOpen] = useState(false);
@@ -97,7 +96,7 @@ export default function CategoryDetail() {
             {statusShow === "succeeded" &&
               category.drinks.map((drink) => (
                 <Card key={drink.id}>
-                  <img src={drink.image_url} />
+                  <img src={drink.image_url} alt="drink_pic" />
                   <Link to={`/drinks/${drink.id}`}>
                     <h4>{drink.name}</h4>
                   </Link>

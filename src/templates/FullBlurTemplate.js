@@ -1,6 +1,5 @@
 import Icon from "../UI/Icon";
 import styled from "@emotion/styled";
-import header from "../assets/main.png";
 import { useHistory } from "react-router";
 
 export default function FullBlurTemplate({ children }) {

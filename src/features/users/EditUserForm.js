@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import uploadPhotoIcon from "../../assets/group_78.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import { fetchProfile, FetchUpdateProfile } from "./usersSlice";
 import Button from "../../UI/Button";
 import UsersError from "./UsersError";

@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import map from "../assets/map.svg";
 import { colors } from "../ui";
-
-import { useHistory } from "react-router";
 import FullBlurTemplate from "../templates/FullBlurTemplate";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, FetchUpdateProfile } from "../features/users/usersSlice";
@@ -12,7 +10,6 @@ import { useState } from "react";
 import Button from "../UI/Button";
 
 export default function Location() {
-  let history = useHistory();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
   const profile = useSelector((state) => state.users.profile);
@@ -142,21 +139,4 @@ const Input = styled.div`
       color: ${colors.gray};
     }
   }
-`;
-
-const SaveButton = styled.button`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 70px;
-  background-color: ${colors.light2};
-  color: ${colors.white};
-  outline: none;
-  border: none;
-  padding: 24px;
-  font-size: 18px;
-  line-height: 18px;
-  font-family: inherit;
-  border-radius: 15px;
-  margin-top: 20px;
 `;
