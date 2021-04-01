@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 
 import { FiHeart, FiUser, FiMinus, FiShoppingCart, FiSearch, FiLogOut } from "react-icons/fi";
-import { AiOutlineShop, AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineShop, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward, IoIosClose, IoMdHelpCircleOutline, IoMdNotificationsOutline } from "react-icons/io";
 import { IoTicketOutline } from "react-icons/io5";
 import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
 import { BiCake } from "react-icons/bi";
-import { BsExclamationCircle } from "react-icons/bs";
+import { BsExclamationCircle, BsFilterRight } from "react-icons/bs";
 
 import { css } from "@emotion/react";
 import { colors } from "../ui";
@@ -27,6 +27,7 @@ const iconSet = {
   forwardArrow: IoIosArrowForward,
   add: RiAddLine,
   minus: FiMinus,
+  check: AiOutlineCheck,
   close: IoIosClose,
   download: HiOutlineDownload,
   pencil: HiOutlinePencil,
@@ -41,6 +42,7 @@ const iconSet = {
   orders: RiShoppingBagLine,
   discount: IoTicketOutline,
   cake: BiCake,
+  filter: BsFilterRight,
 
 };
 

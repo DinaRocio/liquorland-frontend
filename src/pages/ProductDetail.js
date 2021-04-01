@@ -13,17 +13,19 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { fetchDrink } from "../features/drinks/drinksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
+import Icon from "../UI/Icon";
 
 export default function ProductDetail() {
   const drink = useSelector((state) => state.drinks.drink);
   const show_drink_state = useSelector((state) => state.drinks.status.show);
   const { drink_id } = useParams();
   const dispatch = useDispatch();
+  let history = useHistory();
 
   /** Loading Drink */
   useEffect(() => {
-    if (!show_drink_state) dispatch(fetchDrink(drink_id));
+    dispatch(fetchDrink(drink_id));
   }, []);
 
   return (
@@ -34,9 +36,14 @@ export default function ProductDetail() {
         {show_drink_state === "SUCCESS" && (
           <>
             <NavToStyled>
-              <FaChevronLeft className="icon-button" />
+              <Icon
+                type="backArrow"
+                fill="black"
+                size={20}
+                onClick={() => history.goBack()}
+              />
             </NavToStyled>
-            <Image src="https://www.chicagotribune.com/resizer/BIvQ3G9tzipdSyEA6eudrC5poGA=/415x233/top/www.trbimg.com/img-5c8fff83/turbine/ct-1552940928-jrrojmfcdk-snap-image" />
+            <Image src={drink.image_url} />
             <HeadStyled>
               <TitleStyled>{drink.name}</TitleStyled>
               {false ? (
@@ -115,6 +122,11 @@ const TemplateOne = styled.div`
 const ContainerStyled = styled.div`
   height: 100%;
   overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   padding: 0 25px;
   display: flex;
   flex-direction: column;

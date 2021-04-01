@@ -53,7 +53,7 @@ const sessionSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchLogout.fulfilled]: (state, action) => {
+    [fetchLogout.pending]: (state, action) => {
       sessionStorage.removeItem("token");
       state.error = null;
       state.token = null;
