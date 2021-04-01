@@ -7,16 +7,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../features/categories/categoriesSlice";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useState } from "react";
+import Button from "../UI/Button";
+import { fetchBrands } from "../features/brands/brandsSlice";
+import { fetchStyles } from "../features/styless/stylesSlice";
+
+
 export default function CategoryDetail() {
   let history = useHistory();
   const dispatch = useDispatch();
   const category = useSelector((state) => state.categories.item);
+  const brands = useSelector((state) => state.brands.items);
+  const styles = useSelector((state) => state.styles.items);
   const statusShow = useSelector((state) => state.categories.statusShow);
   const error = useSelector((state) => state.categories.error);
   const { category_id } = useParams();
 
+  const [filterOpen, setFilterOpen] = useState(false);
+
+
+
   useEffect(() => {
     dispatch(fetchCategory(category_id));
+    dispatch(fetchBrands());
+    dispatch(fetchStyles());
   }, []);
 
   return (
@@ -25,6 +39,41 @@ export default function CategoryDetail() {
       {statusShow === "error" && "Something went wrong"}
       {statusShow === "succeeded" && (
         <>
+         <FilterModal isOpen={filterOpen}>
+            <Heading>
+              <Icon
+                type="close"
+                fill="black"
+                size={30}
+                onClick={() => setFilterOpen(!filterOpen)}
+              />
+              Filters
+              <div></div>
+            </Heading>
+            <FiltersContent>
+              <FilterForm>
+                <p>Brand</p>
+                <FilterInput>
+                  {brands && brands.map((brand) => (
+                    <div className="filterOption" key={brand.id}>
+                    <input type="checkbox" name={brand.name} value={brand.name}/>
+                    <label for="vehicle1"> {brand.name}</label>
+                  </div>
+                  ))}
+                </FilterInput>
+                <p>Styles</p>
+                <FilterInput>
+                  {styles && styles.map((brand) => (
+                    <div className="filterOption" key={brand.id}>
+                    <input type="checkbox" name={brand.name} value={brand.name}/>
+                    <label for="vehicle1"> {brand.name}</label>
+                  </div>
+                  ))}
+                </FilterInput>
+                <Button>Apply Fiters</Button>
+              </FilterForm>
+            </FiltersContent>
+          </FilterModal>
           <Heading>
             <Icon
               type="backArrow"
@@ -37,9 +86,10 @@ export default function CategoryDetail() {
               type="filter"
               fill="black"
               size={20}
-              onClick={() => history.push("/filters")}
+              onClick={() => setFilterOpen(!filterOpen)}
             />
           </Heading>
+         
           <Description>
             <p>{category.description}</p>
           </Description>
@@ -102,5 +152,53 @@ const ProductsContainer = styled.div`
   grid-gap: 15px;
   ${screenMediaQueries.xs} {
     grid-template-columns: 1fr;
+  }
+`;
+const FilterModal = styled.div(
+  ({ isOpen }) => `
+  display: ${isOpen ? "flex" : "none"};
+  height: 100%;
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  background-color: ${colors.gray2};
+  border-radius: 30px 30px 0px 0px;
+  padding: 30px;
+  flex-direction: column;
+  gap: 31px;
+  `
+);
+
+const FiltersContent = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: ${colors.gray2};
+  border-radius: 30px 30px 0px 0px;
+  padding: 30px;
+`;
+const FilterForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  & > p {
+    font-family: Abel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 31px;
+    color: ${colors.dark0};
+  }
+`;
+
+const FilterInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  .filterOption {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    gap: 11px;
   }
 `;
