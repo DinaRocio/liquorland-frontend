@@ -31,19 +31,19 @@ export default function ProductDetail() {
 
   return (
     <TemplateOne>
+      <NavToStyled>
+        <Icon
+          type="backArrow"
+          fill="black"
+          size={20}
+          onClick={() => history.goBack()}
+        />
+      </NavToStyled>
       <ContainerStyled>
         {show_drink_state === "LOADING" && "cargando..."}
         {show_drink_state === "ERROR" && "Something went wrong"}
         {show_drink_state === "SUCCESS" && (
           <>
-            <NavToStyled>
-              <Icon
-                type="backArrow"
-                fill="black"
-                size={20}
-                onClick={() => history.goBack()}
-              />
-            </NavToStyled>
             <Image src={drink.image_url} />
             <HeadStyled>
               <TitleL>{drink.name}</TitleL>
@@ -91,31 +91,29 @@ export default function ProductDetail() {
 }
 
 const TemplateOne = styled.div`
-  position: absolute;
-  top: 0;
   margin: 0 auto;
   height: 100vh;
-  width: 100%;
+  width: 95%;
+  max-width: ${screenSizes.lg};
 
   display: grid;
   top: 0;
-  grid-template-rows: calc(100% - 75px) 75px;
+  grid-template-rows: 60px calc(100% - 135px) 75px;
 
   ${screenMediaQueries.sm} {
-    width: 95%;
   }
   ${screenMediaQueries.md} {
-    width: 85%;
   }
   ${screenMediaQueries.lg} {
-    width: 70%;
   }
   ${screenMediaQueries.xl} {
-    max-width: ${screenSizes.lg};
   }
 `;
 
 const ContainerStyled = styled.div`
+  margin: 0 auto;
+  width: 95%;
+  max-width: ${screenSizes.md};
   height: 100%;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */

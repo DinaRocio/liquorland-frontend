@@ -1,11 +1,20 @@
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
 import { colors } from "../ui";
 import { SubTitleStyled, TextS, TextXS } from "../UI/Text";
+import { ReviewFrom } from "./ReviewFrom";
 import { Stars } from "./Stars";
 
 export default function Reviews({ data }) {
+  const token = useSelector((state) => state.session.token);
+
   return (
     <ReviewsContainer>
+      {token && (
+        <ReviewItem>
+          <ReviewFrom />
+        </ReviewItem>
+      )}
       {data.map((review) => (
         <ReviewItem key={review.id}>
           <ReviewHeader>
