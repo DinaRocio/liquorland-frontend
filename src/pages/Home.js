@@ -24,7 +24,6 @@ export default function Home() {
       <ImgB alt="upload icon" src={girls} />
       <section>
         <SpecialSection />
-       
         <CategorySlider/>
         <SpecialSection />
       </section>
