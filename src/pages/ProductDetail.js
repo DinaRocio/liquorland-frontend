@@ -36,7 +36,7 @@ export default function ProductDetail() {
           type="backArrow"
           fill="black"
           size={20}
-          onClick={() => history.goBack()}
+          onClick={() => history.push("/home")}
         />
       </NavToStyled>
       <ContainerStyled>

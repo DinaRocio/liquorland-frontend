@@ -15,19 +15,21 @@ export default function Reviews({ data }) {
           <ReviewFrom />
         </ReviewItem>
       )}
-      {data.map((review) => (
-        <ReviewItem key={review.id}>
-          <ReviewHeader>
-            <Profile src={review.user.avatar_url} alt="User photo" />
-            <ReviewHeaderText>
-              <SubTitleStyled>{review.user.name}</SubTitleStyled>
-              <TextXS>{review.updated_at.slice(0, 10)}</TextXS>
-            </ReviewHeaderText>
-            <Stars rating={review.rating} />
-          </ReviewHeader>
-          <TextS>{review.comment}</TextS>
-        </ReviewItem>
-      ))}
+      {data
+        .map((review) => (
+          <ReviewItem key={review.id}>
+            <ReviewHeader>
+              <Profile src={review.user.avatar_url} alt="User photo" />
+              <ReviewHeaderText>
+                <SubTitleStyled>{review.user.name}</SubTitleStyled>
+                <TextXS>{review.updated_at.slice(0, 10)}</TextXS>
+              </ReviewHeaderText>
+              <Stars rating={review.rating} />
+            </ReviewHeader>
+            <TextS>{review.comment}</TextS>
+          </ReviewItem>
+        ))
+        .reverse()}
     </ReviewsContainer>
   );
 }

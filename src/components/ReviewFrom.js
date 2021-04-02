@@ -1,13 +1,36 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { fetchDrink } from "../features/drinks/drinksSlice";
+import {
+  fetchCreateReview,
+  resetReviewStatus,
+} from "../features/review/reviewSlice";
 import { colors } from "../ui";
 import { Stars } from "./Stars";
 
 export const ReviewFrom = () => {
   const [formData, setFormData] = useState({ rating: 3, comment: "" });
+  const token = useSelector((state) => state.session.token);
+  const reviewStatus = useSelector((state) => state.review.status);
+  const dispatch = useDispatch();
+  const { drink_id: drinkId } = useParams();
+
+  useLayoutEffect(() => {
+    if (reviewStatus === "SUCCESS") {
+      dispatch(fetchDrink(drinkId));
+      dispatch(resetReviewStatus());
+    }
+  }, [reviewStatus]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(fetchCreateReview({ token, drinkId, data: formData }));
+  };
 
   return (
-    <FormStyled>
+    <FormStyled onSubmit={handleSubmit}>
       <StarsContainer>
         <Stars rating={formData.rating} />
         <FakerButtons>
