@@ -32,8 +32,7 @@ function App() {
       <Route path="/cart" component={Cart} />
       <Route path="/favorites" component={Favorites} />
  
-      {/* <Route path="/checkout" component={Checkout} />
-      <Route path="/successful-order" component={SuccessfulOrder} />
+      {/* <Route path="/successful-order" component={SuccessfulOrder} />
       <Route path="/failed-order" component={FailedOrder} /> */}
       <Route path="/account" component={Account} />
       <Route path="/edit-profile" component={EditProfile} />

@@ -7,6 +7,8 @@ import Header from "../components/Header";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import girls from ".././assets/girls.jpg";
+import SpecialSection from "../components/SpecialSection";
+import CategorySlider from "../components/CategorySlider";
 
 export default function Home() {
   const token = useSelector((state) => state.session.token);
@@ -20,26 +22,11 @@ export default function Home() {
       <Header />
       <Search />
       <ImgB alt="upload icon" src={girls} />
-      <Information>
-        <p>Exclusive Offers</p>
-        <a href="#">See all</a>
-      </Information>
-      <Card>
-        <img src={coke} />
-        <h5>Diet Coke</h5>
-        <p>355ml</p>
-        <Price>$1.99</Price>
-      </Card>
-      <Information>
-        <p>Best selling</p>
-        <a href="#">See all</a>
-      </Information>
-      <Card>
-        <img src={coke} />
-        <h5>Diet Coke</h5>
-        <p>355ml</p>
-        <Price>$1.99</Price>
-      </Card>
+      <section>
+        <SpecialSection />
+        <CategorySlider/>
+        <SpecialSection />
+      </section>
     </Template>
   );
 }
@@ -50,26 +37,5 @@ const ImgB = styled.img`
   width: 100%;
   height: 150px;
   margin-top: 10px;
-`;
-const Information = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  & p {
-    font-family: Abel;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 23px;
-    line-height: 31px;
-  }
-  & a {
-    font-family: Abel;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #53b175;
-    text-decoration: none;
-  }
+  margin-bottom: 30px;
 `;
