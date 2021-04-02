@@ -15,6 +15,9 @@ import CategoryDetail from "./pages/CategoryDetail";
 import Location from "./pages/Location";
 import EditProfile from "./pages/EditProfile";
 import Profile from "./pages/Profile";
+import BestSelling from "./pages/BestSelling";
+import TopRecent from "./pages/TopRecent";
+import HighestRated from "./pages/HighestRated";
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
       <Route path="/location" component={Location} />
       <Route path="/explore" component={Explore} />
       <Route path="/categories/:category_id" component={CategoryDetail} />
+      <Route path="/best-selling" component={BestSelling} />
+      <Route path="/top-recent" component={TopRecent} />
+      <Route path="/highest-rated" component={HighestRated} />
       <Route path="/search" component={Search} />
       <Route path="/cart" component={Cart} />
       <Route path="/favorites" component={Favorites} />
