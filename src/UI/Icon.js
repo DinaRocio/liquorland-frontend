@@ -8,8 +8,10 @@ import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
 import { BiCake } from "react-icons/bi";
+import {FcMoneyTransfer} from "react-icons/fc";
 import { BsExclamationCircle, BsFilterRight } from "react-icons/bs";
 import { css } from "@emotion/react";
+
 
 const iconSet = {
   shop: AiOutlineShop,
@@ -39,6 +41,7 @@ const iconSet = {
   orders: RiShoppingBagLine,
   discount: IoTicketOutline,
   cake: BiCake,
+  money: FcMoneyTransfer, 
   filter: BsFilterRight,
 
 };

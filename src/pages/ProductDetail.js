@@ -1,24 +1,21 @@
 import styled from "@emotion/styled";
 import { colors, screenMediaQueries, screenSizes } from "../ui";
 import Button from "../UI/Button";
-import {
-  FaChevronLeft,
-  FaChevronDown,
-  FaChevronUp,
-  FaMinus,
-  FaPlus,
-} from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaMinus, FaPlus } from "react-icons/fa";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { fetchDrink } from "../features/drinks/drinksSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import Icon from "../UI/Icon";
+import Reviews from "../components/Reviews";
+import { Stars } from "../components/Stars";
+import { SubTitleGrayStyled, SubTitleStyled, TitleL, TextM } from "../UI/Text";
 
 export default function ProductDetail() {
   const drink = useSelector((state) => state.drinks.drink);
   const show_drink_state = useSelector((state) => state.drinks.status.show);
+  const [toggle, setToggle] = useState(false);
   const { drink_id } = useParams();
   const dispatch = useDispatch();
   let history = useHistory();
@@ -28,24 +25,28 @@ export default function ProductDetail() {
     dispatch(fetchDrink(drink_id));
   }, []);
 
+  const ToggleIcon = [FaChevronUp, FaChevronDown][toggle ? 0 : 1];
+
+  const handleToggle = () => setToggle(!toggle);
+
   return (
     <TemplateOne>
+      <NavToStyled>
+        <Icon
+          type="backArrow"
+          fill="black"
+          size={20}
+          onClick={() => history.push("/home")}
+        />
+      </NavToStyled>
       <ContainerStyled>
         {show_drink_state === "LOADING" && "cargando..."}
         {show_drink_state === "ERROR" && "Something went wrong"}
         {show_drink_state === "SUCCESS" && (
           <>
-            <NavToStyled>
-              <Icon
-                type="backArrow"
-                fill="black"
-                size={20}
-                onClick={() => history.goBack()}
-              />
-            </NavToStyled>
             <Image src={drink.image_url} />
             <HeadStyled>
-              <TitleStyled>{drink.name}</TitleStyled>
+              <TitleL>{drink.name}</TitleL>
               {false ? (
                 <BsHeartFill color="red" className="icon-button" />
               ) : (
@@ -71,18 +72,13 @@ export default function ProductDetail() {
                 <p className="box-light">{drink.alcohol_grades}%</p>
               </ProductDetailStyled>
               <ProductDetailStyled className="one-line">
-                <SubTitleStyled>Review</SubTitleStyled>
+                <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
                 <IconsContainerStyled>
-                  <StarsIcons>
-                    <BsStarFill />
-                    <BsStarFill />
-                    <BsStarFill />
-                    <BsStarHalf />
-                    <BsStar />
-                  </StarsIcons>
-                  {true ? <FaChevronDown /> : <FaChevronUp />}
+                  <Stars rating={drink.rating_avg} />
+                  <ToggleIcon onClick={handleToggle} className="icon-button" />
                 </IconsContainerStyled>
               </ProductDetailStyled>
+              {toggle && <Reviews data={drink.reviews} />}
             </div>
           </>
         )}
@@ -95,38 +91,36 @@ export default function ProductDetail() {
 }
 
 const TemplateOne = styled.div`
-  position: absolute;
-  top: 0;
   margin: 0 auto;
   height: 100vh;
-  width: 100%;
+  width: 95%;
+  max-width: ${screenSizes.lg};
 
   display: grid;
   top: 0;
-  grid-template-rows: calc(100% - 75px) 75px;
+  grid-template-rows: 60px calc(100% - 135px) 75px;
 
   ${screenMediaQueries.sm} {
-    width: 95%;
   }
   ${screenMediaQueries.md} {
-    width: 85%;
   }
   ${screenMediaQueries.lg} {
-    width: 70%;
   }
   ${screenMediaQueries.xl} {
-    max-width: ${screenSizes.lg};
   }
 `;
 
 const ContainerStyled = styled.div`
+  margin: 0 auto;
+  width: 95%;
+  max-width: ${screenSizes.md};
   height: 100%;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   padding: 0 25px;
   display: flex;
   flex-direction: column;
@@ -172,39 +166,6 @@ const HeadStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10.5px 4px;
-`;
-
-const TitleStyled = styled.h2`
-  font-style: italic;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 18px;
-  letter-spacing: 0.1px;
-  color: ${colors.dark0};
-`;
-
-const SubTitleStyled = styled.h4`
-  font-family: Abel;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 18px;
-  color: ${colors.dark0};
-`;
-
-const SubTitleGrayStyled = styled(SubTitleStyled)`
-  color: ${colors.gray};
-`;
-
-const TextM = styled.p`
-  font-family: ABeeZee;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 18px;
-
-  letter-spacing: 0.1px;
-  color: ${colors.dark0};
 `;
 
 const AmountContainer = styled.div`
@@ -276,10 +237,4 @@ const IconsContainerStyled = styled.div`
   gap: 20px;
   font-size: 14px;
   color: ${colors.dark0};
-`;
-
-const StarsIcons = styled.div`
-  display: flex;
-  gap: 4px;
-  color: ${colors.orange};
 `;
