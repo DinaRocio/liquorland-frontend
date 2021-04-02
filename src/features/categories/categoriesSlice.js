@@ -10,7 +10,6 @@ export const fetchCategories = createAsyncThunk(
 
     const data = await response.json();
     if (!response.ok) {
-      console.log(data);
       throw new Error("Something went wrong");
     }
     return { categories: data };
@@ -26,7 +25,6 @@ export const fetchCategory = createAsyncThunk(
 
     const data = await response.json();
     if (!response.ok) {
-      console.log(data);
       throw new Error("Something went wrong");
     }
     return { category: data };
@@ -88,9 +86,7 @@ const categoriesSlice = createSlice({
     highestRatedItems:{},
     statusIndex: "idle",
     statusShow: "idle",
-    statusBestSelling:"idle",
-    statusTopRecent:"idle",
-    statushighestRated: "idle",
+    statusSpecialCategory:"idle",
     error: null,
   },
   extraReducers: {
@@ -117,15 +113,15 @@ const categoriesSlice = createSlice({
       state.error = action.error.message;
     },
     [fetchBestSelling.fulfilled]: (state, action) => {
-      state.statusBestSelling = "succeded";
+      state.statusSpecialCategory = "succeeded";
       state.bestSellingItems = action.payload.bestSelling;
     },
     [fetchTopRecent.fulfilled]: (state, action) => {
-      state.statusTopRecent = "succeded";
+      state.statusSpecialCategory = "succeeded";
       state.topRecentItems = action.payload.topRecent;
     },
     [fetchHighestRated.fulfilled]: (state, action) => {
-      state.statusTopRecent = "succeded";
+      state.statusSpecialCategory = "succeeded";
       state.highestRatedItems = action.payload.highestRated;
     },
   },

@@ -2,15 +2,18 @@ import { colors } from "../ui";
 import styled from "@emotion/styled";
 
 import LoginForm from "../features/session/LoginForm";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import BlurTemplate from "../templates/BlurTemplate";
+import { fetchProfile } from "../features/users/usersSlice";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
 
   if (token) {
     sessionStorage.setItem("token", token);
+    dispatch(fetchProfile(token));
     return <Redirect to="/home" />;
   }
 
