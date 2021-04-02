@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import girls from ".././assets/girls.jpg";
 import SpecialSection from "../components/SpecialSection";
+import CategorySlider from "../components/CategorySlider";
 
 export default function Home() {
   const token = useSelector((state) => state.session.token);
@@ -23,6 +24,8 @@ export default function Home() {
       <ImgB alt="upload icon" src={girls} />
       <section>
         <SpecialSection />
+       
+        <CategorySlider/>
         <SpecialSection />
       </section>
     </Template>
