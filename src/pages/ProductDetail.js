@@ -1,24 +1,21 @@
 import styled from "@emotion/styled";
 import { colors, screenMediaQueries, screenSizes } from "../ui";
 import Button from "../UI/Button";
-import {
-  FaChevronLeft,
-  FaChevronDown,
-  FaChevronUp,
-  FaMinus,
-  FaPlus,
-} from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaMinus, FaPlus } from "react-icons/fa";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { fetchDrink } from "../features/drinks/drinksSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import Icon from "../UI/Icon";
+import Reviews from "../components/Reviews";
+import { Stars } from "../components/Stars";
+import { SubTitleGrayStyled, SubTitleStyled, TitleL, TextM } from "../UI/Text";
 
 export default function ProductDetail() {
   const drink = useSelector((state) => state.drinks.drink);
   const show_drink_state = useSelector((state) => state.drinks.status.show);
+  const [toggle, setToggle] = useState(false);
   const { drink_id } = useParams();
   const dispatch = useDispatch();
   let history = useHistory();
@@ -28,20 +25,10 @@ export default function ProductDetail() {
     dispatch(fetchDrink(drink_id));
   }, []);
 
-  const stars = function () {
-    let num = 0;
-    const starsArr = [];
-    while (num++ < 5) {
-      if (drink.rating_avg >= num) {
-        starsArr.push(<BsStarFill key={num} />);
-      } else if (drink.rating_avg >= num - 0.5) {
-        starsArr.push(<BsStarHalf key={num} />);
-      } else {
-        starsArr.push(<BsStar key={num} />);
-      }
-    }
-    return starsArr;
-  };
+  const ToggleIcon = [FaChevronUp, FaChevronDown][toggle ? 0 : 1];
+
+  const handleToggle = () => setToggle(!toggle);
+
   return (
     <TemplateOne>
       <ContainerStyled>
@@ -59,7 +46,7 @@ export default function ProductDetail() {
             </NavToStyled>
             <Image src={drink.image_url} />
             <HeadStyled>
-              <TitleStyled>{drink.name}</TitleStyled>
+              <TitleL>{drink.name}</TitleL>
               {false ? (
                 <BsHeartFill color="red" className="icon-button" />
               ) : (
@@ -87,10 +74,11 @@ export default function ProductDetail() {
               <ProductDetailStyled className="one-line">
                 <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
                 <IconsContainerStyled>
-                  <StarsIcons>{stars()}</StarsIcons>
-                  {true ? <FaChevronDown /> : <FaChevronUp />}
+                  <Stars rating={drink.rating_avg} />
+                  <ToggleIcon onClick={handleToggle} className="icon-button" />
                 </IconsContainerStyled>
               </ProductDetailStyled>
+              {toggle && <Reviews data={drink.reviews} />}
             </div>
           </>
         )}
@@ -182,39 +170,6 @@ const HeadStyled = styled.div`
   gap: 10.5px 4px;
 `;
 
-const TitleStyled = styled.h2`
-  font-style: italic;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 18px;
-  letter-spacing: 0.1px;
-  color: ${colors.dark0};
-`;
-
-const SubTitleStyled = styled.h4`
-  font-family: Abel;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 18px;
-  color: ${colors.dark0};
-`;
-
-const SubTitleGrayStyled = styled(SubTitleStyled)`
-  color: ${colors.gray};
-`;
-
-const TextM = styled.p`
-  font-family: ABeeZee;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 18px;
-
-  letter-spacing: 0.1px;
-  color: ${colors.dark0};
-`;
-
 const AmountContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -284,10 +239,4 @@ const IconsContainerStyled = styled.div`
   gap: 20px;
   font-size: 14px;
   color: ${colors.dark0};
-`;
-
-const StarsIcons = styled.div`
-  display: flex;
-  gap: 4px;
-  color: ${colors.orange};
 `;
