@@ -4,14 +4,26 @@ import Search from "../components/Search";
 import { Card, Price } from "../components/Card";
 import coke from "../assets/coke.png";
 import Header from "../components/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import girls from ".././assets/girls.jpg";
 import SpecialSection from "../components/SpecialSection";
 import CategorySlider from "../components/CategorySlider";
+import { fetchBestSelling, fetchHighestRated, fetchTopRecent } from "../features/categories/categoriesSlice";
+import { useEffect } from "react";
 
 export default function Home() {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
+  const bestSelling = useSelector((state) => state.categories.bestSellingItems)
+  const topRecent = useSelector((state)=> state.categories.topRecentItems);
+  const highestRated = useSelector((state) => state.categories.highestRatedItems)
+
+  useEffect(() => {
+    dispatch(fetchBestSelling());
+    dispatch(fetchTopRecent());
+    dispatch(fetchHighestRated());
+  }, [])
 
   if (!token) {
     return <Redirect to="/login" />;
@@ -23,6 +35,9 @@ export default function Home() {
       <Search />
       <ImgB alt="upload icon" src={girls} />
       <section>
+      {console.log(bestSelling)}
+      {console.log(topRecent)}
+      {console.log(highestRated)}
         <SpecialSection />
         <CategorySlider/>
         <SpecialSection />
