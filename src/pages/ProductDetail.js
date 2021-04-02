@@ -28,6 +28,20 @@ export default function ProductDetail() {
     dispatch(fetchDrink(drink_id));
   }, []);
 
+  const stars = function () {
+    let num = 0;
+    const starsArr = [];
+    while (num++ < 5) {
+      if (drink.rating_avg >= num) {
+        starsArr.push(<BsStarFill key={num} />);
+      } else if (drink.rating_avg >= num - 0.5) {
+        starsArr.push(<BsStarHalf key={num} />);
+      } else {
+        starsArr.push(<BsStar key={num} />);
+      }
+    }
+    return starsArr;
+  };
   return (
     <TemplateOne>
       <ContainerStyled>
@@ -71,15 +85,9 @@ export default function ProductDetail() {
                 <p className="box-light">{drink.alcohol_grades}%</p>
               </ProductDetailStyled>
               <ProductDetailStyled className="one-line">
-                <SubTitleStyled>Review</SubTitleStyled>
+                <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
                 <IconsContainerStyled>
-                  <StarsIcons>
-                    <BsStarFill />
-                    <BsStarFill />
-                    <BsStarFill />
-                    <BsStarHalf />
-                    <BsStar />
-                  </StarsIcons>
+                  <StarsIcons>{stars()}</StarsIcons>
                   {true ? <FaChevronDown /> : <FaChevronUp />}
                 </IconsContainerStyled>
               </ProductDetailStyled>
@@ -123,10 +131,10 @@ const ContainerStyled = styled.div`
   height: 100%;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   padding: 0 25px;
   display: flex;
   flex-direction: column;
