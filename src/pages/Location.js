@@ -29,7 +29,6 @@ export default function Location() {
     for (let key in form){
       fd.append(key, form[key]);
     }
-    console.log(fd.has("direction"))
     dispatch(FetchUpdateProfile({fd, token}));
   };
 
