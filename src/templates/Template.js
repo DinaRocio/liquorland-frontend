@@ -12,7 +12,7 @@ export default function Template({ children }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 1fr 95px;
+  grid-template-rows: 1fr 68px;
   height: 100vh;
   padding: 35px 25px;
   .page-content {
