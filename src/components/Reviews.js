@@ -41,7 +41,7 @@ const ReviewsContainer = styled.div`
 
 const ReviewItem = styled.div`
   padding: 12px 0;
-  border-top: 1px solid ${colors.gray4};
+  border-top: 0.5px solid ${colors.gray2};
 `;
 
 const ReviewHeader = styled.div`
