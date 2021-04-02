@@ -22,7 +22,6 @@ function CardCategory({ drinkUrl, name}) {
   const categories = useSelector((state) => state.categories.items);
   const category = useSelector((state) => state.categories.item);
   const statusIndex = useSelector((state) => state.categories.statusIndex);
-  const error = useSelector((state) => state.categories.error);
 
   if (statusIndex === "idle") {
     dispatch(fetchCategories());

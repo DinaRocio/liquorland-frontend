@@ -118,7 +118,7 @@ const StyledCard = styled.div`
   border-radius: 15px;
 `;
 const StyledInf = styled.div`
-display: flex;
+  display: flex;
   width: 100%;
 
   border: 1px solid rgba(226, 226, 226, 0.7);
@@ -135,17 +135,17 @@ display: flex;
     height: 90px;
   }
   & h4 {
-    color: ${colors.dark0}
+    color: ${colors.dark0};
   }
   & p {
     font-family: Abel;
     font-style: normal;
     font-weight: normal;
     line-height: 18px;
-    color: ${colors.dark0}
+    color: ${colors.dark0};
   }
   & a {
-   text-decoration: none;
+    text-decoration: none;
   }
 `;
 const Button = styled.button`

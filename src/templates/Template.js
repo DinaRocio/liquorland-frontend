@@ -14,6 +14,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr 95px;
   height: 100vh;
+  width: 100%;
   padding: 35px 25px;
   .page-content {
     overflow-y: scroll;

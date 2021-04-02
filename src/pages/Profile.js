@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { colors } from "../ui";
 import { useHistory } from "react-router";
-import FullBlurTemplate from "../templates/FullBlurTemplate";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../features/users/usersSlice";
 import Icon from "../UI/Icon";

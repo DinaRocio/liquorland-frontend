@@ -11,15 +11,14 @@ import { IoLogoFacebook } from "react-icons/io5";
 import { IoLogoLinkedin, IoLogoGithub, IoMdAt } from "react-icons/io";
 
 import { BiCake } from "react-icons/bi";
+import {FcMoneyTransfer} from "react-icons/fc";
 import { BsExclamationCircle, BsFilterRight } from "react-icons/bs";
-
 import { css } from "@emotion/react";
-import { colors } from "../ui";
+
 
 const iconSet = {
   shop: AiOutlineShop,
   heart: FiHeart,
-  location: HiLocationMarker,
   cart: FiShoppingCart,
   user: FiUser,
   fillStar: AiFillStar,
@@ -49,6 +48,7 @@ const iconSet = {
   github: IoLogoGithub,
   arroba: IoMdAt,
   cake: BiCake,
+  money: FcMoneyTransfer, 
   filter: BsFilterRight,
 
 };

@@ -17,6 +17,10 @@ function Search() {
     <>
       {isDesktopOrLaptop && (
         <StyledDesktop>
+          <Heading>
+            <img src={heading} alt="heading"/>
+          </Heading>
+          <img src={search} alt="search" />
           <StyledInputD placeholder="Find your drink" type="search" />
           <Button>Search</Button>
         </StyledDesktop>

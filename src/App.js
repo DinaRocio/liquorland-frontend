@@ -14,7 +14,6 @@ import ProductDetail from "./pages/ProductDetail";
 import CategoryDetail from "./pages/CategoryDetail";
 import Location from "./pages/Location";
 import Profile from "./pages/Profile";
-import Filters from "./pages/Filters";
 
 function App() {
   return (
@@ -28,12 +27,11 @@ function App() {
       <Route path="/location" component={Location} />
       <Route path="/explore" component={Explore} />
       <Route path="/categories/:category_id" component={CategoryDetail} />
-      <Route path="/filters" component={Filters} /> 
       <Route path="/search" component={Search} />
       <Route path="/cart" component={Cart} />
       <Route path="/favorites" component={Favorites} />
-      {/* <Route path="/filters" component={Filters} />
-      <Route path="/checkout" component={Checkout} />
+ 
+      {/* <Route path="/checkout" component={Checkout} />
       <Route path="/successful-order" component={SuccessfulOrder} />
       <Route path="/failed-order" component={FailedOrder} /> */}
       <Route path="/account" component={Account} />
