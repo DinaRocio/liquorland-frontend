@@ -41,7 +41,6 @@ export const fetchProfile = createAsyncThunk(
 export const FetchUpdateProfile = createAsyncThunk(
   "session/fetchUpdateProfile",
   async ({fd, token}) => {
-    console.log(token)
     const response = await fetch(`${BASE_URI}/api/profile`, {
       method: "PATCH",
       headers: {
