@@ -1,7 +1,7 @@
 import { colors } from "../ui";
+import MyIcon from "../UI/Icon"
 import styled from "@emotion/styled";
 import { Icon } from "@iconify/react";
-import gps from "../assets/gps.svg";
 import beerIcon from "@iconify/icons-dashicons/beer";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../features/users/usersSlice";
@@ -20,7 +20,7 @@ export default function Header() {
     <StyledHeader>
       <Icon icon={beerIcon} />
       <LocationTitle>
-        <img src={gps} />
+        <MyIcon type="location" size={20}/>
         <p>{profile.direction}</p>
       </LocationTitle>
     </StyledHeader>

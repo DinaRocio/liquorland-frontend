@@ -1,64 +1,49 @@
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
-export default function SpecialSection() {
+export default function SpecialSection({ category, state }) {
+  
+  const route = {
+    1: "top-recent",
+    2: "best-selling",
+    3: "highest-rated",
+  };
+
   return (
     <>
-      <Headers>
-        <p>Best Selling</p>
-        <a href="#">See all</a>
-      </Headers>
-      <SpecialContent>
-        <SpecialCard>
-          <img
-            src="https://www.duvel.com/files/contentBuilder/_660x750_crop_center-center_82_line/Duvel_Social_Rebranding_WebsiteStills_DuvelClassic_International_transparant_v3.png"
-            alt="card_pic"
-          />
-          <Titles>
-            <h5>Duvel</h5>
-            <p>Botellas de 33cl</p>
-          </Titles>
-          <Actions>
-            <p>$13.25</p>
-            <button>
-              <Icon type="add" fill="white" size={25} />
-            </button>
-          </Actions>
-        </SpecialCard>
-        <SpecialCard>
-          <img
-            src="https://www.duvel.com/files/contentBuilder/_660x750_crop_center-center_82_line/Duvel_Social_Rebranding_WebsiteStills_DuvelClassic_International_transparant_v3.png"
-            alt="card_pic"
-          />
-          <Titles>
-            <h5>Duvel</h5>
-            <p>Botellas de 33cl</p>
-          </Titles>
-          <Actions>
-            <p>$13.25</p>
-            <button>
-              <Icon type="add" fill="white" size={25} />
-            </button>
-          </Actions>
-        </SpecialCard>
-        <SpecialCard>
-          <img
-            src="https://www.duvel.com/files/contentBuilder/_660x750_crop_center-center_82_line/Duvel_Social_Rebranding_WebsiteStills_DuvelClassic_International_transparant_v3.png"
-            alt="card_pic"
-          />
-          <Titles>
-            <h5>Duvel</h5>
-            <p>Botellas de 33cl</p>
-          </Titles>
-          <Actions>
-            <p>$13.25</p>
-            <button>
-              <Icon type="add" fill="white" size={25} />
-            </button>
-          </Actions>
-        </SpecialCard>
-      </SpecialContent>
+      {state === "succeeded" && (
+        <>
+          <Headers>
+            <p>{category.name}</p>
+            <Link to={`/${route[category.id]}`}>See all</Link>
+          </Headers>
+          <SpecialContent>
+            {state === "succeeded" &&(
+              category.drinks.map((drink) => (
+                <SpecialCard>
+                  <img
+                    src="https://www.duvel.com/files/contentBuilder/_660x750_crop_center-center_82_line/Duvel_Social_Rebranding_WebsiteStills_DuvelClassic_International_transparant_v3.png"
+                    alt="card_pic"
+                  />
+                  <Titles>
+                    <h5>{drink.name}</h5>
+                    <p>{drink.presentation}</p>
+                  </Titles>
+                  <Actions>
+                    <p>${drink.price}</p>
+                    <button>
+                      <Icon type="add" fill="white" size={25} />
+                    </button>
+                  </Actions>
+                </SpecialCard>
+              )))}
+            
+          </SpecialContent>
+        </>
+      )}
     </>
   );
 }
@@ -70,7 +55,7 @@ const Headers = styled.div`
   font-size: 24px;
   line-height: 31px;
   color: ${colors.dark0};
-  margin-bottom:18px;
+  margin-bottom: 18px;
   & > a {
     font-family: Abel;
     font-size: 16px;
@@ -83,11 +68,11 @@ const SpecialContent = styled.div`
   gap: 15px;
   overflow-x: auto;
   -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    margin-bottom:30px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  margin-bottom: 30px;
 `;
 const SpecialCard = styled.div`
   width: 162px;

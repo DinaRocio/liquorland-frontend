@@ -22,7 +22,7 @@ export default function CategorySlider() {
       <Container>
         {categories &&
           categories.map((category) => (
-            <CategoryCard color={category.color}>
+            <CategoryCard color={category.color} key={category.id}>
               <img src={category.cover_url} alt="category_pic" />
               <p>{category.name}</p>
             </CategoryCard>
