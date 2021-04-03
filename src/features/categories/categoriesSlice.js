@@ -86,7 +86,11 @@ const categoriesSlice = createSlice({
     highestRatedItems:{},
     statusIndex: "idle",
     statusShow: "idle",
-    statusSpecialCategory:"idle",
+    statusSpecialCategory:{
+      bestSelling: "idle",
+      topRecent: "idle",
+      highestRated: "idle",
+    },
     error: null,
   },
   extraReducers: {
@@ -113,15 +117,15 @@ const categoriesSlice = createSlice({
       state.error = action.error.message;
     },
     [fetchBestSelling.fulfilled]: (state, action) => {
-      state.statusSpecialCategory = "succeeded";
+      state.statusSpecialCategory.bestSelling = "succeeded";
       state.bestSellingItems = action.payload.bestSelling;
     },
     [fetchTopRecent.fulfilled]: (state, action) => {
-      state.statusSpecialCategory = "succeeded";
+      state.statusSpecialCategory.topRecent = "succeeded";
       state.topRecentItems = action.payload.topRecent;
     },
     [fetchHighestRated.fulfilled]: (state, action) => {
-      state.statusSpecialCategory = "succeeded";
+      state.statusSpecialCategory.highestRated = "succeeded";
       state.highestRatedItems = action.payload.highestRated;
     },
   },

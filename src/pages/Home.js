@@ -30,11 +30,7 @@ export default function Home() {
     dispatch(fetchBestSelling());
     dispatch(fetchTopRecent());
     dispatch(fetchHighestRated());
-  }, [])
-
-  // if (bestSellingStatus === "idle") {
-  //   dispatch(fetchBestSelling());
-  // }
+  }, []);
 
   if (!token) {
     return <Redirect to="/login" />;
@@ -42,19 +38,24 @@ export default function Home() {
 
   return (
     <Template>
-      {statusSpecialCategory === "succeeded" && (
-        <>
-          <Header />
-          <Search />
-          <ImgB alt="upload icon" src={girls} />
-          <section>
-          <SpecialSection category={bestSelling} />
-            <CategorySlider />
-            <SpecialSection category={topRecent} />
-            <SpecialSection category={highestRated} />
-          </section>
-        </>
-      )}
+      <Header />
+      <Search />
+      <ImgB alt="upload icon" src={girls} />
+      <section>
+        <SpecialSection
+          category={bestSelling}
+          state={statusSpecialCategory.bestSelling}
+        />
+        <CategorySlider />
+        <SpecialSection
+          category={topRecent}
+          state={statusSpecialCategory.topRecent}
+        />
+        <SpecialSection
+          category={highestRated}
+          state={statusSpecialCategory.highestRated}
+        />
+      </section>
     </Template>
   );
 }

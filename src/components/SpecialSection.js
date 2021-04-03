@@ -4,27 +4,24 @@ import { Link } from "react-router-dom";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
-export default function SpecialSection({ category }) {
-  const statusSpecialCategory = useSelector(
-    (state) => state.categories.statusSpecialCategory
-  );
-
+export default function SpecialSection({ category, state }) {
+  
   const route = {
-    2: "best-selling",
     1: "top-recent",
+    2: "best-selling",
     3: "highest-rated",
   };
 
   return (
     <>
-      {statusSpecialCategory === "succeeded" && (
+      {state === "succeeded" && (
         <>
           <Headers>
             <p>{category.name}</p>
             <Link to={`/${route[category.id]}`}>See all</Link>
           </Headers>
           <SpecialContent>
-            {statusSpecialCategory === "succeeded" &&(
+            {state === "succeeded" &&(
               category.drinks.map((drink) => (
                 <SpecialCard>
                   <img
