@@ -24,7 +24,6 @@ const TitleL = styled.h2`
 `;
 
 const TextM = styled.p`
-  font-family: ABeeZee;
   font-style: italic;
   font-weight: normal;
   font-size: 24px;

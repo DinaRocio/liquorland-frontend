@@ -214,7 +214,6 @@ const ProductDetailStyled = styled.div`
   }
 
   p {
-    font-family: ABeeZee;
     font-style: italic;
     font-weight: normal;
     font-size: 13px;
