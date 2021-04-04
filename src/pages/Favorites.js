@@ -22,32 +22,26 @@ export default function Favorites() {
   return (
     <Template>
       <Heading>Favorites</Heading>
-      <Overlay />
+
       {favoriteState.index === "loading" && <span>Loading ...</span>}
       {favoriteState.index === "failed" && <span>Something was wrong</span>}
       {favoriteState.index === "success" &&
         favoriteList.map((favoriteItem) => (
-        <FavoriteCard favorite={favoriteItem}/>
+          <FavoriteCard favorite={favoriteItem} />
         ))}
     </Template>
   );
 }
 
-const Heading = styled.h3`
-  font-family: ABeeZee;
+const Heading = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px 32px;
   font-style: italic;
   font-weight: normal;
   font-size: 20px;
   line-height: 18px;
   text-align: center;
-  margin-bottom: 10px;
-`;
-
-const Overlay = styled.div`
-  color: #e2e2e2;
-  width: 940px;
-  height: 14px;
-  border-bottom: 1px solid;
-  margin-top: 32px;
-  margin-bottom: 15px;
+  border-bottom: 1px solid #e2e2e2;
 `;
