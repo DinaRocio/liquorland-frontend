@@ -1,6 +1,8 @@
 import { BASE_URI } from "../app/config";
 import { APIFetch } from "./apiFetch";
 
+function FavoriteServices() {}
+
 FavoriteServices.prototype.index = async function (token) {
   return await APIFetch(`${BASE_URI}/api/favorites`, {
     method: "GET",

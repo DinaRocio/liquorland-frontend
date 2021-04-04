@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FavoriteCard({ drinkUrl, name, presentation, price }) {
+function FavoriteCard({ favorite }) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
@@ -28,13 +28,13 @@ function FavoriteCard({ drinkUrl, name, presentation, price }) {
 
   return (
     <StyledCard>
-      <img src={coke} alt="coke" />
+      <img src={favorite.drink.image_url} alt="coke" />
       <Inf>
-        <Heading>Sprite Can</Heading>
-        <Presentation>325ml, Price</Presentation>
+        <Heading>{favorite.drink.name}</Heading>
+        <Presentation>{favorite.drink.presentation}, Price</Presentation>
       </Inf>
       <StyledAction>
-        <Price>$1.50</Price>
+        <Price>${favorite.drink.price}</Price>
         <ActionIcon
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

@@ -44,7 +44,7 @@ const favoriteSlice = createSlice({
       state.status.create = "success";
       state.error = null;
     },
-    [fetchCreateFavorite.rejected]: (state) => {
+    [fetchCreateFavorite.rejected]: (state, action) => {
       state.status.create = "failed";
       state.error = JSON.parse(action.error.message);
     },
