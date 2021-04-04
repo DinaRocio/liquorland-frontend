@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import Button from "../../UI/Button";
+import { FormButton } from "../../UI/Button";
 import { colors } from "../../ui";
 import { useState } from "react";
 import { fetchSignup } from "./usersSlice";
@@ -20,7 +20,6 @@ export default function UsersForm({ id }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchSignup(form));
-    
   };
 
   const { name, birth_date, email, password } = form;
@@ -86,9 +85,9 @@ export default function UsersForm({ id }) {
         </p>
       </PolicyLink>
 
-      <Button type="submit" form="signup-form">
+      <FormButton type="submit" form="signup-form">
         Sign Up
-      </Button>
+      </FormButton>
       <SignupLink>
         Already have an account?&nbsp;<Link to="/login">Login</Link>
       </SignupLink>

@@ -1,4 +1,4 @@
-import Button from "../../UI/Button";
+import { FormButton } from "../../UI/Button";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { colors } from "../../ui";
@@ -32,14 +32,17 @@ export default function LoginForm({ id }) {
       </LoginInput>
       <LoginInput>
         <label>Password</label>
-        <input value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="*********" type="password" />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="*********"
+          type="password"
+        />
       </LoginInput>
-      <a href="#">Forgot Password?</a>
-      <Button type="submit" form="login-form">
+      <a>Forgot Password?</a>
+      <FormButton type="submit" form="login-form">
         Log In
-      </Button>
+      </FormButton>
       <SignupLink>
         Don't have an account?&nbsp;<Link to="/signup">Signup</Link>
       </SignupLink>
