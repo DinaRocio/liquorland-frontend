@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { FiHeart, FiUser, FiMinus, FiShoppingCart, FiSearch, FiLogOut } from "react-icons/fi";
+import { FiUser, FiMinus, FiShoppingCart, FiSearch, FiLogOut } from "react-icons/fi";
 import { AiOutlineShop, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward, IoIosClose, IoMdHelpCircleOutline, IoMdNotificationsOutline } from "react-icons/io";
 import { IoTicketOutline } from "react-icons/io5";
@@ -9,13 +9,14 @@ import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icon
 import { GrShop, GrCreditCard } from "react-icons/gr";
 import { BiCake } from "react-icons/bi";
 import {FcMoneyTransfer} from "react-icons/fc";
-import { BsExclamationCircle, BsFilterRight } from "react-icons/bs";
+import { BsExclamationCircle, BsFilterRight, BsHeart, BsHeartFill } from "react-icons/bs";
 import { css } from "@emotion/react";
 
 
 const iconSet = {
   shop: AiOutlineShop,
-  heart: FiHeart,
+  heart: BsHeart,
+  fillHeart: BsHeartFill,
   cart: FiShoppingCart,
   user: FiUser,
   fillStar: AiFillStar,
