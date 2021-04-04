@@ -34,23 +34,23 @@ export default function SearchBar() {
     <>
       {isDesktopOrLaptop && 
       <SyledNavbar>
-        <StyledDiv>
-        {sections.map((section) => (
-                <li key={section}>
-                  <Link
-                    className={isSelected(section) ? "selected" : ""}
-                    to={section === "home" ? "/home" : `/${section}`}
-                  >
-                    <Icon
-                      type={icons[section]}
-                      fill={isSelected(section) ? colors.light2 : "black"}
-                      size={20}
-                    />
-                    {section}
-                  </Link>
-                </li>
-              ))}
-        </StyledDiv>
+          <StyledDiv>
+          {sections.map((section) => (
+                  <li key={section}>
+                    <Link
+                      className={isSelected(section) ? "selected" : ""}
+                      to={section === "home" ? "/home" : `/${section}`}
+                    >
+                      <Icon
+                        type={icons[section]}
+                        fill={isSelected(section) ? colors.light2 : "black"}
+                        size={20}
+                      />
+                      {section}
+                    </Link>
+                  </li>
+                ))}
+          </StyledDiv>
       </SyledNavbar>}
     </>
 )}
@@ -58,12 +58,11 @@ export default function SearchBar() {
 const SyledNavbar = styled.div`
       display:flex;
       justify-content:space-around;
-      margin-top:20px;
-      margin-right:100%;
+      position:absolute;
       align-items: flex-start;
       gap:30px;
       top:0;
-      left:0;
+     
       & li {
         display: flex;
         list-style: none;

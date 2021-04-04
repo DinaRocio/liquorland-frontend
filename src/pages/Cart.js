@@ -49,6 +49,7 @@ export default function Cart() {
   return (
     <>
       {isDesktopOrLaptop &&
+      <Container>
         <TemplateDesktop>
           <Tittle>Shopping cart</Tittle>
           <Table>
@@ -58,6 +59,7 @@ export default function Cart() {
           </Table>
           <CardCart/>
         </TemplateDesktop>
+      </Container>
       }
       {isTabletOrMobileDevice && 
         <>
@@ -120,6 +122,13 @@ export default function Cart() {
     </>
   );
 }
+
+const Container =styled.div`
+    display:flex;
+    justify-content:center;
+    width:100%;
+    margin-left:-120px;
+`;
 
 const Table = styled.p`
     display:flex;

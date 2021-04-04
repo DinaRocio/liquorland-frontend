@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import { colors, screenMediaQueries, screenSizes } from "../ui";
 import Button from "../UI/Button";
@@ -7,6 +8,7 @@ import { fetchDrink } from "../features/drinks/drinksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import TemplateDesktop from "../templates/TemplateDesktop";
 import Icon from "../UI/Icon";
 import Reviews from "../components/Reviews";
 import { Stars } from "../components/Stars";
@@ -19,7 +21,12 @@ export default function ProductDetail() {
   const { drink_id } = useParams();
   const dispatch = useDispatch();
   let history = useHistory();
-
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   /** Loading Drink */
   useEffect(() => {
     dispatch(fetchDrink(drink_id));
@@ -30,63 +37,74 @@ export default function ProductDetail() {
   const handleToggle = () => setToggle(!toggle);
 
   return (
-    <TemplateOne>
-      <NavToStyled>
-        <Icon
-          type="backArrow"
-          fill="black"
-          size={20}
-          onClick={() => history.push("/home")}
-        />
-      </NavToStyled>
-      <ContainerStyled>
-        {show_drink_state === "LOADING" && "cargando..."}
-        {show_drink_state === "ERROR" && "Something went wrong"}
-        {show_drink_state === "SUCCESS" && (
-          <>
-            <Image src={drink.image_url} />
-            <HeadStyled>
-              <TitleL>{drink.name}</TitleL>
-              {false ? (
-                <BsHeartFill color="red" className="icon-button" />
-              ) : (
-                <BsHeart color="red" className="icon-button" />
+    <>
+
+       {isDesktopOrLaptop && 
+        <TemplateDesktop>
+          
+        </TemplateDesktop>
+       }
+         
+      {isTabletOrMobileDevice &&
+          <TemplateOne>
+            <NavToStyled>
+              <Icon
+                type="backArrow"
+                fill="black"
+                size={20}
+                onClick={() => history.push("/home")}
+              />
+            </NavToStyled>
+            <ContainerStyled>
+              {show_drink_state === "LOADING" && "cargando..."}
+              {show_drink_state === "ERROR" && "Something went wrong"}
+              {show_drink_state === "SUCCESS" && (
+                <>
+                  <Image src={drink.image_url} />
+                  <HeadStyled>
+                    <TitleL>{drink.name}</TitleL>
+                    {false ? (
+                      <BsHeartFill color="red" className="icon-button" />
+                    ) : (
+                      <BsHeart color="red" className="icon-button" />
+                    )}
+                    <SubTitleGrayStyled>{drink.presentation}</SubTitleGrayStyled>
+                  </HeadStyled>
+                  <AmountContainer>
+                    <div className="change-quantity">
+                      <FaMinus className="icon-button" />
+                      <input value="1" onChange={() => {}} />
+                      <FaPlus className="icon-button" />
+                    </div>
+                    <TextM>${drink.price}</TextM>
+                  </AmountContainer>
+                  <div>
+                    <ProductDetailStyled>
+                      <SubTitleStyled>Product Detail</SubTitleStyled>
+                      <p>{drink.description}</p>
+                    </ProductDetailStyled>
+                    <ProductDetailStyled className="one-line">
+                      <SubTitleStyled>Alcohol Grades</SubTitleStyled>
+                      <p className="box-light">{drink.alcohol_grades}%</p>
+                    </ProductDetailStyled>
+                    <ProductDetailStyled className="one-line">
+                      <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
+                      <IconsContainerStyled>
+                        <Stars rating={drink.rating_avg} />
+                        <ToggleIcon onClick={handleToggle} className="icon-button" />
+                      </IconsContainerStyled>
+                    </ProductDetailStyled>
+                    {toggle && <Reviews data={drink.reviews} />}
+                  </div>
+                </>
               )}
-              <SubTitleGrayStyled>{drink.presentation}</SubTitleGrayStyled>
-            </HeadStyled>
-            <AmountContainer>
-              <div className="change-quantity">
-                <FaMinus className="icon-button" />
-                <input value="1" onChange={() => {}} />
-                <FaPlus className="icon-button" />
-              </div>
-              <TextM>${drink.price}</TextM>
-            </AmountContainer>
-            <div>
-              <ProductDetailStyled>
-                <SubTitleStyled>Product Detail</SubTitleStyled>
-                <p>{drink.description}</p>
-              </ProductDetailStyled>
-              <ProductDetailStyled className="one-line">
-                <SubTitleStyled>Alcohol Grades</SubTitleStyled>
-                <p className="box-light">{drink.alcohol_grades}%</p>
-              </ProductDetailStyled>
-              <ProductDetailStyled className="one-line">
-                <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
-                <IconsContainerStyled>
-                  <Stars rating={drink.rating_avg} />
-                  <ToggleIcon onClick={handleToggle} className="icon-button" />
-                </IconsContainerStyled>
-              </ProductDetailStyled>
-              {toggle && <Reviews data={drink.reviews} />}
-            </div>
-          </>
-        )}
-      </ContainerStyled>
-      <FooterStyled>
-        <Button>Add to Basquet</Button>
-      </FooterStyled>
-    </TemplateOne>
+            </ContainerStyled>
+            <FooterStyled>
+              <Button>Add to Basquet</Button>
+            </FooterStyled>
+          </TemplateOne>
+      }
+    </>
   );
 }
 

@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 export default function TemplateDesktop({children}){
     return(
         <Container>
-            <Navbar/>
+              <Navbar/>
               {children}
             <div className="footer">
-            <Footer/>
+              <Footer/>
             </div>
         </Container>
     );

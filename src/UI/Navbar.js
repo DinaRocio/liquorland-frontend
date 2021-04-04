@@ -36,29 +36,32 @@ export default function Navbar() {
 
   return (
     <>
-      {isDesktopOrLaptop && 
-      <SyledNavbar>
-        <StyledLogo>
-            <img src={logo} alt="logo"/>
-        </StyledLogo>
-        <StyledDiv>
-        {sections.map((section) => (
-                <li key={section}>
-                  <Link
-                    className={isSelected(section) ? "selected" : ""}
-                    to={section === "home" ? "/home" : `/${section}`}
-                  >
-                    <Icon
-                      type={icons[section]}
-                      fill={isSelected(section) ? colors.light2 : "black"}
-                      size={20}
-                    />
-                    {section}
-                  </Link>
-                </li>
-              ))}
-        </StyledDiv>
-      </SyledNavbar>}
+      {isDesktopOrLaptop &&
+      <Container>
+        <SyledNavbar>
+          <StyledLogo>
+              <img src={logo} alt="logo"/>
+          </StyledLogo>
+          <StyledDiv>
+          {sections.map((section) => (
+                  <li key={section}>
+                    <Link
+                      className={isSelected(section) ? "selected" : ""}
+                      to={section === "home" ? "/home" : `/${section}`}
+                    >
+                      <Icon
+                        type={icons[section]}
+                        fill={isSelected(section) ? colors.light2 : "black"}
+                        size={20}
+                      />
+                      {section}
+                    </Link>
+                  </li>
+                ))}
+          </StyledDiv>
+        </SyledNavbar>
+      </Container>
+      }
       {isTabletOrMobileDevice && 
         <>
             <ul
@@ -114,14 +117,22 @@ export default function Navbar() {
 }
 
 
+const Container = styled.div`
+    display:flex;
+    margin-bottom:25px;
+    justify-content: center;
+    width:100%;
+    height:30px;
+`;
+
 const SyledNavbar = styled.div`
       display:flex;
       justify-content:space-around;
+      position:absolute;
       margin-top:20px;
       align-items: flex-start;
       gap:30px;
       top:0;
-      left:0;
       & li {
         display: flex;
         list-style: none;

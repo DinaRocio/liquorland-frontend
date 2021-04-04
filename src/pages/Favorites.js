@@ -1,6 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
+import TemplateDesktop from "../templates/TemplateDesktop";
 import FavoriteCard from "../components/favoriteCard";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
@@ -19,6 +20,15 @@ export default function Favorites() {
   }
   return (
     <>
+      {isDesktopOrLaptop &&
+      <Container>
+        <TemplateDesktop>
+          <FavoriteCard>
+
+          </FavoriteCard>
+        </TemplateDesktop>
+      </Container>
+      }
       {isTabletOrMobileDevice && 
         <Template>
           <Heading>Favorites</Heading>
@@ -29,6 +39,13 @@ export default function Favorites() {
     </>
   );
 }
+
+const Container =styled.div`
+    display:flex;
+    justify-content:center;
+    width:100%;
+    margin-left:-120px;
+`;
 
 const Heading = styled.h3`
     font-family: ABeeZee;
