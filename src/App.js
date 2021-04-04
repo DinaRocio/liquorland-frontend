@@ -19,31 +19,61 @@ import BestSelling from "./pages/BestSelling";
 import TopRecent from "./pages/TopRecent";
 import HighestRated from "./pages/HighestRated";
 
+import { useMediaQuery } from "react-responsive";
+import { createContext } from "react";
+
+const ResponsiveContext = createContext();
+
 function App() {
+  /**
+   * Responsive:
+   * - mobile (tablet)
+   * - desktop
+   */
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+  const isTabletOrMobileDevice = useMediaQuery({ maxDeviceWidth: 1224 });
+
+  const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 });
+  const isBigScreen = useMediaQuery({ minDeviceWidth: 1824 });
+
+  const isPortrait = useMediaQuery({ orientation: "portrait" });
+  const isRetina = useMediaQuery({ minResolution: "2dppx" });
+
   return (
-    <Router>
-      <Route exact path="/" component={Welcome} />
-      <Route path="/splash" component={Splash} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/home" component={Home} />
-      <Route path="/drinks/:drink_id" component={ProductDetail} />
-      <Route path="/location" component={Location} />
-      <Route path="/explore" component={Explore} />
-      <Route path="/categories/:category_id" component={CategoryDetail} />
-      <Route path="/best-selling" component={BestSelling} />
-      <Route path="/top-recent" component={TopRecent} />
-      <Route path="/highest-rated" component={HighestRated} />
-      <Route path="/search" component={Search} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/favorites" component={Favorites} />
- 
-      {/* <Route path="/successful-order" component={SuccessfulOrder} />
-      <Route path="/failed-order" component={FailedOrder} /> */}
-      <Route path="/account" component={Account} />
-      <Route path="/edit-profile" component={EditProfile} />
-      <Route path="/myDetails" component={Profile} />
-    </Router>
+    <ResponsiveContext.Provider
+      value={{
+        isDesktopOrLaptop,
+        isBigScreen,
+        isTabletOrMobile,
+        isTabletOrMobileDevice,
+        isPortrait,
+        isRetina,
+      }}
+    >
+      <Router>
+        <Route exact path="/" component={Welcome} />
+        <Route path="/splash" component={Splash} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/home" component={Home} />
+        <Route path="/drinks/:drink_id" component={ProductDetail} />
+        <Route path="/location" component={Location} />
+        <Route path="/explore" component={Explore} />
+        <Route path="/categories/:category_id" component={CategoryDetail} />
+        <Route path="/best-selling" component={BestSelling} />
+        <Route path="/top-recent" component={TopRecent} />
+        <Route path="/highest-rated" component={HighestRated} />
+        <Route path="/search" component={Search} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/favorites" component={Favorites} />
+
+        {/* <Route path="/successful-order" component={SuccessfulOrder} />
+    <Route path="/failed-order" component={FailedOrder} /> */}
+        <Route path="/account" component={Account} />
+        <Route path="/edit-profile" component={EditProfile} />
+        <Route path="/myDetails" component={Profile} />
+      </Router>
+    </ResponsiveContext.Provider>
   );
 }
 

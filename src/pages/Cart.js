@@ -160,9 +160,8 @@ const CheckoutContent = styled.div`
     margin-top: 80px;
   }
   & > button {
-    font-family: ABeeZee;
     padding: 14px;
-    margin-top:30px;
+    margin-top: 30px;
     background: ${colors.light2};
     outline: none;
     border: none;
@@ -198,14 +197,14 @@ const Option = styled.div`
   }
 `;
 const CartButton = styled.button`
-font-family: ABeeZee;
-    padding: 14px 24px;
-    margin-top: 30px;
-    background: #5DD39E;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    line-height: 18px;
-`
+  font-family: ABeeZee;
+  padding: 14px 24px;
+  margin-top: 30px;
+  background: #5dd39e;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 18px;
+`;
