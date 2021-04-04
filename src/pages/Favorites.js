@@ -27,7 +27,7 @@ export default function Favorites() {
       {favoriteState.index === "failed" && <span>Something was wrong</span>}
       {favoriteState.index === "success" &&
         favoriteList.map((favoriteItem) => (
-          <FavoriteCard favorite={favoriteItem} />
+          <FavoriteCard key={favoriteItem.id} favorite={favoriteItem} />
         ))}
     </Template>
   );
