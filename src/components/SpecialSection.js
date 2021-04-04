@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
 export default function SpecialSection({ category, state }) {
-  
   const route = {
     1: "top-recent",
     2: "best-selling",
@@ -21,9 +19,9 @@ export default function SpecialSection({ category, state }) {
             <Link to={`/${route[category.id]}`}>See all</Link>
           </Headers>
           <SpecialContent>
-            {state === "succeeded" &&(
+            {state === "succeeded" &&
               category.drinks.map((drink) => (
-                <SpecialCard>
+                <SpecialCard key={drink.id}>
                   <img
                     src="https://www.duvel.com/files/contentBuilder/_660x750_crop_center-center_82_line/Duvel_Social_Rebranding_WebsiteStills_DuvelClassic_International_transparant_v3.png"
                     alt="card_pic"
@@ -39,8 +37,7 @@ export default function SpecialSection({ category, state }) {
                     </button>
                   </Actions>
                 </SpecialCard>
-              )))}
-            
+              ))}
           </SpecialContent>
         </>
       )}

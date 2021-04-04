@@ -39,7 +39,7 @@ export default function LoginForm({ id }) {
           type="password"
         />
       </LoginInput>
-      <a>Forgot Password?</a>
+      <span>Forgot Password?</span>
       <FormButton type="submit" form="login-form">
         Log In
       </FormButton>
@@ -55,9 +55,10 @@ const Styledform = styled.form`
   flex-direction: column;
   gap: 16px;
   padding: 0px 25px;
-  & > a {
+  & > span {
     display: flex;
     text-decoration: none;
+    font-style: italic;
     font-size: 14px;
     line-height: 108.1%;
     letter-spacing: 0.05em;
