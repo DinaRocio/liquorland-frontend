@@ -30,9 +30,6 @@ function CardCategory({ drinkUrl, name}) {
       <>
         {isDesktopOrLaptop &&
         <div>
-          <StyledHeading>
-            <Heading>Our Categories</Heading>
-          </StyledHeading>
            <SContainer>
             <SCategory>
                   <CategoryCard>
@@ -124,7 +121,8 @@ const StyledHeading= styled.div`
   margin:25px;
   width:100%;
   height:70px;
-  background-color:${colors.gray2};
+  color:white;
+  background-color:${colors.light2};
 `;
 
 const Heading = styled.p`

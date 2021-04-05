@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FavoriteCard({ drinkUrl , name, presentation, price}){
+function FavoriteCard({ favorite, name , presentation, price, setURL}){
     const dispatch = useDispatch();
     const token = useSelector((state) => state.session.token);
     const classes = useStyles();
@@ -36,11 +36,6 @@ function FavoriteCard({ drinkUrl , name, presentation, price}){
       console.log(id);
       dispatch(fetchDeleteFavorite({token, favoriteId: id}))
     }
-    const classes = useStyles();
-    const [expanded, setExpanded] = useState(false);
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-      };
     const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 1224px)'
     })
@@ -55,10 +50,15 @@ function FavoriteCard({ drinkUrl , name, presentation, price}){
             <div className="icon">
               <Icon className="heart" type="heart" size={30} />
             </div>
-            <img src={bebida} />
-            <p className="name">name</p>
-            <p className="presentation">presentation</p>
-            <p className="price">price</p>
+            <img src={setURL} />
+            <div className="inf">
+              <p className="name">{name}</p>
+              <p className="presentation">{presentation}</p>
+            </div>
+            <p className="price">${price}</p>
+            <div className="shop">
+              <Icon className="cart" type="cart" size={30} />
+            </div>
         </StyledDesktop>
         }
 
@@ -114,9 +114,8 @@ const StyledDesktop = styled.div`
     font-style: normal;
     font-weight: normal;
     line-height: 18px;
-    background-color: ${colors.gray2};
+    background-color: ${colors.white};
     border-radius:15px;
-    text-align:justify;
     & > .icon {
         margin-top:20px;
         margin-right:220px;
@@ -129,14 +128,32 @@ const StyledDesktop = styled.div`
         width:230px;
         height:230px;
     }
-    & > .name {
-        font-size: 24px;
+    & > .inf {
+      display: flex;
+      width: 230px;
+      flex-direction: column;
+      text-align: initial;
+      margin-left: -5px;
+      & > .name {
+        font-size: 20px;
         color: ${colors.black} ;
-        margin-right:180px;
     }
-    & > .presentation {
-        color: ${colors.gray} ;
+      & > .presentation {
+          color: ${colors.gray} ;
+      }
+    }
+
+    & > .price {
+        color: ${colors.light2} ;
+        margin-top:20px;
         margin-right:150px;
+        font-size: 20px;
+    }
+    & > .shop {
+        margin-top:-24px;
+        margin-left:150px;
+        & > .cart {
+        }
     }
 `;
 
@@ -162,7 +179,6 @@ const StyledCard = styled.div`
     }
   }
 `;
-
 const Inf = styled.div`
 display: flex;
 flex-direction: column;

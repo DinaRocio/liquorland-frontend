@@ -2,6 +2,7 @@ import { useMediaQuery } from 'react-responsive'
 import styled from '@emotion/styled';
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
+import banner  from "../assets/banner.svg";
 import dina  from "../assets/dina.svg";
 import frank from "../assets/frank.svg";
 import diana from "../assets/diana.svg";
@@ -21,7 +22,7 @@ export default function Footer(){
                       <div className="icon">
                        <a href="https://www.linkedin.com/in/dinavillanueva/" target="_blank"><Icon type="likendin" size={30} fill="black"/></a>
                        <a href="https://github.com/DinaRocio" target="_blank"><Icon type="github" size={30} fill="black"/></a>
-                       <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><Icon type="arroba" size={30} fill="black"/></a>
+                       <a href="" target="_blank"><Icon type="arroba" size={30} fill="black"/></a>
                       </div>
                     </div>
 
@@ -53,8 +54,6 @@ export default function Footer(){
 const StyledFooter = styled.div`
     display:flex;
     margin:30px;
-    position:absolute;
-    bottom:0;
     flex-direction:row;
     justify-content:center;
     align-items:center;

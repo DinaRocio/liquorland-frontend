@@ -1,8 +1,9 @@
 import { useMediaQuery } from 'react-responsive'
 import CardCategory from "../components/CardCategory"
 import Template from "../templates/Template"
-import TemplatePage from "../templates/TemplatePage";
+import Navbar from "../UI/Navbar";
 import Search from "../components/Search"
+import Footer from "../components/Footer";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
@@ -22,9 +23,16 @@ export default function Explore() {
   return (
     <>
       {isDesktopOrLaptop && 
-      <TemplatePage>
-        <Search />
-      </TemplatePage>
+      <Content>
+        <Navbar/>
+        <div className="search">
+          <Search/>
+        </div>
+        <div className="content">
+          <CardCategory/>
+        </div>
+        <div className="foo"><Footer/></div>
+      </Content>
       }
       {isTabletOrMobileDevice && 
       <Template>
@@ -35,6 +43,28 @@ export default function Explore() {
       }
     </>
 )};
+
+const Content = styled.h3`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    & > .search {
+      display:flex;
+      margin-top:120px;
+    }
+    & > .content {
+      display:flex;
+      margin-top:-55px;
+      margin-right:680px;
+    }
+    & > .foo {
+      display:flex;
+      align-items:center;
+      position:absolute;
+      bottom:0;
+    }
+`;
 
 const Heading = styled.h3`
     font-style: italic;

@@ -1,35 +1,18 @@
-<<<<<<< HEAD
-import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
+import Footer from "../components/Footer";
 import Search from "../components/Search"
 import Card from "../components/Card";
 import { colors } from "../ui";
-import coke from "../assets/coke.png"
 import Header from "../components/Header"
 import TemplateDesktop from "../templates/TemplateDesktop";
 import  Carussel from "../components/Carousel";
 import CardCategory from "../components/CardCategory";
 import bebida from "../assets/bebida.svg";
 import girls from ".././assets/girls.jpg"
-
-export default function Home() {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-device-width: 1224px)'
-  })
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)'
-  })
-=======
-import styled from "@emotion/styled";
-import Template from "../templates/Template";
-import Search from "../components/Search";
-import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router";
-import girls from ".././assets/girls.jpg";
 import SpecialSection from "../components/SpecialSection";
 import CategorySlider from "../components/CategorySlider";
 import {
@@ -40,9 +23,15 @@ import {
 import { useEffect } from "react";
 import { fetchIndexFavorites } from "../features/favorites/favoriteSlice";
 
+
 export default function Home() {
   const dispatch = useDispatch();
->>>>>>> 6ee617259bfb97027a2f41c1491cdccc560e09ba
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+  })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+  })
   const token = useSelector((state) => state.session.token);
   const bestSelling = useSelector((state) => state.categories.bestSellingItems);
   const topRecent = useSelector((state) => state.categories.topRecentItems);
@@ -65,38 +54,47 @@ export default function Home() {
   }
 
   return (
-<<<<<<< HEAD
     <>
         {isDesktopOrLaptop && 
-          <TemplateDesktop>
-           <Carussel />
-            <CardCategory/>
-            <StyledHeading>
-              <Heading>Popular products</Heading>
-            </StyledHeading>
-            <ContainerCard>
-              <Card
-                src={bebida}
-                name={"Trappistes Rochefort 8"}
-                presentation={"Lata 335 ml."}
-              />
-              <Card
-                src={bebida}
-                name={"Trappistes Rochefort 8"}
-                presentation={"Lata 335 ml."}
-              />
-              <Card
-                src={bebida}
-                name={"Trappistes Rochefort 8"}
-                presentation={"Lata 335 ml."}
-              />
-              <Card
-                src={bebida}
-                name={"Trappistes Rochefort 8"}
-                presentation={"Lata 335 ml."}
-              />
-            </ContainerCard>
-          </TemplateDesktop>
+        <Container>
+            <TemplateDesktop>
+            <Carussel />
+              <StyledHeading>
+                <Heading>Our Categories</Heading>
+              </StyledHeading>
+              <CardCategory/>
+              <StyledHeading>
+                <Heading>Popular products</Heading>
+              </StyledHeading>
+              <ContainerCard>
+                <Card
+                  src={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+                <Card
+                  src={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+                <Card
+                  src={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+                <Card
+                  src={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+              </ContainerCard>
+              <Footer/>
+            </TemplateDesktop>
+          </Container>
         }
 
         {isTabletOrMobileDevice && 
@@ -104,52 +102,25 @@ export default function Home() {
             <Header />
             <Search />
             <ImgB alt="upload icon" src={girls} />
-            <Information>
-              <p>Exclusive Offers</p>
-              <a href="#">See all</a>
-            </Information>
-            {/* <Card>
-              <img src={coke} />
-              <h5>Diet Coke</h5>
-              <p>355ml</p>
-              <Price>$1.99</Price>
-            </Card>
-            <Information>
-              <p>Best selling</p>
-              <a href="#">See all</a>
-            </Information>
-            <Card>
-              <img src={coke} />
-              <h5>Diet Coke</h5>
-              <p>355ml</p>
-              <Price>$1.99</Price>
-            </Card> */}
+            <section>
+              <SpecialSection
+                category={bestSelling}
+                state={statusSpecialCategory.bestSelling}
+              />
+              <CategorySlider />
+              <SpecialSection
+                category={topRecent}
+                state={statusSpecialCategory.topRecent}
+              />
+              <SpecialSection
+                category={highestRated}
+                state={statusSpecialCategory.highestRated}
+              />
+            </section>
         </Template>
         }
     </>
     
-=======
-    <Template>
-      <Header />
-      <Search />
-      <ImgB alt="upload icon" src={girls} />
-      <section>
-        <SpecialSection
-          category={bestSelling}
-          state={statusSpecialCategory.bestSelling}
-        />
-        <CategorySlider />
-        <SpecialSection
-          category={topRecent}
-          state={statusSpecialCategory.topRecent}
-        />
-        <SpecialSection
-          category={highestRated}
-          state={statusSpecialCategory.highestRated}
-        />
-      </section>
-    </Template>
->>>>>>> 6ee617259bfb97027a2f41c1491cdccc560e09ba
   );
 }
 
@@ -159,13 +130,14 @@ const StyledHeading= styled.div`
   margin-top:45px;
   width:100%;
   height:70px;
-  background-color:${colors.gray2};
+  color:white;
+  background-color:${colors.light2};
 `;
 
 const Heading = styled.div`
     display:flex;
+    width:100%;
     justify-content:center;
-    margin-top:25px;
     font-family: ABeeZee;
     font-style: normal;
     font-weight: normal;
@@ -180,6 +152,19 @@ const ContainerCard = styled.div`
     grid-template-columns: repeat(4, 350px);
     grid-template-rows: repeat(autofill, 400px);
     grid-gap: 12px;
+`;
+
+const StyledFooter = styled.div`
+    display:flex;
+    position:absolute;
+    bottom:0;
+    justify-content:center;
+`;
+
+const Container = styled.div`
+   display:flex;
+   width:100%;
+   margin-top:-100;
 `;
 
 // styles for mobile

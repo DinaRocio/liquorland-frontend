@@ -2,6 +2,8 @@ import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import Template from "../templates/Template";
 import TemplateDesktop from "../templates/TemplateDesktop";
+import Footer from "../components/Footer";
+import bebida from "../assets/bebida.svg";
 import FavoriteCard from "../components/favoriteCard";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
@@ -17,7 +19,6 @@ export default function Favorites() {
     })
   const token = useSelector((state) => state.session.token)
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.session.token);
   const favoriteList = useSelector((state) => state.favorite.list);
   const favoriteState = useSelector((state) => state.favorite.status);
 
@@ -33,9 +34,41 @@ export default function Favorites() {
       {isDesktopOrLaptop &&
       <Container>
         <TemplateDesktop>
-          <FavoriteCard>
-
-          </FavoriteCard>
+          <ContainerCard>
+            <FavoriteCard
+               setURL={bebida}
+               name={"Trappistes"}
+               presentation={"Lata 335 ml."}
+               price={"12.99"}
+            />
+            <FavoriteCard
+               setURL={bebida}
+               name={"Trappistes Rochefort 8"}
+               presentation={"Lata 335 ml."}
+               price={"12.99"}
+            />
+            <FavoriteCard
+               setURL={bebida}
+               name={"Trappistes Rochefort 8"}
+               presentation={"Lata 335 ml."}
+               price={"12.99"}
+            />
+            <FavoriteCard
+               setURL={bebida}
+               name={"Trappistes Rochefort 8"}
+               presentation={"Lata 335 ml."}
+               price={"12.99"}
+            />
+            <FavoriteCard
+               setURL={bebida}
+               name={"Trappistes Rochefort 8"}
+               presentation={"Lata 335 ml."}
+               price={"12.99"}
+            />
+          </ContainerCard>
+          <StyledFooter>
+            <Footer/>
+          </StyledFooter>
         </TemplateDesktop>
       </Container>
       }
@@ -54,6 +87,21 @@ export default function Favorites() {
     </>
   );
 }
+
+const ContainerCard = styled.div`
+    display:grid;
+    margin-top:50px;
+    margin-bottom:50px;
+    grid-template-columns:repeat(4, 300px);
+    grid-template-rows: repeat(autofill, 370px);
+    grid-gap:15px;
+`;
+
+const StyledFooter = styled.div`
+    display:flex;
+    bottom:0;
+    justify-content:center;
+`;
 
 const Container =styled.div`
     display:flex;

@@ -6,7 +6,6 @@ export default function TemplatePage({children}){
         <div>
             <SearchBar/>
               {children}
-            <Footer/>
         </div>
     );
 }

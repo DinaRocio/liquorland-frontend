@@ -119,15 +119,19 @@ export default function Navbar() {
 
 const Container = styled.div`
     display:flex;
-    margin-bottom:25px;
+    margin-bottom:55px;
     justify-content: center;
-    width:100%;
-    height:30px;
+    background-color:white;
+    margin-top:-10px;
 `;
 
 const SyledNavbar = styled.div`
       display:flex;
       justify-content:space-around;
+      padding:15px;
+      width:1913px;
+      height:75px;
+      background-color:white;
       position:absolute;
       margin-top:20px;
       align-items: flex-start;

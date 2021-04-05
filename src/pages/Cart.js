@@ -3,7 +3,10 @@ import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
+import Footer from "../components/Footer";
+import Navbar from "../UI/Navbar";
 import CardCart from "../components/CardCart";
+import bebida from "../assets/bebida.svg";
 import {
   fetchDeleteCart,
   fetchIndexCart,
@@ -49,17 +52,68 @@ export default function Cart() {
   return (
     <>
       {isDesktopOrLaptop &&
-      <Container>
-        <TemplateDesktop>
-          <Tittle>Shopping cart</Tittle>
-          <Table>
-            <p>Products</p>
-            <p>Detail</p>
-            <p>Amount</p>
-          </Table>
-          <CardCart/>
-        </TemplateDesktop>
-      </Container>
+      <ContainerTwo>
+        <Container>
+          <div className="bar"><Navbar/></div>
+            <Tittle>Shopping cart</Tittle>
+            <Table>
+              <p>Products</p>
+              <p>Detail</p>
+              <p>Amount</p>
+            </Table>
+            <div className="content">
+                <CardCart
+                  setUrl={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+                <CardCart
+                  setUrl={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                /> 
+                <CardCart
+                  setUrl={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                /> 
+                <CardCart
+                  setUrl={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+                <CardCart
+                  setUrl={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+                <CardCart
+                  setUrl={bebida}
+                  name={"Trappistes Rochefort 8"}
+                  presentation={"Lata 335 ml."}
+                  price={"12.99"}
+                />
+            </div>
+            <div className="foo"><Footer/></div>
+        </Container>
+        <Checkout>
+                <p className="heading">TOTAL</p>
+                <div className="licor">
+                  <Icon type="beer" fill="black" size={30}/>
+                  <p className="location">StoreImageLIQUORLAND4940 N Tarrant Pkwy,Fort Worth, TX</p>
+                </div>
+                <p className="sub">SUB-TOTAL	$30.99</p>
+                <p className="tax"> TAX	$2.56</p>
+                <p className="sav">SAVINGS	-$0.00</p>
+                <p className="total">TOTAL	$33.55</p>
+                <button>PLACE ORDER</button>
+        </Checkout>
+      </ContainerTwo>
       }
       {isTabletOrMobileDevice && 
         <>
@@ -123,12 +177,87 @@ export default function Cart() {
   );
 }
 
+const Checkout = styled.div`
+    display:flex;
+    flex-direction:column;
+    margin-top:165px;
+    margin-left:-190px;
+    padding:15px;
+    gap:15px;
+    width:500px;
+    height:100%;
+    background-color:white;
+    & div {
+      display:flex;
+      gap:15px;
+      width:100%;
+      height:45px;
+      border-bottom:1px solid  ${colors.gray4};
+    }
+    & > p {
+    font-family: Abel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 21px;
+    align-items: center;
+    color: #7c7c7c;
+    }
+    & > button {
+    font-family: Abel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 21px;
+    align-items: center;
+    background: ${colors.light2};
+    cursor: pointer;
+    color: white;
+    outline:none;
+    border:none;
+    width:150px;
+    height:40px;
+    }
+`;
+
+const ContainerTwo =styled.div`
+    display:flex;
+    justify-content:center;
+    flex-direction:row;
+    width:100%;
+    height:100%;
+`;
+
 const Container =styled.div`
     display:flex;
     justify-content:center;
-    width:100%;
-    margin-left:-120px;
+    flex-direction:column;
+    margin-top:55px;
+    margin-bottom:55px;
+    & > .bar {
+      display:flex;
+      justify-content:center;
+      margin-left:300px;
+    }
+    & > .content {
+      display:flex;
+      width:900px;
+      flex-direction:column;
+      margin-bottom:5px;
+      margin-left:100px;
+      bottom:0;
+      justify-content:center;
+    }
+    & > .foo {
+      display:flex;
+      margin-top:55px;
+      margin-bottom:-55px;
+      margin-left:580px;
+      bottom:0;
+      justify-content:center;
+    }
 `;
+
 
 const Table = styled.p`
     display:flex;

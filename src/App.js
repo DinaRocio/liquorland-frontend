@@ -79,7 +79,7 @@ function App() {
         {/* <Route path="/successful-order" component={SuccessfulOrder} />
     <Route path="/failed-order" component={FailedOrder} /> */}
         <Route path="/account" component={Account} />
-        <Route path="/edit-profile" component={EditProfile} />
+        {/* <Route path="/edit-profile" component={EditProfile} /> */}
         <Route path="/myDetails" component={Profile} />
       </Router>
     </ResponsiveContext.Provider>

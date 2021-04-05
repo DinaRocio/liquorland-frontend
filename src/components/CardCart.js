@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUpdateCart } from "../features/cart/cartSlice";
 import Counter from "../UI/Counter";
 import bebida from "../assets/bebida.svg"
+import { Container } from '@material-ui/core';
 
 function CardCart({
     id,
@@ -37,7 +38,8 @@ function CardCart({
       
  return(
         <>
-        {isDesktopOrLaptop && 
+        {isDesktopOrLaptop &&
+          <Content>
             <ContainerCart>
                     <div>
                         <img src={setUrl} />
@@ -47,6 +49,7 @@ function CardCart({
                         <p className="counter"><Counter/></p>
                     </div>
             </ContainerCart>
+          </Content>
         }
 
         {isTabletOrMobileDevice && 
@@ -73,11 +76,19 @@ function CardCart({
 export default CardCart;
 
 //styles for desktop
+const Content = styled.div`
+    display:flex;
+    width:100%;
+    margin-top:15px;
+    background-color:${colors.white};
+`;
+
 const ContainerCart = styled.div`
     display:flex;
     width:815px;
-    margin:15px;
-    border-bottom:1px solid ${colors.gray};
+    border-radius:10px;
+    background-color:${colors.white};
+    border-bottom:1px solid ${colors.gray2};
     & div {
         display:flex;
         flex-direction:row;

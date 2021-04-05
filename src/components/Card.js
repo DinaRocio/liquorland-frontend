@@ -5,7 +5,7 @@ import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
 
-export default function Card({ src , presentation , name ,children }){
+export default function Card({ src , presentation , name ,children, price }){
    const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 1224px)'
     })
@@ -23,9 +23,16 @@ return(
               <img src={src} />
               <p className="name">{name}</p>
               <p className="presentation">{presentation}</p>
-              <button onClick={toggler}>
-              {toggle ? "🛒 Agregado" :  "Agregar"}
-              </button>
+              <div className="option">
+                <p className="price">${price}</p>
+                <button onClick={toggler}>
+                {toggle ? (
+                    <Icon type="cart" fill="#5DD39E"  size={35} >-</Icon>
+                ) : (
+                    <Icon type="cart" fill="#7C7C7C" size={35} />
+                )}
+                </button>
+              </div>
           </CardDesktop>
         }
 
@@ -36,7 +43,7 @@ return(
                 {children}
                 <Button onClick={toggler}>
                 {toggle ? (
-                    <Icon type="check" fill="white" size={20} />
+                    <Icon type="check" fill="white" size={20}/>
                 ) : (
                     <Icon type="add" fill="white" size={20} />
                 )}
@@ -56,8 +63,9 @@ const CardDesktop = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    background-color:${colors.white};
     flex-direction:column;
-    width:350px;
+    width:270px;
     height:400px;
     border-radius:5px;
     & img {
@@ -82,22 +90,25 @@ const CardDesktop = styled.div`
         font-size: 16px;
         line-height: 18px;
     }
-    & button {
-        margin-top:15px;
-        border-radius:6px;
-        padding:4px 8px;
-        outline:none;
-        border:none;
-        width:135px;
-        height:45px;
-        background-color:#5DD39E;
-        color:white;
-        font-family: ABeeZee;
+    & > .option {
+      display:flex;
+      margin-top:15px;
+      gap:110px;
+      & > .price {
+        font-family: Abel;
         font-style: normal;
         font-weight: normal;
-        font-size: 17px;
+        font-size: 20px;
         line-height: 18px;
+        color:${colors.light2};
+      }
+      & button {
+        background-color:transparent;
+        outline:none;
+        border:none;
         cursor: pointer;
+        color:${colors.gray};
+      }
     }
 `;
 
