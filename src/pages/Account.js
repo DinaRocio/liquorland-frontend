@@ -86,7 +86,7 @@ export default function Account ( {
           </div>
           <LogoutButton onClick={() => dispatch(fetchLogout(token))}>
             <Icon type="logout" fill={colors.light2} size={28} />
-            Logout
+            Log-out
             <span></span>
           </LogoutButton>
         </Container>
