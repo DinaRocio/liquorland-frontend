@@ -59,8 +59,6 @@ const FormStyled = styled.form`
     border-radius: 8px;
     border: 1px solid ${colors.gray2};
     outline: none;
-
-    font-family: ABeeZee;
     font-style: italic;
     font-weight: normal;
     font-size: 12px;

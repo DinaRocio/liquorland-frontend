@@ -3,11 +3,12 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import map from "../assets/map.svg";
 import { colors } from "../ui";
-import FullBlurTemplate from "../templates/FullBlurTemplate";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, FetchUpdateProfile } from "../features/users/usersSlice";
 import { useState } from "react";
-import Button from "../UI/Button";
+import { FormButton } from "../UI/Button";
+import BlurTemplate from "../templates/BlurTemplate";
+import { Link } from "react-router-dom";
 
 export default function Location() {
   const dispatch = useDispatch();
@@ -26,28 +27,29 @@ export default function Location() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let fd = new FormData();
-    for (let key in form){
+    for (let key in form) {
       fd.append(key, form[key]);
     }
-    console.log(fd.has("direction"))
-    dispatch(FetchUpdateProfile({fd, token}));
+    dispatch(FetchUpdateProfile({ fd, token }));
   };
 
   const { direction } = form;
 
+  const LocationHeader = (
+    <LocationHeaderStyled>
+      <img src={map} alt="mapIcon" />
+      <Titles>
+        <h5>Select Your Location</h5>
+        <p>
+          Switch on your location to stay in tune with what’s happening in your
+          area
+        </p>
+      </Titles>
+    </LocationHeaderStyled>
+  );
   return (
-    <FullBlurTemplate>
-      <LocationHeader>
-        <img src={map} alt="mapIcon" />
-        <Titles>
-          <h5>Select Your Location</h5>
-          <p>
-            Switch on your location to stay in tune with what’s happening in
-            your area
-          </p>
-        </Titles>
-      </LocationHeader>
-      <LocalForm onSubmit={handleSubmit}  form="locale-form">
+    <BlurTemplate header={LocationHeader} headerSize="large">
+      <LocalForm onSubmit={handleSubmit} form="locale-form">
         <Input>
           <label>Your address</label>
           <input
@@ -55,7 +57,9 @@ export default function Location() {
             type="text"
             value={direction}
             name="direction"
-            onChange={(e) => setForm({...form, [e.target.name]:e.target.value})}
+            onChange={(e) =>
+              setForm({ ...form, [e.target.name]: e.target.value })
+            }
           />
         </Input>
 
@@ -65,12 +69,15 @@ export default function Location() {
           `}
           id="map"
         ></div>
-      
-        <Button type="submit" form="locale-form">
-        Save
-      </Button>
+
+        <FormButton type="submit" form="locale-form">
+          Save
+        </FormButton>
       </LocalForm>
-    </FullBlurTemplate>
+      <LinkContainer>
+        <Link to="/account">Back</Link>
+      </LinkContainer>
+    </BlurTemplate>
   );
 }
 
@@ -83,7 +90,7 @@ const mapStyles = css`
   margin-top: 15px;
 `;
 
-const LocationHeader = styled.div`
+const LocationHeaderStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,6 +105,7 @@ const Titles = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 10px;
   & > h5 {
     font-size: 26px;
@@ -108,7 +116,6 @@ const Titles = styled.div`
     font-size: 16px;
     line-height: 15px;
     color: ${colors.gray};
-    text-align: center;
   }
 `;
 
@@ -139,4 +146,9 @@ const Input = styled.div`
       color: ${colors.gray};
     }
   }
+`;
+
+const LinkContainer = styled.div`
+  text-align: center;
+  padding-top: 10px;
 `;

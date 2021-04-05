@@ -19,16 +19,8 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   body {
-    background: grey;
-    font-family: ${fontFamily};
-  }
-  #root {
-    width: 100vw;
     background: white;
-    min-height: 100vh;
-    display: flex;
-    margin: auto;
-    position: relative;
+    font-family: ${fontFamily};
   }
 
   input {
@@ -39,10 +31,8 @@ const globalStyles = css`
     text-decoration: none;
   }
 `;
-
 ReactDOM.render(
   <React.StrictMode>
-    <Global styles={globalStyles} />
     <Provider store={store}>
       <Global styles={globalStyles} />
       <App />

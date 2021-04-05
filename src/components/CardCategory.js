@@ -20,7 +20,6 @@ function CardCategory({ drinkUrl, name}) {
   })
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.items);
-  const category = useSelector((state) => state.categories.item);
   const statusIndex = useSelector((state) => state.categories.statusIndex);
 
   if (statusIndex === "idle") {
@@ -62,16 +61,17 @@ function CardCategory({ drinkUrl, name}) {
         }
 
         {isTabletOrMobileDevice && 
-          <StyledCategory>
-          {categories && categories.map((category) => (
-            <Link to={`/categories/${category.id}`} key={category.id}>
-              <StyledCard  color={category.color}>
-                <img src={category.cover_url} />
-                <p>{category.name}</p>
-              </StyledCard>
-            </Link>
-          ))}
-        </StyledCategory>
+         <StyledCategory>
+         {categories &&
+           categories.map((category) => (
+             <Link to={`/categories/${category.id}`} key={category.id}>
+               <StyledCard color={category.color}>
+                 <img src={category.cover_url} alt="category_pic" />
+                 <p>{category.name}</p>
+               </StyledCard>
+             </Link>
+           ))}
+       </StyledCategory>
         }
       </>
     );

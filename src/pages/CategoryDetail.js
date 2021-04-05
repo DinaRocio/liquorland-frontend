@@ -12,7 +12,6 @@ import Button from "../UI/Button";
 import { fetchBrands } from "../features/brands/brandsSlice";
 import { fetchStyles } from "../features/styless/stylesSlice";
 
-
 export default function CategoryDetail() {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -23,8 +22,6 @@ export default function CategoryDetail() {
   const { category_id } = useParams();
 
   const [filterOpen, setFilterOpen] = useState(false);
-
-
 
   useEffect(() => {
     dispatch(fetchCategory(category_id));
@@ -38,7 +35,7 @@ export default function CategoryDetail() {
       {statusShow === "error" && "Something went wrong"}
       {statusShow === "succeeded" && (
         <>
-         <FilterModal isOpen={filterOpen}>
+          <FilterModal isOpen={filterOpen}>
             <Heading>
               <Icon
                 type="close"
@@ -53,21 +50,31 @@ export default function CategoryDetail() {
               <FilterForm>
                 <p>Brand</p>
                 <FilterInput>
-                  {brands && brands.map((brand) => (
-                    <div className="filterOption" key={brand.id}>
-                    <input type="checkbox" name={brand.name} value={brand.name}/>
-                    <label for="vehicle1"> {brand.name}</label>
-                  </div>
-                  ))}
+                  {brands &&
+                    brands.map((brand) => (
+                      <div className="filterOption" key={brand.id}>
+                        <input
+                          type="checkbox"
+                          name={brand.name}
+                          value={brand.name}
+                        />
+                        <label htmlFor="vehicle1"> {brand.name}</label>
+                      </div>
+                    ))}
                 </FilterInput>
                 <p>Styles</p>
                 <FilterInput>
-                  {styles && styles.map((brand) => (
-                    <div className="filterOption" key={brand.id}>
-                    <input type="checkbox" name={brand.name} value={brand.name}/>
-                    <label for="vehicle1"> {brand.name}</label>
-                  </div>
-                  ))}
+                  {styles &&
+                    styles.map((brand) => (
+                      <div className="filterOption" key={brand.id}>
+                        <input
+                          type="checkbox"
+                          name={brand.name}
+                          value={brand.name}
+                        />
+                        <label htmlFor="vehicle1"> {brand.name}</label>
+                      </div>
+                    ))}
                 </FilterInput>
                 <Button>Apply Fiters</Button>
               </FilterForm>
@@ -88,7 +95,7 @@ export default function CategoryDetail() {
               onClick={() => setFilterOpen(!filterOpen)}
             />
           </Heading>
-         
+
           <Description>
             <p>{category.description}</p>
           </Description>

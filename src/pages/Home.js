@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { useMediaQuery } from 'react-responsive'
@@ -21,13 +22,50 @@ export default function Home() {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
   })
+=======
+import styled from "@emotion/styled";
+import Template from "../templates/Template";
+import Search from "../components/Search";
+import Header from "../components/Header";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import girls from ".././assets/girls.jpg";
+import SpecialSection from "../components/SpecialSection";
+import CategorySlider from "../components/CategorySlider";
+import {
+  fetchBestSelling,
+  fetchHighestRated,
+  fetchTopRecent,
+} from "../features/categories/categoriesSlice";
+import { useEffect } from "react";
+import { fetchIndexFavorites } from "../features/favorites/favoriteSlice";
+
+export default function Home() {
+  const dispatch = useDispatch();
+>>>>>>> 6ee617259bfb97027a2f41c1491cdccc560e09ba
   const token = useSelector((state) => state.session.token);
+  const bestSelling = useSelector((state) => state.categories.bestSellingItems);
+  const topRecent = useSelector((state) => state.categories.topRecentItems);
+  const highestRated = useSelector(
+    (state) => state.categories.highestRatedItems
+  );
+  const statusSpecialCategory = useSelector(
+    (state) => state.categories.statusSpecialCategory
+  );
+
+  useEffect(() => {
+    dispatch(fetchBestSelling());
+    dispatch(fetchTopRecent());
+    dispatch(fetchHighestRated());
+  }, []);
+
 
   if (!token) {
     return <Redirect to="/login" />;
   }
 
   return (
+<<<<<<< HEAD
     <>
         {isDesktopOrLaptop && 
           <TemplateDesktop>
@@ -90,6 +128,28 @@ export default function Home() {
         }
     </>
     
+=======
+    <Template>
+      <Header />
+      <Search />
+      <ImgB alt="upload icon" src={girls} />
+      <section>
+        <SpecialSection
+          category={bestSelling}
+          state={statusSpecialCategory.bestSelling}
+        />
+        <CategorySlider />
+        <SpecialSection
+          category={topRecent}
+          state={statusSpecialCategory.topRecent}
+        />
+        <SpecialSection
+          category={highestRated}
+          state={statusSpecialCategory.highestRated}
+        />
+      </section>
+    </Template>
+>>>>>>> 6ee617259bfb97027a2f41c1491cdccc560e09ba
   );
 }
 
@@ -124,31 +184,9 @@ const ContainerCard = styled.div`
 
 // styles for mobile
 const ImgB = styled.img`
-  /* background-image: url("https://res.cloudinary.com/dtrjltklc/image/upload/v1616683359/branding_1_iliiaj.png"); */
   object-fit: cover;
   width: 100%;
   height: 150px;
   margin-top: 10px;
-`;
-const Information = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  & p {
-    font-family: Abel;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 23px;
-    line-height: 31px;
-  }
-  & a {
-    font-family: Abel;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #53b175;
-    text-decoration: none;
-  }
+  margin-bottom: 30px;
 `;

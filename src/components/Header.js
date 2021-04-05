@@ -1,32 +1,52 @@
 import { colors } from "../ui";
+import MyIcon from "../UI/Icon"
 import styled from "@emotion/styled";
 import { Icon } from "@iconify/react";
 import beerIcon from "@iconify/icons-dashicons/beer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../features/users/usersSlice";
 
-function Header() {
-    return(
-        <StyledHeader>
-             <Icon icon={beerIcon} />
-             <p>Dhaka, Banassre</p>
-        </StyledHeader>
-    );
+export default function Header() {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.session.token);
+  const profile = useSelector((state) => state.users.profile);
+  const status = useSelector((state) => state.users.status);
+
+  if (status === "idle") {
+    dispatch(fetchProfile(token));
+  }
+
+  return (
+    <StyledHeader>
+      <Icon icon={beerIcon} />
+      <LocationTitle>
+        <MyIcon type="location" size={20}/>
+        <p>{profile.direction}</p>
+      </LocationTitle>
+    </StyledHeader>
+  );
 }
 
-export default Header;
-
 const StyledHeader = styled.div`
-      display:flex;
-      justify-content:center;
-      & > svg {
-        font-size: 45px;
-        color: ${colors.dark0};
-        margin-top: -5px;
-        margin-left: 7px;
-        z-index: 2;
-      }
-      & p {
-          margin-top: 40px;
-          margin-bottom: 7px;
-          margin-left: -70px;
-      }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0px 20px;
+  & > svg {
+    font-size: 45px;
+    color: ${colors.dark0};
+  }
+`;
+const LocationTitle = styled.div`
+  display: flex;
+  gap: 4px;
+  font-family: Abel;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #4c4f4d;
+  & > img {
+    width: 20px;
+  }
 `;

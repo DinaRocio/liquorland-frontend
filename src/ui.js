@@ -24,15 +24,14 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 // mobile first
 const screenSizes = {
-  xs: "0px",
   sm: "600px",
   md: "960px",
-  lg: "1280px",
-  xl: "1920px",
+  lg: "1224px",
+  xl: "1824px",
 };
 const screenMediaQueries = {
   // default*
-  xs: `@media only screen and (max-width: ${screenSizes.xs})`,
+  xs: `@media only screen and (max-width: ${screenSizes.sm})`,
   sm: `@media only screen and (min-width: ${screenSizes.sm})`,
   md: `@media only screen and (min-width: ${screenSizes.md})`,
   lg: `@media only screen and (min-width: ${screenSizes.lg})`,

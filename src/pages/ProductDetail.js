@@ -13,8 +13,11 @@ import Icon from "../UI/Icon";
 import Reviews from "../components/Reviews";
 import { Stars } from "../components/Stars";
 import { SubTitleGrayStyled, SubTitleStyled, TitleL, TextM } from "../UI/Text";
+import { fetchCreateFavorite, fetchDeleteFavorite } from "../features/favorites/favoriteSlice";
 
 export default function ProductDetail() {
+  const token = useSelector((state) => state.session.token);
+  const favoriteList = useSelector((state) => state.favorite.list);
   const drink = useSelector((state) => state.drinks.drink);
   const show_drink_state = useSelector((state) => state.drinks.status.show);
   const [toggle, setToggle] = useState(false);
@@ -27,14 +30,30 @@ export default function ProductDetail() {
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)'
     })
+  const [favorite, setFavorite ] = useState(null);
+
   /** Loading Drink */
   useEffect(() => {
     dispatch(fetchDrink(drink_id));
   }, []);
 
+  useEffect(() => {
+    setFavorite(favoriteList.find((favoriteItem) => favoriteItem.drink.id === parseInt(drink_id)  ))
+  }, [favoriteList])
+  console.log(favorite, favoriteList)
+
   const ToggleIcon = [FaChevronUp, FaChevronDown][toggle ? 0 : 1];
 
   const handleToggle = () => setToggle(!toggle);
+
+  const handleAddItem = () => {
+    dispatch(fetchCreateFavorite({token, drink_id}))
+  }
+
+  const handleRemoveItem = () => {
+    dispatch(fetchDeleteFavorite({token, favoriteId: favorite.id}))
+  }
+  
 
   return (
     <>
@@ -47,62 +66,62 @@ export default function ProductDetail() {
          
       {isTabletOrMobileDevice &&
           <TemplateOne>
-            <NavToStyled>
-              <Icon
-                type="backArrow"
-                fill="black"
-                size={20}
-                onClick={() => history.push("/home")}
-              />
-            </NavToStyled>
-            <ContainerStyled>
-              {show_drink_state === "LOADING" && "cargando..."}
-              {show_drink_state === "ERROR" && "Something went wrong"}
-              {show_drink_state === "SUCCESS" && (
-                <>
-                  <Image src={drink.image_url} />
-                  <HeadStyled>
-                    <TitleL>{drink.name}</TitleL>
-                    {false ? (
-                      <BsHeartFill color="red" className="icon-button" />
-                    ) : (
-                      <BsHeart color="red" className="icon-button" />
-                    )}
-                    <SubTitleGrayStyled>{drink.presentation}</SubTitleGrayStyled>
-                  </HeadStyled>
-                  <AmountContainer>
-                    <div className="change-quantity">
-                      <FaMinus className="icon-button" />
-                      <input value="1" onChange={() => {}} />
-                      <FaPlus className="icon-button" />
-                    </div>
-                    <TextM>${drink.price}</TextM>
-                  </AmountContainer>
-                  <div>
-                    <ProductDetailStyled>
-                      <SubTitleStyled>Product Detail</SubTitleStyled>
-                      <p>{drink.description}</p>
-                    </ProductDetailStyled>
-                    <ProductDetailStyled className="one-line">
-                      <SubTitleStyled>Alcohol Grades</SubTitleStyled>
-                      <p className="box-light">{drink.alcohol_grades}%</p>
-                    </ProductDetailStyled>
-                    <ProductDetailStyled className="one-line">
-                      <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
-                      <IconsContainerStyled>
-                        <Stars rating={drink.rating_avg} />
-                        <ToggleIcon onClick={handleToggle} className="icon-button" />
-                      </IconsContainerStyled>
-                    </ProductDetailStyled>
-                    {toggle && <Reviews data={drink.reviews} />}
+          <NavToStyled>
+            <Icon
+              type="backArrow"
+              fill="black"
+              size={20}
+              onClick={() => history.push("/home")}
+            />
+          </NavToStyled>
+          <ContainerStyled>
+            {show_drink_state === "LOADING" && "cargando..."}
+            {show_drink_state === "ERROR" && "Something went wrong"}
+            {show_drink_state === "SUCCESS" && (
+              <>
+                <Image src={drink.image_url} />
+                <HeadStyled>
+                  <TitleL>{drink.name}</TitleL>
+                  {favorite ? (
+                    <BsHeartFill color="red" className="icon-button" onClick={handleRemoveItem} />
+                   ) : (
+                    <BsHeart color="red" className="icon-button" onClick={handleAddItem} />
+                  )} 
+                  <SubTitleGrayStyled>{drink.presentation}</SubTitleGrayStyled>
+                </HeadStyled>
+                <AmountContainer>
+                  <div className="change-quantity">
+                    <FaMinus className="icon-button" />
+                    <input value="1" onChange={() => {}} />
+                    <FaPlus className="icon-button" />
                   </div>
-                </>
-              )}
-            </ContainerStyled>
-            <FooterStyled>
-              <Button>Add to Basquet</Button>
-            </FooterStyled>
-          </TemplateOne>
+                  <TextM>${drink.price}</TextM>
+                </AmountContainer>
+                <div>
+                  <ProductDetailStyled>
+                    <SubTitleStyled>Product Detail</SubTitleStyled>
+                    <p>{drink.description}</p>
+                  </ProductDetailStyled>
+                  <ProductDetailStyled className="one-line">
+                    <SubTitleStyled>Alcohol Grades</SubTitleStyled>
+                    <p className="box-light">{drink.alcohol_grades}%</p>
+                  </ProductDetailStyled>
+                  <ProductDetailStyled className="one-line">
+                    <SubTitleStyled>Review({drink.reviews_count})</SubTitleStyled>
+                    <IconsContainerStyled>
+                      <Stars rating={drink.rating_avg} />
+                      <ToggleIcon onClick={handleToggle} className="icon-button" />
+                    </IconsContainerStyled>
+                  </ProductDetailStyled>
+                  {toggle && <Reviews data={drink.reviews} />}
+                </div>
+              </>
+            )}
+          </ContainerStyled>
+          <FooterStyled>
+            <Button>Add to Basquet</Button>
+          </FooterStyled>
+        </TemplateOne>
       }
     </>
   );
@@ -232,7 +251,6 @@ const ProductDetailStyled = styled.div`
   }
 
   p {
-    font-family: ABeeZee;
     font-style: italic;
     font-weight: normal;
     font-size: 13px;
