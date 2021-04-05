@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import ReactDOM from "react-dom";
-import { colors } from "./ui";
 import "./index.css";
 import App from "./App";
 import { Global, css } from "@emotion/react";
@@ -20,7 +19,7 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   body {
-    background: ${colors.gray3} ;
+    background: white;
     font-family: ${fontFamily};
   }
 

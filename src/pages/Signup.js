@@ -1,4 +1,3 @@
-import { useMediaQuery } from 'react-responsive'
 import { colors } from "../ui";
 import styled from "@emotion/styled";
 import UsersForm from "../features/users/UsersForm";
@@ -10,16 +9,10 @@ import { killUsersToken } from "../features/users/usersSlice";
 import BlurTemplate from "../templates/BlurTemplate";
 
 export default function Signup() {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-device-width: 1224px)'
-    })
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)'
-    })
-
   const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
   const history = useHistory();
+
   useEffect(() => {
     if (token) {
       dispatch(setToken({ token }));
@@ -27,19 +20,14 @@ export default function Signup() {
       history.push("/home");
     }
   }, [token]);
-
   return (
-    <>
-    {isTabletOrMobileDevice && 
-      <BlurTemplate>
-        <Titles>
-          <h2>Sign Up</h2>
-          <p>Enter your credentials to continue</p>
-        </Titles>
-        <UsersForm id="signup-form" />
-      </BlurTemplate>
-    }
-    </>
+    <BlurTemplate>
+      <Titles>
+        <h2>Sign Up</h2>
+        <p>Enter your credentials to continue</p>
+      </Titles>
+      <UsersForm id="signup-form" />
+    </BlurTemplate>
   );
 }
 
