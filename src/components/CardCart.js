@@ -1,140 +1,51 @@
-import { useMediaQuery } from 'react-responsive'
 import { colors } from "../ui";
 import styled from "@emotion/styled";
+import Counter from "../UI/Counter";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUpdateCart } from "../features/cart/cartSlice";
-import Counter from "../UI/Counter";
-import bebida from "../assets/bebida.svg"
-import { Container } from '@material-ui/core';
 
 function CardCart({
-    id,
-    setUrl,
-    name,
-    presentation,
-    price,
-    quantity,
-    handleRemoveItem,
-  }){
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-device-width: 1224px)'
-        })
-    const isTabletOrMobileDevice = useMediaQuery({
-        query: '(max-device-width: 1224px)'
-        })
+  id,
+  setUrl,
+  name,
+  presentation,
+  price,
+  quantity,
+  handleRemoveItem,
+}) {
+  const [count, setCount] = useState(quantity);
+  const token = useSelector((state) => state.session.token);
+  const dispatch = useDispatch();
 
-    const [count, setCount] = useState(quantity);
-    const token = useSelector((state) => state.session.token);
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        const timer = setTimeout(() => {
-        if (quantity !== count)
-            dispatch(fetchUpdateCart({ token, cartId: id, quantity: count }));
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, [count]);
-      
- return(
-        <>
-        {isDesktopOrLaptop &&
-          <Content>
-            <ContainerCart>
-                    <div>
-                        <img src={setUrl} />
-                        <p className="name" >{name}</p>
-                        <p className="presentation">{presentation}</p>
-                        <p className="precio" >${price}</p>
-                        <p className="counter"><Counter/></p>
-                    </div>
-            </ContainerCart>
-          </Content>
-        }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (quantity !== count)
+        dispatch(fetchUpdateCart({ token, cartId: id, quantity: count }));
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [count]);
 
-        {isTabletOrMobileDevice && 
-            <StyledContainer>
-            <ImageDrink src={setUrl} alt="drink" />
-            <div>
-              <Heading>
-                <HeadingText>{name}</HeadingText>
-                <span onClick={handleRemoveItem}>x</span>
-              </Heading>
-              <Description>{presentation}</Description>
-              <QuantityPriceContent>
-                <StyledDiv>
-                  <Counter setCount={setCount} count={count} />
-                </StyledDiv>
-                <Price>${price}</Price>
-              </QuantityPriceContent>
-            </div>
-          </StyledContainer>
-        }
-        </>
- );
+  return (
+    <StyledContainer>
+      <ImageDrink src={setUrl} alt="drink" />
+      <div>
+        <Heading>
+          <HeadingText>{name}</HeadingText>
+          <span onClick={handleRemoveItem}>x</span>
+        </Heading>
+        <Description>{presentation}</Description>
+        <QuantityPriceContent>
+          <StyledDiv>
+            <Counter setCount={setCount} count={count} />
+          </StyledDiv>
+          <Price>${price}</Price>
+        </QuantityPriceContent>
+      </div>
+    </StyledContainer>
+  );
 }
 export default CardCart;
-
-//styles for desktop
-const Content = styled.div`
-    display:flex;
-    width:100%;
-    margin-top:15px;
-    background-color:${colors.white};
-`;
-
-const ContainerCart = styled.div`
-    display:flex;
-    width:815px;
-    border-radius:10px;
-    background-color:${colors.white};
-    border-bottom:1px solid ${colors.gray2};
-    & div {
-        display:flex;
-        flex-direction:row;
-        margin-left:-5px;
-        font-family: ABeeZee;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 18px;
-        color: #181725;
-        & > .name {
-        margin-top:55px;
-        margin-left:-5px;
-        }
-        & > .presentation {
-        margin-top:75px;
-        margin-left:-210px;
-        font-size: 17px;
-        color: ${colors.gray};
-        }
-        & > .precio {
-        margin-top:65px;
-        margin-left:190px;
-        font-size: 28px;
-        }
-        & > .counter {
-        display:flex;
-        margin-top:65px;
-        margin-left:180px;
-        font-size: 28px;
-        }
-    }
-    & img {
-        margin-top:15px;
-        width:150px;
-        height:150px;
-    }
-`;
-
-//styles for mobile
-
-//const StyledDiv = styled.div`
-    //display:flex;
-    //margin-top:70px;
-    //margin-left: -190px;
-//`;
 
 const StyledContainer = styled.div`
   display: flex;
@@ -167,7 +78,8 @@ const Heading = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   gap: 8px;
-    span {
+
+  span {
     cursor: pointer;
     color: ${colors.gray4};
     font-size: 14px;
