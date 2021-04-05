@@ -61,7 +61,7 @@ export default function ProductDetail() {
   }
 
   return (
-    
+    <>
        {isDesktopOrLaptop && 
         <TemplateDesktop>
           
