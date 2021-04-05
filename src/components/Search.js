@@ -17,6 +17,10 @@ function Search() {
     <>
       {isDesktopOrLaptop && (
         <StyledDesktop>
+          <Heading>
+            <img src={heading} alt="heading"/>
+          </Heading>
+          <img src={search} alt="search" />
           <StyledInputD placeholder="Find your drink" type="search" />
           <Button>Search</Button>
         </StyledDesktop>
@@ -62,8 +66,7 @@ const StyledInput = styled.input`
 const StyledDesktop = styled.div`
   display: flex;
   position: relative;
-  margin-left:400px;
-  margin-top: -100px;
+  margin-top: 10px;
   & img {
     width: 100%;
     height: 100%;
@@ -71,11 +74,18 @@ const StyledDesktop = styled.div`
   }
 `;
 
+const Heading = styled.div`
+  display: flex;
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 65px;
+`;
+
 const Button = styled.button`
   display: flex;
   position: absolute;
-  margin-top: 55px;
-  margin-left: 370px;
+  margin-top: 355px;
+  margin-left: 775px;
   width: 100px;
   height: 45px;
   border: none;
@@ -95,10 +105,9 @@ const Button = styled.button`
 const StyledInputD = styled.input`
   display: flex;
   position: absolute;
-  margin-top: 55px;
+  margin-top: 355px;
   margin-left: 65px;
-  margin-left:10px;
-  width: 320px;
+  width: 50%;
   height: 45px;
   border: none;
   border-radius: 7px;
