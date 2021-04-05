@@ -20,11 +20,16 @@ import TopRecent from "./pages/TopRecent";
 import HighestRated from "./pages/HighestRated";
 
 import { useMediaQuery } from "react-responsive";
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchIndexFavorites } from "./features/favorites/favoriteSlice";
 
 const ResponsiveContext = createContext();
 
 function App() {
+
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.session.token);
   /**
    * Responsive:
    * - mobile (tablet)
@@ -38,6 +43,11 @@ function App() {
 
   const isPortrait = useMediaQuery({ orientation: "portrait" });
   const isRetina = useMediaQuery({ minResolution: "2dppx" });
+
+
+  useEffect(() => {
+    if (token) dispatch(fetchIndexFavorites(token))
+  }, [token])
 
   return (
     <ResponsiveContext.Provider

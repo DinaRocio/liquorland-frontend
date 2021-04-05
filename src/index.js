@@ -19,7 +19,7 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   body {
-    background: grey;
+    background: white;
     font-family: ${fontFamily};
   }
 

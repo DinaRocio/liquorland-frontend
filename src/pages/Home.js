@@ -13,6 +13,7 @@ import {
   fetchTopRecent,
 } from "../features/categories/categoriesSlice";
 import { useEffect } from "react";
+import { fetchIndexFavorites } from "../features/favorites/favoriteSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ export default function Home() {
     dispatch(fetchTopRecent());
     dispatch(fetchHighestRated());
   }, []);
+
 
   if (!token) {
     return <Redirect to="/login" />;
