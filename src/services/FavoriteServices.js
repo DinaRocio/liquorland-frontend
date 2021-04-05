@@ -12,14 +12,14 @@ FavoriteServices.prototype.index = async function (token) {
   });
 };
 
-FavoriteServices.prototype.create = async function ({ token, data }) {
+FavoriteServices.prototype.create = async function ({ token, drink_id }) {
   return await APIFetch(`${BASE_URI}/api/favorites`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ favorite: data }),
+    body: JSON.stringify({"favorite": {drink_id}}),
   });
 };
 

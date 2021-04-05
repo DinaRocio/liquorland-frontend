@@ -11,23 +11,41 @@ import Icon from "../UI/Icon";
 import Reviews from "../components/Reviews";
 import { Stars } from "../components/Stars";
 import { SubTitleGrayStyled, SubTitleStyled, TitleL, TextM } from "../UI/Text";
+import { fetchCreateFavorite, fetchDeleteFavorite } from "../features/favorites/favoriteSlice";
 
 export default function ProductDetail() {
+  const token = useSelector((state) => state.session.token);
+  const favoriteList = useSelector((state) => state.favorite.list);
   const drink = useSelector((state) => state.drinks.drink);
   const show_drink_state = useSelector((state) => state.drinks.status.show);
   const [toggle, setToggle] = useState(false);
   const { drink_id } = useParams();
   const dispatch = useDispatch();
   let history = useHistory();
+  const [favorite, setFavorite ] = useState(null);
 
   /** Loading Drink */
   useEffect(() => {
     dispatch(fetchDrink(drink_id));
   }, []);
 
+  useEffect(() => {
+    setFavorite(favoriteList.find((favoriteItem) => favoriteItem.drink.id === parseInt(drink_id)  ))
+  }, [favoriteList])
+  console.log(favorite, favoriteList)
+
   const ToggleIcon = [FaChevronUp, FaChevronDown][toggle ? 0 : 1];
 
   const handleToggle = () => setToggle(!toggle);
+
+  const handleAddItem = () => {
+    dispatch(fetchCreateFavorite({token, drink_id}))
+  }
+
+  const handleRemoveItem = () => {
+    dispatch(fetchDeleteFavorite({token, favoriteId: favorite.id}))
+  }
+  
 
   return (
     <TemplateOne>
@@ -47,11 +65,11 @@ export default function ProductDetail() {
             <Image src={drink.image_url} />
             <HeadStyled>
               <TitleL>{drink.name}</TitleL>
-              {false ? (
-                <BsHeartFill color="red" className="icon-button" />
-              ) : (
-                <BsHeart color="red" className="icon-button" />
-              )}
+              {favorite ? (
+                <BsHeartFill color="red" className="icon-button" onClick={handleRemoveItem} />
+               ) : (
+                <BsHeart color="red" className="icon-button" onClick={handleAddItem} />
+              )} 
               <SubTitleGrayStyled>{drink.presentation}</SubTitleGrayStyled>
             </HeadStyled>
             <AmountContainer>
