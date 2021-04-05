@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'react-responsive'
 import styled from "@emotion/styled";
 import { colors, screenMediaQueries, screenSizes } from "../ui";
 import Button from "../UI/Button";
@@ -7,6 +8,7 @@ import { fetchDrink } from "../features/drinks/drinksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import TemplateDesktop from "../templates/TemplateDesktop";
 import Icon from "../UI/Icon";
 import Reviews from "../components/Reviews";
 import { Stars } from "../components/Stars";
@@ -23,6 +25,12 @@ export default function ProductDetail() {
   const { drink_id } = useParams();
   const dispatch = useDispatch();
   let history = useHistory();
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   const [favorite, setFavorite ] = useState(null);
   const [count, setCount] = useState(0)
 
@@ -119,6 +127,8 @@ export default function ProductDetail() {
         <Button onClick={handleAddToCart}>Add to Basquet</Button>
       </FooterStyled>
     </TemplateOne>
+      }
+    </>
   );
 }
 

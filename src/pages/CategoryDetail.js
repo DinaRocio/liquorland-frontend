@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, Price } from "../components/Card";
+import  Card from "../components/Card";
 import { useHistory, useParams } from "react-router";
 import Icon from "../UI/Icon";
 import { colors, screenMediaQueries } from "../ui";
@@ -109,7 +109,7 @@ export default function CategoryDetail() {
                   </Link>
                   <p>{drink.presentation}</p>
 
-                  <Price>${drink.price}</Price>
+                  {/* <Price>${drink.price}</Price> */}
                 </Card>
               ))}
           </ProductsContainer>
