@@ -12,6 +12,7 @@ import Reviews from "../components/Reviews";
 import { Stars } from "../components/Stars";
 import { SubTitleGrayStyled, SubTitleStyled, TitleL, TextM } from "../UI/Text";
 import { fetchCreateFavorite, fetchDeleteFavorite } from "../features/favorites/favoriteSlice";
+import { fetchCreateCart } from "../features/cart/cartSlice";
 
 export default function ProductDetail() {
   const token = useSelector((state) => state.session.token);
@@ -23,6 +24,7 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   let history = useHistory();
   const [favorite, setFavorite ] = useState(null);
+  const [count, setCount] = useState(0)
 
   /** Loading Drink */
   useEffect(() => {
@@ -32,7 +34,6 @@ export default function ProductDetail() {
   useEffect(() => {
     setFavorite(favoriteList.find((favoriteItem) => favoriteItem.drink.id === parseInt(drink_id)  ))
   }, [favoriteList])
-  console.log(favorite, favoriteList)
 
   const ToggleIcon = [FaChevronUp, FaChevronDown][toggle ? 0 : 1];
 
@@ -46,6 +47,10 @@ export default function ProductDetail() {
     dispatch(fetchDeleteFavorite({token, favoriteId: favorite.id}))
   }
   
+  const handleAddToCart = () => {
+     console.log(count, drink_id)
+    dispatch(fetchCreateCart({token, data: {"drink_id": drink_id, "quantity": count}  }))
+  }
 
   return (
     <TemplateOne>
@@ -74,9 +79,10 @@ export default function ProductDetail() {
             </HeadStyled>
             <AmountContainer>
               <div className="change-quantity">
-                <FaMinus className="icon-button" />
-                <input value="1" onChange={() => {}} />
-                <FaPlus className="icon-button" />
+                <FaMinus className="icon-button" onClick={() => setCount(count - 1)} />
+                <input value={count} name="quantity" onChange={() => {}} />
+               
+                <FaPlus className="icon-button" onClick={() => setCount(count + 1)}/>
               </div>
               <TextM>${drink.price}</TextM>
             </AmountContainer>
@@ -102,7 +108,7 @@ export default function ProductDetail() {
         )}
       </ContainerStyled>
       <FooterStyled>
-        <Button>Add to Basquet</Button>
+        <Button onClick={handleAddToCart}>Add to Basquet</Button>
       </FooterStyled>
     </TemplateOne>
   );
