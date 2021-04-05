@@ -7,10 +7,14 @@ import { IoTicketOutline } from "react-icons/io5";
 import { RiAddLine, RiBookReadLine, RiShoppingBagLine } from "react-icons/ri";
 import { HiOutlineDownload, HiLocationMarker, HiOutlinePencil } from "react-icons/hi";
 import { GrShop, GrCreditCard } from "react-icons/gr";
+import { IoLogoFacebook } from "react-icons/io5";
+import { IoLogoLinkedin, IoLogoGithub, IoMdAt } from "react-icons/io";
+
 import { BiCake } from "react-icons/bi";
 import {FcMoneyTransfer} from "react-icons/fc";
 import { BsExclamationCircle, BsFilterRight, BsHeart, BsHeartFill } from "react-icons/bs";
 import { css } from "@emotion/react";
+import { GiBeerStein } from "react-icons/gi";
 
 
 const iconSet = {
@@ -41,13 +45,18 @@ const iconSet = {
   notifications: IoMdNotificationsOutline,
   orders: RiShoppingBagLine,
   discount: IoTicketOutline,
+  facebook: IoLogoFacebook,
+  likendin: IoLogoLinkedin,
+  github: IoLogoGithub,
+  arroba: IoMdAt,
   cake: BiCake,
   money: FcMoneyTransfer, 
   filter: BsFilterRight,
+  beer: GiBeerStein,
 
 };
 
-function Icon({ type, fill, size, onClick }) {
+function Icon({ type, fill, size, onClick, children }) {
   const ComponentToRender = iconSet[type];
   return (
     <ComponentToRender

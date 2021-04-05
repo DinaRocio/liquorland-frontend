@@ -1,18 +1,27 @@
+import { useMediaQuery } from 'react-responsive'
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../UI/Navbar";
 import { Link, Redirect } from "react-router-dom";
 import { fetchLogout } from "../features/session/sessionSlice";
 import { fetchProfile } from "../features/users/usersSlice";
 import Template from "../templates/Template";
+import TemplateDesktop from "../templates/TemplateDesktop";
 import { colors } from "../ui";
 import Icon from "../UI/Icon";
 
-export default function Account({
+export default function Account ( {
   name = "Afsar Hossen",
   email = "lala@lala.com",
   avatarUrl = "https://www.trickscity.com/wp-content/uploads/2018/06/anonymous-dp-for-boys.jpg",
 }) {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+    })
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)'
+    })
   const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
   const profile = useSelector((state) => state.users.profile);
@@ -42,7 +51,49 @@ export default function Account({
     about: "About",
   };
   return (
-    <Template>
+    <> 
+      {isDesktopOrLaptop &&
+        <Container>
+          <Navbar/>
+          <div className="cont">
+            <AccountHeader>
+              <AvatarContainer avatarUrl={profile.avatar_url}></AvatarContainer>
+              <AccountTitles>
+                <NameEdition>
+                  <p>{profile.name}</p>
+                  <Link to="/edit-profile">
+                    <Icon type="pencil" fill={colors.light2} size={15} />
+                  </Link>
+                </NameEdition>
+                <p>{profile.email}</p>
+              </AccountTitles>
+            </AccountHeader>
+            <AccountOptions>
+              {options.map((option) => (
+                <li key={option}>
+                  <Option>
+                    <Icon type={iconsOpt[option]} fill="black" size={20} />
+                    <div>
+                      <p>{titlesOpt[option]}</p>
+                      <Link to={`/${option}`}>
+                        <Icon type="forwardArrow" fill="black" size={14} />
+                      </Link>
+                    </div>
+                  </Option>
+                </li>
+              ))}
+            </AccountOptions>
+          </div>
+          <LogoutButton onClick={() => dispatch(fetchLogout(token))}>
+            <Icon type="logout" fill={colors.light2} size={28} />
+            Logout
+            <span></span>
+          </LogoutButton>
+        </Container>
+      }
+
+      {isTabletOrMobileDevice &&
+      <Template>
       <AccountHeader>
         <AvatarContainer avatarUrl={profile.avatar_url}></AvatarContainer>
         <AccountTitles>
@@ -76,8 +127,28 @@ export default function Account({
         <span></span>
       </LogoutButton>
     </Template>
+      }
+    </>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+  height:800px;
+  gap:80px;
+  width: 100%;
+  & > .cont {
+    flex-direction:column;
+    background-color:white;
+    display:flex;
+    margin:80px;
+    margin-top:150px;
+    padding-left:80px;
+    padding-top:-5px;
+  }
+`;
 
 const AccountHeader = styled.div`
   width: 80vw;
