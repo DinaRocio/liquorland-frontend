@@ -62,42 +62,21 @@ export default function Cart() {
               <p>Amount</p>
             </Table>
             <div className="content">
-                <CardCart
-                  setUrl={bebida}
-                  name={"Trappistes Rochefort 8"}
-                  presentation={"Lata 335 ml."}
-                  price={"12.99"}
-                />
-                <CardCart
-                  setUrl={bebida}
-                  name={"Trappistes Rochefort 8"}
-                  presentation={"Lata 335 ml."}
-                  price={"12.99"}
-                /> 
-                <CardCart
-                  setUrl={bebida}
-                  name={"Trappistes Rochefort 8"}
-                  presentation={"Lata 335 ml."}
-                  price={"12.99"}
-                /> 
-                <CardCart
-                  setUrl={bebida}
-                  name={"Trappistes Rochefort 8"}
-                  presentation={"Lata 335 ml."}
-                  price={"12.99"}
-                />
-                <CardCart
-                  setUrl={bebida}
-                  name={"Trappistes Rochefort 8"}
-                  presentation={"Lata 335 ml."}
-                  price={"12.99"}
-                />
-                <CardCart
-                  setUrl={bebida}
-                  name={"Trappistes Rochefort 8"}
-                  presentation={"Lata 335 ml."}
-                  price={"12.99"}
-                />
+              {cartStatus.index === "LOADING" && <span>Cargando...</span>}
+              {cartStatus.index === "FAILED" && <span>Something was wrong!</span>}
+              {cartStatus.index === "SUCCESS" &&
+                cartList.map((cartItem) => (
+                  <CardCart
+                    key={cartItem.id}
+                    id={cartItem.id}
+                    setUrl={cartItem.drink.image_url}
+                    name={cartItem.drink.name}
+                    presentation={cartItem.drink.presentation}
+                    price={cartItem.drink.price}
+                    quantity={cartItem.quantity}
+                    handleRemoveItem={() => handleRemoveItem(cartItem.id)}
+                  />
+                ))}
             </div>
             <div className="foo"><Footer/></div>
         </Container>
@@ -111,7 +90,9 @@ export default function Cart() {
                 <p className="tax"> TAX	$2.56</p>
                 <p className="sav">SAVINGS	-$0.00</p>
                 <p className="total">TOTAL	$33.55</p>
-                <button>PLACE ORDER</button>
+                <button onClick={() => setCheckoutOpen(!checkoutOpen)}>
+                  PLACE ORDER
+                </button>
         </Checkout>
       </ContainerTwo>
       }
